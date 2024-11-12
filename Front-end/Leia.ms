@@ -1,0 +1,1 @@
+Frontend: react, typescript, Bootstrap.
