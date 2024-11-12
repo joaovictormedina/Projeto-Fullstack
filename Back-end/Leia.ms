@@ -1,1 +1,0 @@
-Backend: node.js, nest.js, API REST, PostgreSQL local
