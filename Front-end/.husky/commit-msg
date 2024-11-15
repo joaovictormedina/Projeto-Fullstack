@@ -1,0 +1,2 @@
+#!/bin/sh 
+commit_message=$(cat "$1") if ! echo "$commit_message" | grep -qE '^(feat|fix|docs|style|refactor|test|chore): .{1,50}$'; then echo "Mensagem de commit inválida!" exit 1 fi
