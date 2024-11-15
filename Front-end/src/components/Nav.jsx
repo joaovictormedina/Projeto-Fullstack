@@ -1,29 +1,36 @@
+import { Link } from "react-router-dom";
+import "../styles/Styles.css";
+
 const Nav = () => {
   return (
-    <nav>
-      <ul>
+    <nav className="nav-container">
+      <div className="nav-logo">
+        <Link to="/home">
+          <img src="/img/logo.svg" alt="Logo" className="logo-icon" />
+        </Link>
+      </div>
+      <ul className="nav-links">
         <li>
-          <a href="/">Home</a>
+          <Link to="/services">Serviços</Link>
         </li>
         <li>
-          <a href="/services">Services</a>
+          <Link to="/packages">Pacotes</Link>
         </li>
         <li>
-          <a href="/packages">Packages</a>
-        </li>
-        <li>
-          <a href="/promotions">Promotions</a>
-        </li>
-        <li>
-          <a href="/login">Login</a>
-        </li>
-        <li>
-          <a href="/register">Register</a>
-        </li>
-        <li>
-          <a href="/admin">Admin</a>
+          <Link to="/promotions">Promoções</Link>
         </li>
       </ul>
+      <div className="nav-actions">
+        <Link to="/login">
+          <button className="nav-button">Acessar Conta</button>
+        </Link>
+        <Link to="/register">
+          <button className="nav-button">Criar Conta</button>
+        </Link>
+      </div>
+      <div className="nav-search">
+        <input type="text" placeholder="Procurar..." className="search-input" />
+      </div>
     </nav>
   );
 };

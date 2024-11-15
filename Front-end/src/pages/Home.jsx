@@ -1,19 +1,19 @@
 import Nav from "../components/Nav";
-import Hero from "../components/Hero";
+import HeroHome from "../components/HeroHome";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
 import "../styles/Styles.css";
 import "../styles/Home.css";
 
-const Home = () => {
+const Hero = () => {
   return (
     <div>
       <Nav />
-      <Hero />
+      <HeroHome />
       <Contact />
       <Footer />
     </div>
   );
 };
 
-export default Home;
+export default Hero;
