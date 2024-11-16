@@ -1,7 +1,7 @@
 const Hero = () => {
   return (
     <header>
-      <h1>Home Welcome to Our Website!</h1>
+      <h1>Opa</h1>
       <p>Explore our services and packages.</p>
     </header>
   );
