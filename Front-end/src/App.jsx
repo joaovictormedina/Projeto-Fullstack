@@ -6,6 +6,7 @@ import Promotions from "./pages/Promotions";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Admin from "./pages/Admin";
+import BancodeDados from "./pages/BancodeDados";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/bancodedados" element={<BancodeDados />} />
       </Routes>
     </Router>
   );

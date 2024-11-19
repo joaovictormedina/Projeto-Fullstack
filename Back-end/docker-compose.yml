@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:13
+    container_name: postgres-db
+    environment:
+      POSTGRES_USER: plutowtech
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: plutowtechdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - backend_network
+
+  backend:
+    build: .
+    container_name: nestjs-backend
+    environment:
+      - DATABASE_HOST=postgres
+      - DATABASE_PORT=5432
+      - DATABASE_USERNAME=plutowtech
+      - DATABASE_PASSWORD=docker
+      - DATABASE_NAME=plutowtechdb
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+    networks:
+      - backend_network
+
+volumes:
+  postgres_data:
+
+networks:
+  backend_network:
+    driver: bridge
