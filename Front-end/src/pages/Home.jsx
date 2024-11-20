@@ -2,6 +2,7 @@ import Nav from "../components/Nav";
 import HeroHome from "../components/HeroHome";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
+
 import "../styles/Styles.css";
 import "../styles/Home.css";
 

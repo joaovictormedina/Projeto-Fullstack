@@ -6,6 +6,7 @@ import Promotions from "./pages/Promotions";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Admin from "./pages/Admin";
+import "./styles/Contact.css";
 import BancodeDados from "./pages/BancodeDados";
 
 

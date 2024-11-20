@@ -1,6 +1,6 @@
 const Hero = () => {
   return (
-    <header>
+    <header class = "herohome">
       <h1>Opa</h1>
       <p>Explore our services and packages.</p>
     </header>
