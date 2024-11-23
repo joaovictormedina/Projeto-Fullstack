@@ -87,7 +87,7 @@ const Contact = () => {
 
         <div className="partners">
           {/* Parceiros */}
-          <h3>Produtos e Forn</h3>
+          <h3>Produtos e Fornecedor</h3>
           <ul>
             {parceiros.map((parceiro, index) => (
               <li key={index}>
