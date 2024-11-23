@@ -2,10 +2,11 @@
     background-color: #007bffd4; /* Azul suave */
     color: #ffffff;
     text-align: center;
-    padding: 40px 20px;
-    position: absolute;
-    bottom: 1;
+    padding: 40px 0;
+    bottom: 0;
     width: 100%;
+    margin: 0;
+    position: relative;
   }
   
   .contact-container {
@@ -15,7 +16,7 @@
   
   .contact-container .logo {
     max-width: 120px;
-    margin: 0 auto 20px;
+    margin: 0 auto 10px;
     display: block;
   }
   

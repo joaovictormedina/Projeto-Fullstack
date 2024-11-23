@@ -22,10 +22,10 @@ const Nav = () => {
       </ul>
       <div className="nav-actions">
         <Link to="/login">
-          <button className="nav-button">Acessar Conta</button>
+          <button className="buttonWhite">Acessar Conta</button>
         </Link>
         <Link to="/register">
-          <button className="nav-button">Criar Conta</button>
+          <button className="buttonBlue">Criar Conta</button>
         </Link>
       </div>
       <div className="nav-search">

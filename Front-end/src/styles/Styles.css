@@ -3,7 +3,6 @@ margin: 0;
 padding: 0;
 text-decoration: none;
 font-family: 'inter', sans-serif, 'Times New Roman', Times, serif;
-margin: 1rem;     /* Somente para organização. Apagar assim que possível*/
 }
 
 body {
@@ -146,6 +145,30 @@ outline: none;
 
 input::placeholder {
 opacity: 0.5;
+}
+
+/* Removendo margens e espaçamentos desnecessários */
+body,
+div,
+header,
+footer,
+section {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Ajuste para garantir que os elementos estejam alinhados sem espaço entre eles */
+.section-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    /* Remove espaçamento entre os elementos */
+}
+
+.section-container>* {
+    margin: 0;
+    padding: 0;
 }
 
 .nav-container {

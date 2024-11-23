@@ -8,7 +8,7 @@ import "../styles/Home.css";
 
 const Hero = () => {
   return (
-    <div>
+    <div className="section-container">
       <Nav />
       <HeroHome />
       <Contact />
