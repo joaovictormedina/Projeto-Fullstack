@@ -6,7 +6,7 @@ const Nav = () => {
     <nav className="nav-container">
       <div className="nav-logo">
         <Link to="/home">
-          <img src="/img/logo.svg" alt="Logo" className="logo-icon" />
+          <img src="/img/logo.png" alt="Logo" className="logo-icon" />
         </Link>
       </div>
       <ul className="nav-links">

@@ -1,42 +1,89 @@
- #contact-section {
-    background-color: #007bffd4; /* Azul suave */
-    color: #ffffff;
-    text-align: center;
-    padding: 40px 0;
-    bottom: 0;
-    width: 100%;
-    margin: 0;
-    position: relative;
-  }
-  
-  .contact-container {
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  
-  .contact-container .logo {
-    max-width: 120px;
-    margin: 0 auto 10px;
-    display: block;
-  }
-  
-  .contact-container p {
-    font-size: 1.2rem;
-    line-height: 1.5;
-    margin-bottom: 10px;
-  }
-  
-  .contact-container a {
-    color: #ffe082; /* Amarelo suave */
-    text-decoration: none;
-    margin: 0 10px;
-  }
-  
-  .contact-container a:hover {
-    text-decoration: underline;
-    color:#007bff;
-  }
-  
-  .links {
-    margin-top: 20px;
-  }
+#contact-section {
+  background-color: #007bffd4;
+  /* Azul suave */
+  color: #ffffff;
+  text-align: center;
+  padding: 40px 0;
+  bottom: 0;
+  width: 100%;
+  margin: 0;
+  position: relative;
+}
+
+.contact-container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.contact-info {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.contact-info .logo {
+  max-width: 330px;
+  margin: 10px auto 100px;
+  display: block;
+}
+
+.contact-info p {
+    font-weight: 350;
+    color: var(--color-text-all);
+  font-size: 1.2rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.contact-info a {
+  font-size: 1rem;
+  font-weight: 400;
+  text-decoration: none;
+  color: var(--color-text-all);
+  margin: 0 5px;
+}
+
+.qr-code {
+  margin-top: 80px;
+}
+
+.qr-code img {
+  max-width: 180px;
+  margin: 0;
+}
+
+.partners {
+  flex: 1;
+  margin-left: 20px;
+}
+
+.partners h3 {
+  font-size: 2.8rem;
+  margin-bottom: 30px;
+  color: black;
+}
+
+.partners ul {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+}
+
+.partners li {
+  margin-bottom: 5px;
+}
+
+.partner-img {
+  width: 100px;
+  height: auto;
+}
+
+.links {
+  margin-top: 20px;
+}
+

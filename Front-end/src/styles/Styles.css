@@ -88,7 +88,7 @@ color: var(--color-text-pageCaptions);
 }
 
 p {
-font-size: 0.75rem;
+font-size: 1.2rem;
 font-weight: 350;
 color: var(--color-text-all);
 }
@@ -183,12 +183,13 @@ section {
 
 .nav-logo {
     flex: 0;
-    padding: 1% 0 1% 1%;
+    padding: 3% 0 2% 2%;
 }
 
-.logo-icon {
-    height: 50px;
+.logo-icon {    
     cursor: pointer;
+    width: 180px;
+    height: auto;
 }
 
 .nav-links {
