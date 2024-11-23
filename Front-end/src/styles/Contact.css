@@ -1,0 +1,41 @@
+ #contact-section {
+    background-color: #007bffd4; /* Azul suave */
+    color: #ffffff;
+    text-align: center;
+    padding: 40px 20px;
+    position: absolute;
+    bottom: 1;
+    width: 100%;
+  }
+  
+  .contact-container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .contact-container .logo {
+    max-width: 120px;
+    margin: 0 auto 20px;
+    display: block;
+  }
+  
+  .contact-container p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+  
+  .contact-container a {
+    color: #ffe082; /* Amarelo suave */
+    text-decoration: none;
+    margin: 0 10px;
+  }
+  
+  .contact-container a:hover {
+    text-decoration: underline;
+    color:#007bff;
+  }
+  
+  .links {
+    margin-top: 20px;
+  }
