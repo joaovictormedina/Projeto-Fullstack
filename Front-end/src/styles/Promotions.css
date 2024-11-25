@@ -1,0 +1,7 @@
+.section-container-promotion {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 30px;
+}
