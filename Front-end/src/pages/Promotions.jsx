@@ -2,6 +2,7 @@ import Nav from "../components/Nav";
 import Hero from "../components/HeroPromotions";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
+import "@mantine/carousel/styles.css";
 import "../styles/Styles.css";
 import "../styles/Promotions.css";
 
