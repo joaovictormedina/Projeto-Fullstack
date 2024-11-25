@@ -1,0 +1,119 @@
+.heroregister-container {
+    background-image: url('/src/img/loginback.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    /* Tamanho do título */
+    color: #333;
+    /* Cor do título */
+    margin-bottom: 10px;
+    /* Espaçamento abaixo do título */
+    text-align: center;
+}
+
+header p {
+    font-size: 1.2rem;
+    /* Tamanho da descrição */
+    color: #666;
+    /* Cor da descrição */
+    max-width: 600px;
+    /* Largura máxima do parágrafo */
+    margin: 0 auto;
+    /* Centraliza o parágrafo */
+    text-align: center;
+}
+
+/* Adiciona algum espaço extra no topo da página */
+section {
+    margin-top: 0;
+    text-align: center;
+    padding-bottom: 100px
+}
+
+.register-section-container {
+    background-color: white;
+    /* Define o fundo branco */
+    padding: 20px;
+    /* Adiciona um pouco de espaçamento interno */
+    border-radius: 8px;
+    /* Adiciona bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Adiciona sombra suave para dar destaque */
+    max-width: 500px;
+    /* Limita a largura máxima do formulário */
+    margin: 0 auto;
+    /* Centraliza o formulário */
+}
+
+.form-container {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* Alinha os campos à esquerda */
+    ;
+}
+
+/* Estilos para os labels */
+form label {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 8px;
+    margin-top: 10px;
+}
+
+/* Estilos para os inputs */
+form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    /* Espaçamento entre os campos */
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    justify-content: center;
+}
+
+/* Estilos para o botão */
+.buttonYellow {
+    padding: 12px;
+    /* Cor amarela para o botão */
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+    margin-top: 12px;
+}
+
+
+/* Estilos para mensagens de erro */
+.error-message {
+    color: red;
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+select {
+    width: 300px;
+    margin-bottom: 30px;
+}
