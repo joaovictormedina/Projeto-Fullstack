@@ -1,3 +1,13 @@
 .herohome {
     height: 100%;
 }
+.button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #007bff; /* Cor de fundo dourado */
+    border: 2px solid #007bff; /* Borda em cinza escuro */
+    border-radius: 20px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
