@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import { MantineProvider } from "@mantine/core";
 import Home from "./pages/Home";
 import Services from "./pages/Services";
@@ -17,6 +22,7 @@ const App = () => {
     <MantineProvider withGlobalStyles withNormalizeCSS>
       <Router>
         <Routes>
+          <Route path="/" element={<Navigate to="/home" />} />
           <Route path="/home" element={<Home />} />
           <Route path="/services" element={<Services />} />
           <Route path="/packages" element={<Packages />} />
