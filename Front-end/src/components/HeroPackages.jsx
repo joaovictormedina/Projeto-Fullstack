@@ -12,6 +12,32 @@ import imgfozdoiguacu from "../img-packages/fozdoiguacu.png";
 import imgparaty from "../img-packages/paraty.png";
 import imgilhabela from "../img-packages/ilhabela.png";
 
+const Hero = () => {
+  return (
+    <header style={{ padding: '10px 7vw', textAlign: 'left' }}>
+      <div>
+        <h1>VIAGENS</h1>
+        <p>Conheça agora algumas das experiências que nossos parceiros poderão viver no PARTNERSHIP</p>
+      </div>
+      <br />
+      <SimpleGrid cols={2} spacing="lg" breakpoints={[{ maxWidth: 'sm', cols: 1 }]}>
+        <Milao />
+        <Japao />
+        <Orlando />
+        <Paris />
+        <Croacia />
+        <Ushuaia />
+        <BuenoAires />
+        <MorroDeSaoPaulo />
+        <CruzeiroCostaBr />
+        <FozDoIguacu />
+        <Paraty />
+        <Ilhabela />
+      </SimpleGrid>
+    </header>
+  );
+};
+
 function Milao() {
   return (
     <Card shadow="sm" padding="lg" radius="md" withBorder>
@@ -418,32 +444,5 @@ function Ilhabela() {
     </Card>
   );
 }
-
-
-const Hero = () => {
-  return (
-    <header style={{ padding: '10px 7vw', textAlign: 'left' }}>
-      <div>
-        <h1>VIAGENS</h1>
-        <p>Conheça agora algumas das experiências que nossos parceiros poderão viver no PARTNERSHIP</p>
-      </div>
-      <br />
-      <SimpleGrid cols={2} spacing="lg" breakpoints={[{ maxWidth: 'sm', cols: 1 }]}>
-        <Milao />
-        <Japao />
-        <Orlando />
-        <Paris />
-        <Croacia />
-        <Ushuaia />
-        <BuenoAires />
-        <MorroDeSaoPaulo />
-        <CruzeiroCostaBr />
-        <FozDoIguacu />
-        <Paraty />
-        <Ilhabela />
-      </SimpleGrid>
-    </header>
-  );
-};
 
 export default Hero;
