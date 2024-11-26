@@ -14,9 +14,10 @@ import {
   Image,
   Text,
   Badge,
-  Button,
   Group,
 } from "@mantine/core";
+import "../styles/Styles.css";
+import "../styles/Login.css";
 
 const Hero = () => {
   return (
@@ -31,7 +32,8 @@ const Hero = () => {
           height={400}
           slideGap="lg"
           controlSize={55}
-          loop
+          loop={true}
+          dragFree={true}
           styles={{
             control: {
               backgroundColor: "white",
@@ -45,7 +47,10 @@ const Hero = () => {
           style={{
             marginLeft: "20px",
             marginRight: "20px",
+            position: "relative",
+            zIndex: 1,
           }}
+          onChange={(index) => console.log(`Slide index changed to: ${index}`)}
         >
           <Carousel.Slide>
             <div
@@ -53,6 +58,7 @@ const Hero = () => {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
+                position: "relative",
                 height: "100%",
               }}
             >
@@ -145,9 +151,7 @@ const Hero = () => {
               conectar com o mundo!
             </Text>
 
-            <Button color="blue" fullWidth mt="md" radius="md">
-              Resgate agora
-            </Button>
+            <button className="buttonYellow">Resgate agora</button>
           </Card>
           <Card
             shadow="sm"
@@ -174,9 +178,7 @@ const Hero = () => {
               bordo de um navio incrível!
             </Text>
 
-            <Button color="blue" fullWidth mt="md" radius="md">
-              Resgate agora
-            </Button>
+            <button className="buttonYellow">Resgate agora</button>
           </Card>
           <Card
             shadow="sm"
@@ -203,9 +205,7 @@ const Hero = () => {
               para sempre na memória.
             </Text>
 
-            <Button color="blue" fullWidth mt="md" radius="md">
-              Resgate agora
-            </Button>
+            <button className="buttonYellow">Resgate agora</button>
           </Card>
           <Card
             shadow="sm"
@@ -232,9 +232,7 @@ const Hero = () => {
               portabilidade em um só dispositivo.
             </Text>
 
-            <Button color="blue" fullWidth mt="md" radius="md">
-              Resgate agora
-            </Button>
+            <button className="buttonYellow">Resgate agora</button>
           </Card>
           <Card
             shadow="sm"
@@ -261,9 +259,7 @@ const Hero = () => {
               verdadeira celebração para os sentidos!
             </Text>
 
-            <Button color="blue" fullWidth mt="md" radius="md">
-              Resgate agora
-            </Button>
+            <button className="buttonYellow">Resgate agora</button>
           </Card>
           <Card
             shadow="sm"
@@ -290,9 +286,7 @@ const Hero = () => {
               Aventura garantida para os amantes do mar!
             </Text>
 
-            <Button color="blue" fullWidth mt="md" radius="md">
-              Resgate agora
-            </Button>
+            <button className="buttonYellow">Resgate agora</button>
           </Card>
           <Card
             shadow="sm"
@@ -319,9 +313,7 @@ const Hero = () => {
               renovar corpo e mente.
             </Text>
 
-            <Button color="blue" fullWidth mt="md" radius="md">
-              Resgate agora
-            </Button>
+            <button className="buttonYellow">Resgate agora</button>
           </Card>
           <Card
             shadow="sm"
@@ -348,9 +340,7 @@ const Hero = () => {
               para cada usuário.
             </Text>
 
-            <Button color="blue" fullWidth mt="md" radius="md">
-              Resgate agora
-            </Button>
+            <button className="buttonYellow">Resgate agora</button>
           </Card>
         </section>
       </header>

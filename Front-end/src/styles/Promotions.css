@@ -5,3 +5,14 @@
     gap: 16px;
     padding: 30px;
 }
+
+ .buttonYellow {
+     padding: 12px;
+     /* Cor amarela para o botão */
+     border: none;
+     border-radius: 5px;
+     font-size: 1rem;
+     cursor: pointer;
+     width: 100%;
+     transition: background-color 0.3s;
+ }
