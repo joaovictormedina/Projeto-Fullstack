@@ -13,6 +13,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Admin from "./pages/Admin";
 import BancodeDados from "./pages/BancodeDados";
+import PrivateRoute from "./components/PrivateRoute"; // Importando o PrivateRoute
 import "./styles/Contact.css";
 import "@mantine/carousel/styles.css";
 import "@mantine/core/styles.css";
@@ -29,7 +30,10 @@ const App = () => {
           <Route path="/promotions" element={<Promotions />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/admin" element={<Admin />} />
+
+          {/* Protegendo a página Admin com PrivateRoute */}
+          <Route path="/admin" element={<PrivateRoute element={<Admin />} />} />
+
           <Route path="/bancodedados" element={<BancodeDados />} />
         </Routes>
       </Router>

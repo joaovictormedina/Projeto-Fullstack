@@ -11,8 +11,8 @@ const Register = () => {
     cpf: "",
     cau: "",
     email: "",
-    userType: "engenheiro", // valor padrão
-    password: "", // novo campo para senha
+    userType: "engenheiro",
+    password: "",
   });
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -25,7 +25,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validação de senha (mínimo 8 caracteres, uma letra maiúscula e um número)
+    // Validação de senha (pelo menos 8 caracteres, uma letra maiúscula e um número)
     const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
     if (!passwordRegex.test(formData.password)) {
       setErrorMessage(
@@ -36,22 +36,37 @@ const Register = () => {
     }
 
     try {
-      // Envia os dados do formulário para a API
-      await axios.post("http://localhost:3000/users", formData);
-
-      setSuccessMessage(
-        "Cadastrado com sucesso! Você será redirecionado para a tela de login."
+      // Envio dos dados para o backend, incluindo a senha
+      const response = await axios.post(
+        "http://localhost:3000/users", // URL do seu backend
+        formData
       );
-      setErrorMessage("");
 
-      // Redireciona para a tela de login após 3 segundos
-      setTimeout(() => {
-        navigate("/login");
-      }, 3000);
-    } catch {
-      setErrorMessage(
-        "Já existe um usuário com esse CPF ou Email. Verifique os dados e tente novamente."
-      );
+      if (response.status === 201) {
+        setSuccessMessage(
+          "Cadastrado com sucesso! Você será redirecionado para a tela de login."
+        );
+        setErrorMessage("");
+
+        setTimeout(() => {
+          navigate("/login");
+        }, 1000);
+      }
+    } catch (error) {
+      console.error(error);
+
+      // Mensagens de erro com base nos status de resposta do backend
+      if (error.response && error.response.status === 409) {
+        setErrorMessage(
+          "Já existe um usuário com esse CPF ou Email. Verifique os dados e tente novamente."
+        );
+      } else if (error.response && error.response.status === 400) {
+        setErrorMessage("Dados inválidos. Tente novamente.");
+      } else if (error.response && error.response.status === 401) {
+        setErrorMessage("Erro de autenticação. Verifique suas credenciais.");
+      } else {
+        setErrorMessage("Ocorreu um erro ao criar sua conta. Tente novamente.");
+      }
       setSuccessMessage("");
     }
   };
@@ -142,7 +157,7 @@ const Register = () => {
 };
 
 const Hero = () => {
-  return;
+  return <div className="hero-container">Seu conteúdo hero aqui</div>;
 };
 
 export default Register;

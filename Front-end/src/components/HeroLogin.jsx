@@ -7,37 +7,31 @@ import "../styles/Login.css";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState(""); // Para exibir mensagens de erro
-  const navigate = useNavigate(); // Usado para redirecionar o usuário
+  const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      // Enviar a requisição de login para o backend
-      const response = await axios.post("http://localhost:3000/login", {
+      const response = await axios.post("http://localhost:3000/auth/login", {
         email,
         password,
       });
 
-      // Verificar o status de resposta e armazenar o token
-      if (response.status === 200 && response.data.token) {
-        // Armazenar o token JWT no localStorage
-        localStorage.setItem("authToken", response.data.token);
-        navigate("/admin"); // Redirecionar para a página administrativa
+      if (response.status === 201 && response.data.access_token) {
+        localStorage.setItem("authToken", response.data.access_token);
+
+        navigate("/admin");
       } else {
         setErrorMessage("Credenciais inválidas");
       }
     } catch (error) {
-      // Tratamento de erros de rede ou outros tipos de falhas
       if (error.response) {
-        // Se houver uma resposta do servidor
         setErrorMessage(error.response.data.message || "Credenciais inválidas");
       } else if (error.request) {
-        // Se não houver resposta do servidor
         setErrorMessage("Erro de rede. Tente novamente.");
       } else {
-        // Caso algum outro erro tenha ocorrido
         setErrorMessage("Erro ao tentar fazer login.");
       }
     }
