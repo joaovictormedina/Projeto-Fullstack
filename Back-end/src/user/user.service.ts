@@ -33,19 +33,17 @@ export class UserService {
       throw new ConflictException('Email já cadastrado');
     }
 
-    // Valida e faz o hash da senha
+    // Validando a senha sem criptografá-la aqui
     if (userData.password) {
-      // Valida a senha
       const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
       if (!passwordRegex.test(userData.password)) {
         throw new ConflictException(
           'A senha deve ter pelo menos 8 caracteres, uma letra maiúscula e um número.',
         );
       }
-      // Criptografa a senha
-      userData.password = await bcrypt.hash(userData.password, 10);
     }
 
+    // Cria um novo usuário sem criptografar a senha (presumimos que o controller já fez isso)
     const user = this.userRepository.create(userData);
     await this.userRepository.save(user);
     return 'Cadastrado com sucesso!';
