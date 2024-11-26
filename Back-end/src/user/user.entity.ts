@@ -28,6 +28,7 @@ export class User {
   @Column({ nullable: false })
   password: string;
 
+  // Validação da senha
   validatePassword() {
     const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
     if (!passwordRegex.test(this.password)) {
@@ -37,11 +38,12 @@ export class User {
     }
   }
 
+  // Antes de inserir, criptografar a senha
   @BeforeInsert()
   async hashPassword() {
     this.validatePassword();
     if (process.env.NODE_ENV !== 'development') {
-      // Apenas criptografa a senha em produção e outras versões
+      // Criptografa a senha apenas em produção e outras versões
       this.password = await bcrypt.hash(this.password, 10);
     }
   }
