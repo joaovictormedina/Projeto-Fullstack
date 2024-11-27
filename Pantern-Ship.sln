@@ -25,38 +25,14 @@ Global
 EndGlobal
 
 
-import { useNavigate } from "react-router-dom";
-
-const Hero = () => {
-  const navigate = useNavigate(); // Usado para redirecionar o usuário
-
-  // Função para realizar o logout
-  const handleLogout = () => {
-    // Remover o token do localStorage
-    localStorage.removeItem("authToken");
-
-    // Redirecionar o usuário para a página de login
-    navigate("/login");
-  };
-
-  return (
-    <header>
-      <h1>Admin Welcome to Our Website!</h1>
-      <p>Explore our services and packages.</p>
-      {/* Botão de Logout */}
-      <button onClick={handleLogout} className="logout-button">
-        Logout
-      </button>
-    </header>
-  );
-};
-
-export default Hero;
+psql -h localhost -U plutowtech -d plutowtechdb
 
 
 id |    name     |     cpf     |  cau   |           email            |  userType  |                           password   
 
 id, name, cpf, cau, email, userType, password, dataNascimento, cep, numero, endereco, bairro, municipio, estado, complemento, photoPath.
 
-trocar o button de acessar conta para minha conta quando logado.
-ajustar para guardar os dados cadastrais no banco de dados
+adicionar campo no banco de dados pointsnow (pontos que ele tem agora) e allpoints (pontos que ele teve no total)
+
+
+Minhasenha123

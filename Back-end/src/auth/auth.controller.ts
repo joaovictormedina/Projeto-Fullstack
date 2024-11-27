@@ -1,6 +1,6 @@
 import { Controller, Post, Body } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { UnauthorizedException } from '@nestjs/common'; // Importar a exceção
+import { UnauthorizedException } from '@nestjs/common';
 
 @Controller('auth')
 export class AuthController {
@@ -9,12 +9,13 @@ export class AuthController {
   @Post('login')
   async login(@Body() loginDto: any): Promise<any> {
     try {
+      // Chama o método de login do AuthService
       return await this.authService.login(loginDto);
     } catch (error) {
       if (error instanceof UnauthorizedException) {
-        throw error; // Re-throw a exception de não autorizado
+        throw error;
       }
-      throw error; // Lidar com outros tipos de erro, se necessário
+      throw error;
     }
   }
 }

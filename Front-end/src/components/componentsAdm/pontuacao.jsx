@@ -1,61 +1,38 @@
-import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 
-const Pontuacao = ({ pointsData, produtosDisponiveis, usuarioTop }) => {
+const Pontuacao = () => {
+  const navigate = useNavigate();
+  const [user, setUser] = useState({
+    points: 0,
+  });
+
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem("userData")) || {
+      points: 0,
+    };
+    setUser(userData);
+  }, []);
+
   return (
-    <div>
-      {/* Área de Pontuação */}
-      <section>
-        <h2>Área de Pontuação</h2>
-        <p>Pontos atuais: {pointsData.pontosAtuais}</p>
-        <p>Total de pontos já obtidos: {pointsData.totalPontosObtidos}</p>
-        <p>Pontos próximos de expirar: {pointsData.pontosProximosExpirar}</p>
-        <p>Pontos trocados: {pointsData.pontosTrocados}</p>
-        <h3>Histórico de Trocas</h3>
-        <ul>
-          {pointsData.historicoTrocas.map((troca, index) => (
-            <li key={index}>
-              {troca.produto} - {troca.pontos} pontos
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      {/* Produtos Disponíveis */}
-      <section>
-        <h2>Produtos para Troca</h2>
-        <ul>
-          {produtosDisponiveis.map((produto, index) => (
-            <li key={index}>
-              {produto.nome} - {produto.pontos} pontos
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      {/* Usuário com Mais Pontos */}
-      <section>
-        <h2>Usuário com Mais Pontos</h2>
-        <p>
-          {usuarioTop.nome} - {usuarioTop.pontos} pontos
-        </p>
-      </section>
-    </div>
+    <section>
+      <h2>Meus Pontos</h2>
+      <p>Você tem atualmente: {user.points} pontos</p>
+      <button
+        onClick={() => {
+          if (user.points > 0) {
+            setUser({ ...user, points: user.points - 1 });
+            alert("Ponto trocado com sucesso!");
+            navigate("/pontuacao");
+          } else {
+            alert("Você não tem pontos suficientes.");
+          }
+        }}
+      >
+        Trocar 1 Ponto
+      </button>
+    </section>
   );
-};
-
-Pontuacao.propTypes = {
-  pointsData: PropTypes.shape({
-    pontosAtuais: PropTypes.number.isRequired,
-    totalPontosObtidos: PropTypes.number.isRequired,
-    pontosProximosExpirar: PropTypes.number.isRequired,
-    pontosTrocados: PropTypes.number.isRequired,
-    historicoTrocas: PropTypes.array.isRequired,
-  }).isRequired,
-  produtosDisponiveis: PropTypes.array.isRequired,
-  usuarioTop: PropTypes.shape({
-    nome: PropTypes.string.isRequired,
-    pontos: PropTypes.number.isRequired,
-  }).isRequired,
 };
 
 export default Pontuacao;

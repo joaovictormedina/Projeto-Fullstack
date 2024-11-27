@@ -134,11 +134,11 @@ const Register = () => {
                 onChange={handleInputChange}
                 required
               >
-                <option value="Engenheiro">Engenheiro</option>
-                <option value="Arquiteto">Arquiteto</option>
-                <option value="Consultor">Consultor</option>
-                <option value="Loja">Loja</option>
-                <option value="Escritorio">Escritório</option>
+                <option value="engenheiro">Engenheiro</option>
+                <option value="arquiteto">Arquiteto</option>
+                <option value="consultor">Consultor</option>
+                <option value="loja">Loja</option>
+                <option value="escritorio">Escritório</option>
               </select>
 
               <button className="buttonYellow" type="submit">

@@ -10,10 +10,6 @@ const Admin = () => {
     <div>
       <Nav />
       <Hero />
-      <section>
-        <h2>Admin Dashboard</h2>
-        <p>Manage your content here.</p>
-      </section>
       <Contact />
       <Footer />
     </div>

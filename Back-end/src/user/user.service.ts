@@ -7,6 +7,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './user.entity';
 import * as bcrypt from 'bcryptjs';
+import { UnauthorizedException } from '@nestjs/common';
 
 @Injectable()
 export class UserService {
@@ -75,9 +76,12 @@ export class UserService {
 
   // Consultar um usuário pelo Email
   async findOneByEmail(email: string): Promise<User> {
-    return this.userRepository.findOne({ where: { email } });
+    try {
+      return await this.userRepository.findOneOrFail({ where: { email } });
+    } catch {
+      throw new UnauthorizedException('Usuário não encontrado');
+    }
   }
-
   // Atualizar um usuário
   async updateUser(id: number, userData: Partial<User>): Promise<User> {
     const user = await this.findOneById(id); // Verifica se o usuário existe

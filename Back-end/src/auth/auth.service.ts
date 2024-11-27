@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UserService } from '../user/user.service';
 import { LoginDto } from './dto/login.dto';
-import { UnauthorizedException } from '@nestjs/common'; // Importar a exceção
+import { UnauthorizedException } from '@nestjs/common';
 import * as bcrypt from 'bcryptjs';
 
 @Injectable()
@@ -15,7 +15,7 @@ export class AuthService {
   async login(loginDto: LoginDto): Promise<any> {
     const user = await this.userService.findOneByEmail(loginDto.email);
     if (!user) {
-      throw new UnauthorizedException('Usuário não encontrado'); // Exceção de não autorizado
+      throw new UnauthorizedException('Usuário não encontrado');
     }
 
     // Verifique se a senha está correta
@@ -24,10 +24,15 @@ export class AuthService {
       user.password,
     );
     if (!isPasswordValid) {
-      throw new UnauthorizedException('Senha incorreta'); // Exceção se a senha estiver incorreta
+      throw new UnauthorizedException('Senha incorreta');
     }
 
-    const payload = { email: user.email, sub: user.id };
+    const payload = {
+      userId: user.id,
+      email: user.email,
+      sub: user.id,
+    };
+
     return {
       access_token: this.jwtService.sign(payload),
     };

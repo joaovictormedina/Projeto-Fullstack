@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { JwtModule } from '@nestjs/jwt'; // Importando o JwtModule
-import { AuthController } from './auth.controller'; // Importando o AuthController
+import { JwtModule } from '@nestjs/jwt';
+import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { UserModule } from '../user/user.module';
 
@@ -8,8 +8,8 @@ import { UserModule } from '../user/user.module';
   imports: [
     UserModule,
     JwtModule.register({
-      secret: process.env.JWT_SECRET || 'secretKey', // Configuração do JWT
-      signOptions: { expiresIn: '1h' }, // Configuração do tempo de expiração
+      secret: process.env.JWT_SECRET || 'secretKey',
+      signOptions: { expiresIn: '1h' },
     }),
   ],
   controllers: [AuthController],
