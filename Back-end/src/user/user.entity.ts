@@ -28,6 +28,33 @@ export class User {
   @Column({ nullable: false })
   password: string;
 
+  @Column({ nullable: true })
+  datanascimento: Date;
+
+  @Column({ nullable: true, length: 10 })
+  cep: string;
+
+  @Column({ nullable: true, length: 10 })
+  numero: string;
+
+  @Column({ nullable: true, length: 255 })
+  endereco: string;
+
+  @Column({ nullable: true, length: 255 })
+  bairro: string;
+
+  @Column({ nullable: true, length: 255 })
+  municipio: string;
+
+  @Column({ nullable: true, length: 2 })
+  estado: string;
+
+  @Column({ nullable: true, length: 255 })
+  complemento: string;
+
+  @Column({ nullable: true, length: 255 })
+  photopath: string;
+
   // Validação da senha
   validatePassword() {
     const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;

@@ -33,7 +33,7 @@ export class UserService {
       throw new ConflictException('Email já cadastrado');
     }
 
-    // Validando a senha sem criptografá-la aqui
+    // Validando a senha
     if (userData.password) {
       const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
       if (!passwordRegex.test(userData.password)) {
@@ -41,9 +41,11 @@ export class UserService {
           'A senha deve ter pelo menos 8 caracteres, uma letra maiúscula e um número.',
         );
       }
+      // Criptografa a senha
+      userData.password = await bcrypt.hash(userData.password, 10);
     }
 
-    // Cria um novo usuário sem criptografar a senha (presumimos que o controller já fez isso)
+    // Criação do usuário
     const user = this.userRepository.create(userData);
     await this.userRepository.save(user);
     return 'Cadastrado com sucesso!';
@@ -83,6 +85,21 @@ export class UserService {
       throw new NotFoundException('Usuário não encontrado');
     }
 
+    // Verificar se o CPF e o e-mail já estão em uso
+    if (userData.cpf && userData.cpf !== user.cpf) {
+      const existingUserCpf = await this.findOneByCpf(userData.cpf);
+      if (existingUserCpf) {
+        throw new ConflictException('CPF já cadastrado');
+      }
+    }
+
+    if (userData.email && userData.email !== user.email) {
+      const existingUserEmail = await this.findOneByEmail(userData.email);
+      if (existingUserEmail) {
+        throw new ConflictException('E-mail já cadastrado');
+      }
+    }
+
     // Se for fornecida uma nova senha, valida e criptografa
     if (userData.password) {
       const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
@@ -95,6 +112,7 @@ export class UserService {
       userData.password = await bcrypt.hash(userData.password, 10);
     }
 
+    // Atualiza os dados do usuário
     await this.userRepository.update(id, userData);
     return this.userRepository.findOne({ where: { id } });
   }
