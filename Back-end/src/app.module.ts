@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserModule } from './user/user.module'; // Importando o módulo do usuário
-import { AuthModule } from './auth/auth.module'; // Importando o AuthModule
+import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -16,7 +16,7 @@ import { AuthModule } from './auth/auth.module'; // Importando o AuthModule
       synchronize: true,
     }),
     UserModule,
-    AuthModule, // Importando o módulo de autenticação
+    AuthModule,
   ],
 })
 export class AppModule {}

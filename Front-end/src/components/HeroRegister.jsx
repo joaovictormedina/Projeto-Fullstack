@@ -55,7 +55,6 @@ const Register = () => {
     } catch (error) {
       console.error(error);
 
-      // Mensagens de erro com base nos status de resposta do backend
       if (error.response && error.response.status === 409) {
         setErrorMessage(
           "Já existe um usuário com esse CPF ou Email. Verifique os dados e tente novamente."
@@ -135,11 +134,11 @@ const Register = () => {
                 onChange={handleInputChange}
                 required
               >
-                <option value="engenheiro">Engenheiro</option>
-                <option value="arquiteto">Arquiteto</option>
-                <option value="consultor">Consultor</option>
-                <option value="loja">Loja</option>
-                <option value="escritorio">Escritório</option>
+                <option value="Engenheiro">Engenheiro</option>
+                <option value="Arquiteto">Arquiteto</option>
+                <option value="Consultor">Consultor</option>
+                <option value="Loja">Loja</option>
+                <option value="Escritorio">Escritório</option>
               </select>
 
               <button className="buttonYellow" type="submit">
@@ -157,7 +156,7 @@ const Register = () => {
 };
 
 const Hero = () => {
-  return <div className="hero-container">Seu conteúdo hero aqui</div>;
+  return;
 };
 
 export default Register;

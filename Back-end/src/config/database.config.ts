@@ -8,5 +8,5 @@ export const databaseConfig: TypeOrmModuleOptions = {
   password: 'test',
   database: 'test',
   entities: [],
-  synchronize: false, // Consider changing to true in dev
+  synchronize: false,
 };

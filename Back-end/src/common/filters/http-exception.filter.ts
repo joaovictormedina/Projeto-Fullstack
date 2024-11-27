@@ -7,8 +7,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const response = host.switchToHttp().getResponse<Response>();
     const status = exception.getStatus();
 
-    // Supondo que o status esteja vindo como string e precisa ser convertido para número:
-    const statusCode = parseInt(status, 10); // Correção para conversão numérica
+    const statusCode = parseInt(status, 10);
 
     response.status(statusCode).json({
       statusCode,
