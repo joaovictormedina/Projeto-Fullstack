@@ -1,6 +1,4 @@
-.herohome {
-    height: 100%;
-}
+
 .button {
     margin-top: 15px;
     padding: 10px 20px;
@@ -11,3 +9,183 @@
     font-size: 16px;
     cursor: pointer;
   }
+
+.herohome {
+    height: 55vh; /* Ajuste da altura conforme necessário*/
+    width: 55vw; /* Largura ajustada*/
+    overflow: hidden; /* Garantir que apenas uma imagem seja visível*/
+    position: relative;
+    margin-top: 60px; /* Espaçamento entre o carrossel e o conteúdo*/
+    padding: 0;
+    margin-left: auto; /* Centralizando horizontalmente*/
+    margin-right: auto; /* Centralizando horizontalmente*/
+    margin-bottom: 60px;/*Espaço entre o carrossel e os cards*/
+}
+
+.carousel {
+    height: 100%; 
+    width: 100%;
+}
+
+.carousel .slide{
+    pointer-events: "none"; /* Desabilita a interação do mouse nos slides*/
+}
+
+.carousel .controls {
+    pointer-events: auto; /* Permite interação apenas com os controles*/ 
+}
+
+.carousel-image {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.fotos{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    user-select: none /* Desabilita seleção de texto nas imagens*/
+}
+
+.caixa-fixa{
+    position: absolute; /* Fixa a caixa de texto no carrossel*/
+    top: 50%; /* Centraliza verticalmente*/
+    left: 20%; /* Define que a caixa começa a 20% da borda esquerda*/
+    right: 20%; /* Define que a caixa termina a 20% da borda direita*/
+    transform: translateY(-50%); /* Ajuste para centralizar verticalmente*/
+    text-align: left; /* Alinha o texto à esquerda*/
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5); /* Cor de fundo com transparência*/
+    padding: 40px 40px; /* Ajuste do padding para garantir mais espaço*/
+    border-radius: 10px;
+    z-index: 5;/* Garante que a caixa de texto fique acima das imagens, mas abaixo dos controles*/
+    width: auto; /* Largura automática para se ajustar às margens definidas*/
+}
+
+.caixa-fixa h2{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.caixa-fixa p{
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+    color: white;
+    text-align: left;
+}
+
+.section-experiencias{
+    padding: 20px;
+    background-color: #f8f8f8;
+}
+
+.experiencias{
+    text-align: left;
+    margin-left: 9.7%;
+    margin-bottom: 30px;
+}
+
+.experiencias p{
+    font-size: 24px;
+    color: #333;
+    display: inline;
+    margin-right: 10px;
+}
+
+.experiencias span{
+    font-size: 24px;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.experiencias h1{
+    font-size: 32px;
+    color: #333;
+    margin-top: 10px;
+}
+
+.cards{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card{
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    width: 300px;
+    text-align: center;
+    margin: 10px;
+}
+
+.card img{
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.info{
+    padding: 15px;
+}
+
+.info h3{
+    font-size: 20px;
+    color: #333;
+}
+
+.info p{
+    font-size: 16px; 
+    color: #666;
+}
+
+.section-bibliografia{
+    display: flex;
+    justify-content: space-between; /* Para garantir que a bibliografia e a foto fiquem separadas*/
+    padding: 70px; /* Aumentei o padding para dar mais espaço*/
+    background-color: #f8f8f8;
+    margin-left: 115px; /* Margem considerável à esquerda*/
+    margin-right: 115px; /* Margem considerável à direita*/
+    border-radius: 30px; /* Opcional, para adicionar bordas arredondadas à seção*/
+}
+
+.bibliografia{
+    flex: 1; /* Deixa a bibliografia ocupar o espaço restante*/
+    margin-right: 78px; /* Dá um maior espaço entre a bibliografia e a foto*/
+}
+
+.bibliografia h2{
+    font-size: 38px;
+    color: #333;
+    margin-bottom: 15px;
+    margin-top: 52px; /* Aumentando o espaço acima do título*/
+}
+
+.bibliografia p{
+    font-size: 22px;
+    color: #666;
+    margin-bottom: 15px;
+    margin-top: 20px; /* Aumentando o espaço acima do parágrafo*/
+}
+
+.foto-autor{
+    width: 300px; /* Aumentei a largura da foto*/
+    height: 450px; /* Aumentei a altura da imagem*/
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.foto-autor img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
