@@ -19,35 +19,47 @@ const Login = () => {
         password,
       });
 
-      console.log("Response from backend:", response); // Verifique a resposta aqui
+      console.log("Response from backend:", response);
 
       if (response.status === 201 && response.data.access_token) {
+        // Salvar o token no localStorage
         localStorage.setItem("authToken", response.data.access_token);
 
-        const userId = response.data.user.id;
-        localStorage.setItem("userId", userId);
+        // Verificar se o campo 'id' existe na resposta
+        if (response.data.id) {
+          localStorage.setItem("userId", response.data.id);
+        } else {
+          console.warn("Campo 'id' não encontrado na resposta.");
+        }
 
+        // Redirecionar para o painel de admin
         navigate("/admin");
       } else {
-        setErrorMessage("Credenciais inválidas");
+        setErrorMessage("Credenciais inválidas. Verifique seu email e senha.");
       }
     } catch (error) {
       if (error.response) {
-        console.error("Error response:", error.response); // Exibir a resposta do erro
-        setErrorMessage(error.response.data.message || "Credenciais inválidas");
+        console.error("Error response:", error.response);
+        setErrorMessage(
+          error.response.data.message ||
+            "Credenciais inválidas. Tente novamente."
+        );
       } else if (error.request) {
-        console.error("No response received:", error.request); // Exibir o erro de solicitação
-        setErrorMessage("Erro de rede. Tente novamente.");
+        console.error("No response received:", error.request);
+        setErrorMessage(
+          "Erro de rede. Verifique sua conexão e tente novamente."
+        );
       } else {
-        console.error("Error during login:", error); // Exibir erro geral
-        setErrorMessage("Erro ao tentar fazer login.");
+        console.error("Error during login:", error);
+        setErrorMessage(
+          "Erro ao tentar fazer login. Por favor, tente novamente."
+        );
       }
     }
   };
 
   return (
     <div className="herologin-container">
-      {/* Hero vazio pode ser removido ou alterado se necessário */}
       <div className="division">
         <section className="login-section-container">
           <header>

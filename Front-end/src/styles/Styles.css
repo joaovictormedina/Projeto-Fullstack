@@ -257,3 +257,15 @@ section {
     border-color: #007bff;
     outline: none;
 }
+
+.logged-in-container {
+    display: flex;
+        flex: 2;
+        justify-content: space-around;
+        text-align: center;
+        align-items: center;
+        gap: 20px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+}

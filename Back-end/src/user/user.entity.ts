@@ -1,7 +1,14 @@
-import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  BeforeInsert,
+  OneToMany,
+} from 'typeorm';
 import * as bcrypt from 'bcryptjs';
+import { Points } from '../point/points.entity';
 
-@Entity('users') // Nome da tabela no banco de dados
+@Entity('users')
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
@@ -9,7 +16,7 @@ export class User {
   @Column()
   name: string;
 
-  @Column({ unique: true })
+  @Column({ unique: true, type: 'varchar', nullable: true })
   cpf: string;
 
   @Column()
@@ -55,6 +62,9 @@ export class User {
   @Column({ nullable: true, length: 255 })
   photopath: string;
 
+  @OneToMany(() => Points, (point) => point.user)
+  points: Points[];
+
   // Validação da senha
   validatePassword() {
     const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
@@ -70,7 +80,6 @@ export class User {
   async hashPassword() {
     this.validatePassword();
     if (process.env.NODE_ENV !== 'development') {
-      // Criptografa a senha apenas em produção e outras versões
       this.password = await bcrypt.hash(this.password, 10);
     }
   }

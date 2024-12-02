@@ -18,7 +18,6 @@ export class UserService {
 
   // Criar um novo usuário
   async createUser(userData: Partial<User>): Promise<string> {
-    // Verifica se já existe um usuário com o mesmo CPF
     const existingUserCpf = await this.userRepository.findOne({
       where: { cpf: userData.cpf },
     });
@@ -43,7 +42,7 @@ export class UserService {
         );
       }
       // Criptografa a senha
-      userData.password = await bcrypt.hash(userData.password, 10);
+      // userData.password = await bcrypt.hash(userData.password, 10);
     }
 
     // Criação do usuário
@@ -77,7 +76,10 @@ export class UserService {
   // Consultar um usuário pelo Email
   async findOneByEmail(email: string): Promise<User> {
     try {
-      return await this.userRepository.findOneOrFail({ where: { email } });
+      return await this.userRepository.findOneOrFail({
+        where: { email },
+        select: ['id', 'email', 'password'],
+      });
     } catch {
       throw new UnauthorizedException('Usuário não encontrado');
     }

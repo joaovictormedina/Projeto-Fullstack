@@ -129,9 +129,10 @@ const Hero = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("authToken");
+    const userId = localStorage.getItem("userId");
 
-    if (token) {
-      fetch("http://localhost:3000/users", {
+    if (token && userId) {
+      fetch(`http://localhost:3000/users/${userId}`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -139,8 +140,9 @@ const Hero = () => {
       })
         .then((response) => response.json())
         .then((data) => {
-          if (data && data[0]) {
-            const userData = data[0];
+          if (data) {
+            // Alterado para verificar se data existe, sem usar o [0]
+            const userData = data;
             setUser({
               id: userData.id,
               name: userData.name,

@@ -4,12 +4,34 @@ import "../styles/Styles.css";
 
 const Nav = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userPoints, setUserPoints] = useState(null); // Para armazenar os pontos do usuário
   const navigate = useNavigate();
 
   // Verificar a presença do token ao carregar o componente
   useEffect(() => {
     const token = localStorage.getItem("authToken");
     setIsLoggedIn(!!token); // Define como `true` se o token existir
+
+    if (token) {
+      const userId = localStorage.getItem("userId");
+      if (userId) {
+        // Faz a requisição para buscar os pontos do usuário
+        fetch(`http://localhost:3000/points/${userId}`)
+          .then((response) => response.json())
+          .then((data) => {
+            if (data && data.points !== undefined) {
+              setUserPoints(data.points);
+            } else {
+              console.error("Não foi possível carregar os pontos.");
+            }
+          })
+          .catch((error) => {
+            console.error("Erro ao buscar pontos:", error);
+          });
+      } else {
+        console.error("Usuário não encontrado no localStorage.");
+      }
+    }
   }, []);
 
   // Função para navegar para a conta
@@ -37,9 +59,14 @@ const Nav = () => {
       </ul>
       <div className="nav-actions">
         {isLoggedIn ? (
-          <button className="buttonWhite" onClick={handleAccountClick}>
-            Minha Conta
-          </button>
+          <div className="logged-in-container">
+            <button className="buttonWhite" onClick={handleAccountClick}>
+              Minha Conta
+            </button>
+            {userPoints !== null && (
+              <span className="user-points">Meus Pontos: {userPoints}</span>
+            )}
+          </div>
         ) : (
           <>
             <Link to="/login">

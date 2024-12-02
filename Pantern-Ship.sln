@@ -34,5 +34,10 @@ id, name, cpf, cau, email, userType, password, dataNascimento, cep, numero, ende
 
 adicionar campo no banco de dados pointsnow (pontos que ele tem agora) e allpoints (pontos que ele teve no total)
 
+ id | user_id | points |       date_added        | expiry_date 
+----+---------+--------+-------------------------+-------------
+  2 |      37 |      3 | 2024-12-02 13:39:47.437 | 
+(1 row)
 
 Minhasenha123
+
