@@ -12,10 +12,14 @@ import {
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { User } from './user.entity';
+import { PointsService } from '../point/point.service';
 
 @Controller('users')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private readonly userService: UserService,
+    private readonly pointsService: PointsService, // Injete o serviço de pontos
+  ) {}
 
   // Criar novo usuário
   @Post()
@@ -66,6 +70,16 @@ export class UserController {
   @Get(':id')
   async findOne(@Param('id') id: number): Promise<User> {
     return this.userService.findOneById(id);
+  }
+
+  // Obter um usuário pelo CPF
+  @Get('cpf/:cpf')
+  async findOneByCpf(@Param('cpf') cpf: string): Promise<User> {
+    const user = await this.userService.findOneByCpf(cpf);
+    if (!user) {
+      throw new BadRequestException('Usuário não encontrado.');
+    }
+    return user;
   }
 
   // Atualizar um usuário existente
@@ -121,5 +135,23 @@ export class UserController {
     } catch {
       throw new BadRequestException('Erro ao remover o usuário.');
     }
+  }
+
+  // Método para adicionar pontos
+  @Post('/cpf/:cpf/points')
+  async addPoints(@Param('cpf') cpf: string, @Body('points') points: number) {
+    // Buscando o usuário pelo CPF
+    const user = await this.userService.findOneByCpf(cpf);
+    if (!user) {
+      throw new Error('Usuário não encontrado');
+    }
+
+    // Adicionando pontos à tabela 'points'
+    const newPointRecord = await this.pointsService.addPoints(user.id, points);
+
+    return {
+      message: 'Pontos adicionados com sucesso',
+      points: newPointRecord,
+    };
   }
 }
