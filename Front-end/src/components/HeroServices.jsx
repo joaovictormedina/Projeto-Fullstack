@@ -1,6 +1,6 @@
 import { Card, Image, Text, Button, Group, SimpleGrid } from "@mantine/core";
 import "../styles/Services.css";
-import casa from "../img/Home.jpg";
+import casa from "../img/Marcenaiaa.png";
 import toldos2 from "../img/Toldos2.png";
 
 function Home() {
@@ -68,14 +68,12 @@ const Hero = () => {
       </div>
       <br />
       <SimpleGrid
-        cols={2}
+        cols={1}
         spacing="lg"
         breakpoints={[{ maxWidth: "sm", cols: 1 }]}
       >
         <Home />
         <Toldos />
-        <Toldos />
-        <Home />
       </SimpleGrid>
     </header>
   );
