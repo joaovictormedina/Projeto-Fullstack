@@ -1,4 +1,51 @@
-﻿
+﻿inicio backend
+
+npm install @nestjs/common @nestjs/core @nestjs/typeorm @nestjs/jwt @nestjs/passport passport-jwt class-validator bcryptjs typeorm rxjs express @types/node
+
+npm install --save-dev @types/node
+
+npm run start:dev
+
+instalar o Docker
+instalar o Docker Compose
+docker exec -it postgres-db psql -U plutowtech -d plutowtechdb
+-- Criar a tabela users
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100),
+    cpf VARCHAR(11),
+    cau VARCHAR(20),
+    email VARCHAR(100),
+    userType VARCHAR(50),
+    password VARCHAR(100),
+    dataNascimento DATE,
+    cep VARCHAR(8),
+    numero INTEGER,
+    endereco VARCHAR(255),
+    bairro VARCHAR(100),
+    municipio VARCHAR(100),
+    estado VARCHAR(2),
+    complemento VARCHAR(100),
+    photoPath VARCHAR(255)
+);
+
+-- Criar a tabela points
+CREATE TABLE points (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users(id),
+    points INTEGER,
+    date_added TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    expiry_date TIMESTAMP
+);
+/q
+/q // Para sair do banco de dados
+
+npm run start:dev  // para iniciar o banco de dados
+
+
+
+
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.002.0
@@ -26,6 +73,7 @@ EndGlobal
 
 
 psql -h localhost -U plutowtech -d plutowtechdb
+senha: docker
 
 
 id |    name     |     cpf     |  cau   |           email            |  userType  |                           password   
