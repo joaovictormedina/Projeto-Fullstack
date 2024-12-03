@@ -5,11 +5,12 @@ const AddPoints = () => {
   const [userDetails, setUserDetails] = useState({ id: null, name: "" });
   const [action, setAction] = useState("add");
   const [amountInput, setAmountInput] = useState("");
+  const [recipientId, setRecipientId] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [setUserName] = useState("");
-
-  const userId = "your-user-id-here"; // Substitua pelo ID real do usuário.
+  const [successMessage, setSuccessMessage] = useState(null);
+  const [userName, setUserName] = useState("");
+  const userId = "your-user-id-here"; // Substitua pelo ID real do usuário
 
   const handleSearchUser = (cpf) => {
     if (userId && cpf) {
@@ -42,16 +43,75 @@ const AddPoints = () => {
     }
   };
 
-  const handleAddPoints = (cpf, points) => {
-    // Função para adicionar pontos
-    console.log(`Adicionando ${points} pontos ao usuário com CPF: ${cpf}`);
+  const handleAddPoints = (recipientId, points) => {
+    if (recipientId && points > 0) {
+      setLoading(true);
+      setError(null);
+      setSuccessMessage(null);
+
+      fetch(`http://localhost:3000/points/add/${recipientId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ amount: points }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.message) {
+            setSuccessMessage(`${data.message}`);
+            setError(null);
+          } else {
+            setError("Erro ao adicionar pontos");
+          }
+        })
+        .catch((error) => {
+          console.error("Erro na requisição", error);
+          setError("Erro ao adicionar pontos");
+        })
+        .finally(() => setLoading(false));
+    } else {
+      setError(
+        "Por favor, forneça um ID de destinatário válido e uma quantidade de pontos"
+      );
+    }
   };
 
-  const handleRemovePoints = (cpf, points) => {
-    // Função para retirar pontos
-    console.log(`Removendo ${points} pontos do usuário com CPF: ${cpf}`);
-  };
+  const handleRemovePoints = (recipientId, points) => {
+    const pointsToRemove = parseInt(points, 10);
 
+    if (recipientId && pointsToRemove > 0) {
+      setLoading(true);
+      setError(null);
+      setSuccessMessage(null);
+
+      fetch(`http://localhost:3000/points/remove/${recipientId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ amount: pointsToRemove }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.message) {
+            setSuccessMessage(`${data.message}`);
+            setError(null);
+          } else {
+            setError("Erro ao remover pontos");
+          }
+        })
+        .catch((error) => {
+          console.error("Erro na requisição", error);
+          setError("Erro ao remover pontos");
+        })
+        .finally(() => setLoading(false));
+    } else {
+      setError(
+        "Por favor, forneça um ID de destinatário válido e uma quantidade de pontos"
+      );
+    }
+  };
   return (
     <div>
       {/* Formulário de busca por CPF */}
@@ -89,6 +149,16 @@ const AddPoints = () => {
           </select>
         </div>
 
+        {/* Input para o ID do destinatário */}
+        <div>
+          <input
+            type="text"
+            placeholder="ID do destinatário"
+            value={recipientId}
+            onChange={(e) => setRecipientId(e.target.value)}
+          />
+        </div>
+
         {/* Formulário de pontos */}
         <div>
           <input
@@ -100,13 +170,16 @@ const AddPoints = () => {
           <button
             onClick={() =>
               action === "add"
-                ? handleAddPoints(cpfInput, amountInput)
-                : handleRemovePoints(cpfInput, amountInput)
+                ? handleAddPoints(recipientId, amountInput)
+                : handleRemovePoints(recipientId, amountInput)
             }
           >
             {action === "add" ? "Adicionar Pontos" : "Retirar Pontos"}
           </button>
         </div>
+
+        {/* Mensagem de sucesso */}
+        {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
       </section>
     </div>
   );

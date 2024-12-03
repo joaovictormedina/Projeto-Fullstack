@@ -9,13 +9,6 @@ const Pontuacao = () => {
     expiringPoints: [],
   });
 
-  // Removi as variáveis não utilizadas
-  // const [cpfInput, setCpfInput] = useState("");
-  // const [amountInput, setAmountInput] = useState(0);
-  // const [action, setAction] = useState("add");
-  // const [userDetails, setUserDetails] = useState({ id: null, name: "" });
-
-  // Mock data for exchanges e expiring points
   useEffect(() => {
     const userId = localStorage.getItem("userId");
     if (userId) {
@@ -52,8 +45,9 @@ const Pontuacao = () => {
     } else {
       alert("Usuário não encontrado no localStorage.");
     }
-  }, []);
+  }, []); // Executa apenas uma vez ao carregar o componente
 
+  // Dados do gráfico, baseados nos pontos, trocas e expiração de pontos
   const data = [
     { name: "Pontos Disponíveis", value: user.points },
     {
@@ -64,7 +58,7 @@ const Pontuacao = () => {
       ),
     },
     {
-      name: "Pontos Expirados",
+      name: "Pontos para Expirar",
       value: user.expiringPoints.reduce(
         (total, expiring) => total + expiring.points,
         0
@@ -79,48 +73,51 @@ const Pontuacao = () => {
         <p>Você tem atualmente: {user.points} pontos</p>
       </section>
 
-      {/* Sessão de Trocas feitas */}
+      {/* Sessão de Trocas feitas com limite de 7 itens e scroll */}
       <section>
         <h3>Trocas Realizadas</h3>
-        <ul>
-          {user.exchanges.length > 0 ? (
-            user.exchanges.map((exchange, index) => (
-              <li key={index}>
-                <strong>{exchange.points} pontos</strong> - {exchange.date}
-              </li>
-            ))
-          ) : (
-            <p>Você não fez nenhuma troca ainda.</p>
-          )}
-        </ul>
+        <div style={{ maxHeight: "200px", overflowY: "auto" }}>
+          <ul>
+            {user.exchanges.length > 0 ? (
+              user.exchanges.slice(0, 7).map((exchange, index) => (
+                <li key={index}>
+                  <strong>{exchange.points} pontos</strong> - {exchange.date}
+                </li>
+              ))
+            ) : (
+              <p>Você não fez nenhuma troca ainda.</p>
+            )}
+          </ul>
+        </div>
       </section>
 
-      {/* Sessão de Pontos que irão expirar */}
+      {/* Sessão de Pontos que irão expirar com limite de 7 itens e scroll */}
       <section>
         <h3>Pontos que irão Expirar</h3>
-        <ul>
-          {user.expiringPoints.length > 0 ? (
-            user.expiringPoints.map((point, index) => {
-              const expiryDate = new Date(point.expiry_date).toLocaleString(
-                "pt-BR",
-                {
+        <div style={{ maxHeight: "200px", overflowY: "auto" }}>
+          <ul>
+            {user.expiringPoints.length > 0 ? (
+              user.expiringPoints.map((point, index) => {
+                const expiryDate = new Date(
+                  point.expiry_date
+                ).toLocaleDateString("pt-BR", {
                   day: "2-digit",
                   month: "2-digit",
                   year: "numeric",
-                }
-              );
+                });
 
-              return (
-                <li key={index}>
-                  <strong>{point.points} pontos</strong> - Expiram em{" "}
-                  {expiryDate}
-                </li>
-              );
-            })
-          ) : (
-            <p>Você não tem pontos expirando.</p>
-          )}
-        </ul>
+                return (
+                  <li key={index}>
+                    <strong>{point.points} pontos</strong> - Expiram em{" "}
+                    {expiryDate}
+                  </li>
+                );
+              })
+            ) : (
+              <p>Você não tem pontos expirando.</p>
+            )}
+          </ul>
+        </div>
       </section>
 
       {/* Gráfico de Pizza */}
@@ -128,7 +125,7 @@ const Pontuacao = () => {
         <h3>Resumo dos Pontos</h3>
         <PieChart width={400} height={400}>
           <Pie
-            data={data}
+            data={data} // Passando os dados dinamicamente
             dataKey="value"
             nameKey="name"
             cx="50%"

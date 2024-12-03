@@ -201,7 +201,7 @@ const Hero = () => {
               id="userId"
               value={user.id || ""}
               disabled
-              style={{ display: "" }}
+              style={{ display: "none" }}
             />
           </label>
           <label>
