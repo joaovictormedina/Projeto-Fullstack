@@ -9,6 +9,7 @@ npm run start:dev
 instalar o Docker
 instalar o Docker Compose
 docker exec -it postgres-db psql -U plutowtech -d plutowtechdb
+CREATE DATABASE plutowtechdb;
 -- Criar a tabela users
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
@@ -41,6 +42,13 @@ CREATE TABLE points (
 /q // Para sair do banco de dados
 
 npm run start:dev  // para iniciar o banco de dados
+
+----------------------------------------------------------------------
+INICIAR O FRONT END 
+
+npm install
+
+
 
 
 

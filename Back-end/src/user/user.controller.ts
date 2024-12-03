@@ -18,7 +18,7 @@ import { PointsService } from '../point/point.service';
 export class UserController {
   constructor(
     private readonly userService: UserService,
-    private readonly pointsService: PointsService, // Injete o serviço de pontos
+    private readonly pointsService: PointsService,
   ) {}
 
   // Criar novo usuário

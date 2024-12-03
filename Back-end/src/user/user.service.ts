@@ -125,10 +125,22 @@ export class UserService {
 
   // Apagar um usuário
   async removeUser(id: number): Promise<void> {
-    const user = await this.findOneById(id); // Verifica se o usuário existe
+    const user = await this.findOneById(id);
     if (!user) {
       throw new NotFoundException('Usuário não encontrado');
     }
     await this.userRepository.delete(id);
+  }
+
+  async findUserByDetails(
+    name: string,
+    cpf: string,
+    email: string,
+    cau: string,
+    userType: string,
+  ) {
+    return await this.userRepository.findOne({
+      where: { email, cpf, cau, userType },
+    });
   }
 }
