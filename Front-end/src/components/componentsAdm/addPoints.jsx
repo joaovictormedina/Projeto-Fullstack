@@ -1,4 +1,6 @@
 import { useState } from "react";
+import "../../styles/Styles.css";
+import "../../styles/Admin.css";
 
 const AddPoints = () => {
   const [cpfInput, setCpfInput] = useState("");
@@ -113,7 +115,7 @@ const AddPoints = () => {
     }
   };
   return (
-    <div>
+    <div className="section-add-points">
       {/* Formulário de busca por CPF */}
       <section>
         <h3>Buscar Usuário</h3>
@@ -124,7 +126,10 @@ const AddPoints = () => {
             value={cpfInput}
             onChange={(e) => setCpfInput(e.target.value)}
           />
-          <button onClick={() => handleSearchUser(cpfInput)}>
+          <button
+            className="buttonYellow"
+            onClick={() => handleSearchUser(cpfInput)}
+          >
             {loading ? "Carregando..." : "Buscar Usuário"}
           </button>
         </div>
@@ -168,6 +173,7 @@ const AddPoints = () => {
             onChange={(e) => setAmountInput(e.target.value)}
           />
           <button
+            className="buttonYellow"
             onClick={() =>
               action === "add"
                 ? handleAddPoints(recipientId, amountInput)
