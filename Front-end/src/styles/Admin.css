@@ -1,0 +1,161 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    width: 100%;
+}
+
+.section-registration {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    flex: 1;
+    /* Garante que a section ocupe todo o espaço disponível */
+}
+
+.section-my-points {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 20px;
+}
+
+.section-add-points {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+}
+
+.form-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* Garante que as colunas ocupem 100% da largura da linha */
+}
+
+.form-column input {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.disabled-input {
+    background-color: #f0f0f0;
+    cursor: not-allowed;
+}
+
+.section-add-points section,
+.section-my-points section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.section-add-points div,
+.section-my-points div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.section-my-points .pie-chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.section-my-points .exchanges,
+.section-my-points .expiring-points {
+    max-height: 200px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+ul {
+    padding: 0;
+    list-style-type: none;
+}
+
+li {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+strong {
+    font-weight: bold;
+}
+
+.section-registration h2 {
+    margin-bottom: 0px;
+}
+
+.section-registration label {
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+    color: #333;
+}
+
+.section-registration input {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+.section-registration .disabled-input {
+    background-color: #f5f5f5;
+}
+
+.section-registration .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.section-registration .input-group input {
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .section-registration {
+        padding: 10px;
+    }
+
+    .section-registration input {
+        padding: 8px;
+    }
+
+    .section-registration button {
+        padding: 12px;
+    }
+}

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
-import AddPoints from "./addPoints";
+import "../../styles/Styles.css";
+import "../../styles/Admin.css";
 
 const Pontuacao = () => {
   const [user, setUser] = useState({
@@ -67,61 +68,10 @@ const Pontuacao = () => {
   ];
 
   return (
-    <section>
-      <section>
-        <h2>Meus Pontos</h2>
-        <p>Você tem atualmente: {user.points} pontos</p>
-      </section>
-
-      {/* Sessão de Trocas feitas com limite de 7 itens e scroll */}
-      <section>
-        <h3>Trocas Realizadas</h3>
-        <div style={{ maxHeight: "200px", overflowY: "auto" }}>
-          <ul>
-            {user.exchanges.length > 0 ? (
-              user.exchanges.slice(0, 7).map((exchange, index) => (
-                <li key={index}>
-                  <strong>{exchange.points} pontos</strong> - {exchange.date}
-                </li>
-              ))
-            ) : (
-              <p>Você não fez nenhuma troca ainda.</p>
-            )}
-          </ul>
-        </div>
-      </section>
-
-      {/* Sessão de Pontos que irão expirar com limite de 7 itens e scroll */}
-      <section>
-        <h3>Pontos que irão Expirar</h3>
-        <div style={{ maxHeight: "200px", overflowY: "auto" }}>
-          <ul>
-            {user.expiringPoints.length > 0 ? (
-              user.expiringPoints.map((point, index) => {
-                const expiryDate = new Date(
-                  point.expiry_date
-                ).toLocaleDateString("pt-BR", {
-                  day: "2-digit",
-                  month: "2-digit",
-                  year: "numeric",
-                });
-
-                return (
-                  <li key={index}>
-                    <strong>{point.points} pontos</strong> - Expiram em{" "}
-                    {expiryDate}
-                  </li>
-                );
-              })
-            ) : (
-              <p>Você não tem pontos expirando.</p>
-            )}
-          </ul>
-        </div>
-      </section>
-
+    <section className="section-my-points">
+      <h2>Meus Pontos</h2>
       {/* Gráfico de Pizza */}
-      <section>
+      <section className="pie-chart-container">
         <h3>Resumo dos Pontos</h3>
         <PieChart width={400} height={400}>
           <Pie
@@ -147,9 +97,58 @@ const Pontuacao = () => {
           <Legend />
         </PieChart>
       </section>
-      <div>
-        <AddPoints />
-      </div>
+
+      {/* Meus Pontos */}
+      <section>
+        <p>Você tem atualmente: {user.points} pontos</p>
+      </section>
+
+      {/* Sessão de Trocas realizadas */}
+      <section>
+        <h3>Trocas Realizadas</h3>
+        <div className="exchanges">
+          <ul>
+            {user.exchanges.length > 0 ? (
+              user.exchanges.slice(0, 7).map((exchange, index) => (
+                <li key={index}>
+                  <strong>{exchange.points} pontos</strong> - {exchange.date}
+                </li>
+              ))
+            ) : (
+              <p>Você não fez nenhuma troca ainda.</p>
+            )}
+          </ul>
+        </div>
+      </section>
+
+      {/* Sessão de Pontos que irão expirar */}
+      <section>
+        <h3>Pontos que irão Expirar</h3>
+        <div className="expiring-points">
+          <ul>
+            {user.expiringPoints.length > 0 ? (
+              user.expiringPoints.map((point, index) => {
+                const expiryDate = new Date(
+                  point.expiry_date
+                ).toLocaleDateString("pt-BR", {
+                  day: "2-digit",
+                  month: "2-digit",
+                  year: "numeric",
+                });
+
+                return (
+                  <li key={index}>
+                    <strong>{point.points} pontos</strong> - Expiram em{" "}
+                    {expiryDate}
+                  </li>
+                );
+              })
+            ) : (
+              <p>Você não tem pontos expirando.</p>
+            )}
+          </ul>
+        </div>
+      </section>
     </section>
   );
 };
