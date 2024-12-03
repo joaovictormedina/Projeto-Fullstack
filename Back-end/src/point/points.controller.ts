@@ -55,25 +55,28 @@ export class PointsController {
     }
   }
 
-  @Post('remove/:userId')
+  @Post('remove/:recipientId')
   async removePoints(
-    @Param('userId') userId: string,
+    @Param('recipientId') recipientId: string,
     @Body('amount') amount: number,
   ) {
     // Verifica se os parâmetros são válidos
-    if (!userId || !amount || isNaN(amount) || amount <= 0) {
+    if (!recipientId || isNaN(Number(amount)) || Number(amount) <= 0) {
       throw new HttpException(
-        'Parâmetros inválidos. Verifique se o userId e a quantidade são válidos.',
+        'Parâmetros inválidos. Forneça um ID de destinatário válido e uma quantidade positiva.',
         HttpStatus.BAD_REQUEST,
       );
     }
 
     try {
       // Chama o serviço para remover os pontos
-      await this.pointsService.removePoints(Number(userId), amount);
+      await this.pointsService.removePoints(
+        Number(recipientId),
+        Number(amount),
+      );
       return { message: `${amount} pontos removidos com sucesso.` };
     } catch (error) {
-      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 }

@@ -14,7 +14,6 @@ import Register from "./pages/Register";
 import Admin from "./pages/Admin";
 import BancodeDados from "./pages/BancodeDados";
 import ForgotPass from "./pages/ForgotPass";
-import NewPass from "./pages/NewPass";
 import "./styles/Contact.css";
 import "@mantine/carousel/styles.css";
 import "@mantine/core/styles.css";
@@ -32,7 +31,6 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/forgotpass" element={<ForgotPass />} />
-          <Route path="/newpass" element={<NewPass />} />
 
           {/* Protegendo a página Admin com PrivateRoute */}
           <Route path="/admin" element={<Admin />} />
