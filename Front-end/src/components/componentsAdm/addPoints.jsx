@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "../../styles/Styles.css";
 import "../../styles/Admin.css";
+import Exchanges from "./exchanges";
+import { Link } from "react-router-dom";
 
 const AddPoints = () => {
   const [cpfInput, setCpfInput] = useState("");
@@ -12,7 +14,7 @@ const AddPoints = () => {
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
   const [userName, setUserName] = useState("");
-  const userId = "your-user-id-here"; // Substitua pelo ID real do usuário
+  const userId = "your-user-id-here";
 
   const handleSearchUser = (cpf) => {
     if (userId && cpf) {
@@ -117,6 +119,10 @@ const AddPoints = () => {
   return (
     <div className="section-add-points">
       {/* Formulário de busca por CPF */}
+      <h2>Gerencimento de produtos e pontos</h2>
+      <Link to="/products">
+        <button className="buttonYellow">Gerenciar Produtos</button>
+      </Link>
       <section>
         <h3>Buscar Usuário</h3>
         <div>
@@ -186,6 +192,9 @@ const AddPoints = () => {
 
         {/* Mensagem de sucesso */}
         {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
+      </section>
+      <section>
+        <Exchanges />
       </section>
     </div>
   );

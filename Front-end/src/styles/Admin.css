@@ -12,7 +12,6 @@
     gap: 20px;
     padding: 20px;
     flex: 1;
-    /* Garante que a section ocupe todo o espaço disponível */
 }
 
 .section-my-points {
@@ -31,9 +30,13 @@
 
 .form-row {
     display: flex;
-    justify-content: space-between;
+    justify-content:space-around;
     gap: 20px;
-    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-row {
+    flex: 1;
 }
 
 .form-column {
@@ -41,7 +44,6 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    /* Garante que as colunas ocupem 100% da largura da linha */
 }
 
 .form-column input {
@@ -59,6 +61,13 @@
     cursor: not-allowed;
 }
 
+.form-row { 
+    gap: 15px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
 .section-add-points section,
 .section-my-points section {
     display: flex;
@@ -69,6 +78,7 @@
     border-radius: 8px;
 }
 
+.section-registration,
 .section-add-points div,
 .section-my-points div {
     display: flex;

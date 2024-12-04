@@ -30,7 +30,7 @@ export class User {
     enum: ['engenheiro', 'arquiteto', 'consultor', 'loja', 'escritorio'],
     default: 'engenheiro',
   })
-  userType: string;
+  profession: string;
 
   @Column({ nullable: false })
   password: string;

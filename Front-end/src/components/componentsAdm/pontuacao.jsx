@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 import "../../styles/Styles.css";
 import "../../styles/Admin.css";
+import axios from "axios";
+import { Button } from "@mantine/core";
+import { Card } from "@mantine/core";
 
 const Pontuacao = () => {
   const [user, setUser] = useState({
@@ -9,10 +12,12 @@ const Pontuacao = () => {
     exchanges: [],
     expiringPoints: [],
   });
+  const [resgates, setResgates] = useState([]);
 
   useEffect(() => {
     const userId = localStorage.getItem("userId");
     if (userId) {
+      // Fetch pontos
       fetch(`http://localhost:3000/points/${userId}`)
         .then(async (response) => {
           const contentType = response.headers.get("Content-Type");
@@ -43,25 +48,50 @@ const Pontuacao = () => {
           console.error("Erro ao buscar pontos:", error);
           alert("Erro ao carregar pontos.");
         });
+
+      // Fetch resgates específicos do usuário
+      fetch(`http://localhost:3000/rescues/user/${userId}`)
+        .then((response) => response.json())
+        .then((data) => setResgates(data))
+        .catch((error) => console.error("Erro ao buscar resgates:", error));
     } else {
       alert("Usuário não encontrado no localStorage.");
     }
-  }, []); // Executa apenas uma vez ao carregar o componente
+  }, []);
 
-  // Dados do gráfico, baseados nos pontos, trocas e expiração de pontos
+  const handleConfirmResgate = async (resgateId) => {
+    try {
+      await axios.post(`http://localhost:3000/rescues/confirm/${resgateId}`);
+      alert("Resgate confirmado!");
+      setResgates(resgates.filter((resgate) => resgate.id !== resgateId));
+    } catch (error) {
+      console.error("Erro ao confirmar resgate:", error);
+    }
+  };
+
+  const handleRemoveResgate = async (resgateId) => {
+    try {
+      await axios.delete(`http://localhost:3000/rescues/${resgateId}`);
+      setResgates(resgates.filter((resgate) => resgate.id !== resgateId));
+      alert("Resgate removido!");
+    } catch (error) {
+      console.error("Erro ao remover resgate:", error);
+    }
+  };
+
+  // Dados do gráfico
   const data = [
-    { name: "Pontos Disponíveis", value: user.points },
     {
-      name: "Pontos Já Trocados",
-      value: user.exchanges.reduce(
-        (total, exchange) => total + exchange.points,
+      name: "Pontos Disponíveis",
+      value: user.expiringPoints.reduce(
+        (total, expiring) => total + expiring.points,
         0
       ),
     },
     {
-      name: "Pontos para Expirar",
-      value: user.expiringPoints.reduce(
-        (total, expiring) => total + expiring.points,
+      name: "Resgates",
+      value: user.exchanges.reduce(
+        (total, exchange) => total + exchange.points,
         0
       ),
     },
@@ -70,12 +100,13 @@ const Pontuacao = () => {
   return (
     <section className="section-my-points">
       <h2>Meus Pontos</h2>
+
       {/* Gráfico de Pizza */}
       <section className="pie-chart-container">
         <h3>Resumo dos Pontos</h3>
         <PieChart width={400} height={400}>
           <Pie
-            data={data} // Passando os dados dinamicamente
+            data={data}
             dataKey="value"
             nameKey="name"
             cx="50%"
@@ -88,7 +119,7 @@ const Pontuacao = () => {
               <Cell
                 key={`cell-${index}`}
                 fill={
-                  index === 0 ? "#82ca9d" : index === 1 ? "#ffc658" : "#ff0000"
+                  entry.name === "Pontos Disponíveis" ? "#82ca9d" : "#8884d8"
                 }
               />
             ))}
@@ -105,7 +136,7 @@ const Pontuacao = () => {
 
       {/* Sessão de Trocas realizadas */}
       <section>
-        <h3>Trocas Realizadas</h3>
+        <h3>Resgates</h3>
         <div className="exchanges">
           <ul>
             {user.exchanges.length > 0 ? (
@@ -115,13 +146,13 @@ const Pontuacao = () => {
                 </li>
               ))
             ) : (
-              <p>Você não fez nenhuma troca ainda.</p>
+              <p>Você não fez nenhum resgate ainda.</p>
             )}
           </ul>
         </div>
       </section>
 
-      {/* Sessão de Pontos que irão expirar */}
+      {/* Sessão de Pontos que irão Expirar */}
       <section>
         <h3>Pontos que irão Expirar</h3>
         <div className="expiring-points">
@@ -145,6 +176,40 @@ const Pontuacao = () => {
               })
             ) : (
               <p>Você não tem pontos expirando.</p>
+            )}
+          </ul>
+        </div>
+      </section>
+
+      {/* Resgates pendentes */}
+      <section>
+        <h3>Resgates Pendentes</h3>
+        <div className="pending-rescues">
+          <ul>
+            {resgates.length > 0 ? (
+              resgates
+                .filter((resgate) => resgate.status === "pendente")
+                .map((resgate, index) => (
+                  <li key={index}>
+                    <strong>{resgate.points} pontos</strong> - Produto ID:{" "}
+                    {resgate.product_id} <br />
+                    Status: {resgate.status} <br />
+                    Criado em: {new Date(resgate.created_at).toLocaleString()}
+                    <div>
+                      <Button onClick={() => handleConfirmResgate(resgate.id)}>
+                        Confirmar Resgate
+                      </Button>
+                      <Button
+                        onClick={() => handleRemoveResgate(resgate.id)}
+                        color="red"
+                      >
+                        Remover Resgate
+                      </Button>
+                    </div>
+                  </li>
+                ))
+            ) : (
+              <p>Não há resgates pendentes.</p>
             )}
           </ul>
         </div>

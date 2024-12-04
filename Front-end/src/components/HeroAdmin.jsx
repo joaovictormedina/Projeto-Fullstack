@@ -19,7 +19,7 @@ const Hero = () => {
     estado: "",
     numero: "",
     complemento: "",
-    userType: "",
+    profession: "",
     cau: "",
     email: "",
     senhaAtual: "",
@@ -56,7 +56,7 @@ const Hero = () => {
       estado: user.estado,
       numero: user.numero,
       complemento: user.complemento,
-      userType: user.userType,
+      profession: user.profession,
       cau: user.cau,
       email: user.email,
       photopath: user.photopath,
@@ -144,7 +144,7 @@ const Hero = () => {
               name: userData.name,
               cpf: userData.cpf,
               email: userData.email,
-              userType: userData.userType,
+              profession: userData.profession,
               cau: userData.cau,
               datanascimento: userData.datanascimento,
               cep: userData.cep,
@@ -242,9 +242,9 @@ const Hero = () => {
                   Profissão:
                   <input
                     type="text"
-                    value={user.userType}
+                    value={user.profession}
                     onChange={(e) =>
-                      setUser({ ...user, userType: e.target.value })
+                      setUser({ ...user, profession: e.target.value })
                     }
                   />
                 </label>

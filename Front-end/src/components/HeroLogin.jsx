@@ -67,7 +67,7 @@ const Login = () => {
             <p>Explore tudo que a PartnerShip oferece para você.</p>
           </header>
           <div className="form-container">
-            <form onSubmit={handleSubmit}>
+            <form className="form-login" onSubmit={handleSubmit}>
               <label>Email</label>
               <input
                 type="email"
