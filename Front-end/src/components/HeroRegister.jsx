@@ -11,7 +11,7 @@ const Register = () => {
     cpf: "",
     cau: "",
     email: "",
-    userType: "engenheiro",
+    profession: "engenheiro",
     password: "",
   });
   const [successMessage, setSuccessMessage] = useState("");
@@ -38,7 +38,7 @@ const Register = () => {
     try {
       // Envio dos dados para o backend, incluindo a senha
       const response = await axios.post(
-        "http://localhost:3000/users", // URL do seu backend
+        "http://localhost:3000/users",
         formData
       );
 
@@ -81,7 +81,7 @@ const Register = () => {
             <p>Explore todos os serviços e pacotes que temos para você.</p>
           </header>
           <div className="form-container">
-            <form onSubmit={handleSubmit}>
+            <form className="form-register" onSubmit={handleSubmit}>
               <label>Nome</label>
               <input
                 type="text"
@@ -100,7 +100,7 @@ const Register = () => {
                 required
               />
 
-              <label>CAU/CREA</label>
+              <label>CAU/CREA/ABD</label>
               <input
                 type="text"
                 name="cau"
@@ -129,8 +129,8 @@ const Register = () => {
 
               <label className="label-container">Tipo de usuário</label>
               <select
-                name="userType"
-                value={formData.userType}
+                name="profession"
+                value={formData.profession}
                 onChange={handleInputChange}
                 required
               >

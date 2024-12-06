@@ -31,7 +31,7 @@ export class AuthController {
       cpf: string;
       email: string;
       cau: string;
-      userType: string;
+      profession: string;
     },
   ) {
     try {
@@ -41,7 +41,7 @@ export class AuthController {
         body.cpf,
         body.email,
         body.cau,
-        body.userType,
+        body.profession,
       );
 
       // Verifica se o usuário foi encontrado
