@@ -3,8 +3,7 @@ import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 import "../../styles/Styles.css";
 import "../../styles/Admin.css";
 import axios from "axios";
-import { Button } from "@mantine/core";
-import { Card } from "@mantine/core";
+import { Card, Image, Text, Group, Badge, Button } from "@mantine/core";
 
 const Pontuacao = () => {
   const [user, setUser] = useState({
@@ -13,6 +12,7 @@ const Pontuacao = () => {
     expiringPoints: [],
   });
   const [resgates, setResgates] = useState([]);
+  const [totalPontosResgatados, setTotalPontosResgatados] = useState(0);
 
   useEffect(() => {
     const userId = localStorage.getItem("userId");
@@ -52,22 +52,44 @@ const Pontuacao = () => {
       // Fetch resgates específicos do usuário
       fetch(`http://localhost:3000/rescues/user/${userId}`)
         .then((response) => response.json())
-        .then((data) => setResgates(data))
+        .then(async (data) => {
+          const totalPointsUsed = data.reduce(
+            (total, resgate) => total + (resgate.points_used || 0),
+            0
+          );
+          setTotalPontosResgatados(totalPointsUsed);
+
+          // Para cada resgate, adicionar os dados do produto
+          const resgatesComProdutos = await Promise.all(
+            data.map(async (resgate) => {
+              try {
+                const produtoResponse = await axios.get(
+                  `http://localhost:3000/products/${resgate.product_id}`
+                );
+                const produto = produtoResponse.data;
+                return {
+                  ...resgate,
+                  produto: {
+                    title: produto.title,
+                    image: produto.image,
+                    description: produto.description,
+                    offer: produto.offers[0],
+                  },
+                };
+              } catch (error) {
+                console.error("Erro ao buscar produto:", error);
+                return resgate;
+              }
+            })
+          );
+
+          setResgates(resgatesComProdutos);
+        })
         .catch((error) => console.error("Erro ao buscar resgates:", error));
     } else {
       alert("Usuário não encontrado no localStorage.");
     }
   }, []);
-
-  const handleConfirmResgate = async (resgateId) => {
-    try {
-      await axios.post(`http://localhost:3000/rescues/confirm/${resgateId}`);
-      alert("Resgate confirmado!");
-      setResgates(resgates.filter((resgate) => resgate.id !== resgateId));
-    } catch (error) {
-      console.error("Erro ao confirmar resgate:", error);
-    }
-  };
 
   const handleRemoveResgate = async (resgateId) => {
     try {
@@ -83,24 +105,23 @@ const Pontuacao = () => {
   const data = [
     {
       name: "Pontos Disponíveis",
-      value: user.expiringPoints.reduce(
-        (total, expiring) => total + expiring.points,
-        0
-      ),
+      value: Array.isArray(user.expiringPoints)
+        ? user.expiringPoints.reduce(
+            (total, expiring) =>
+              total + expiring.points - totalPontosResgatados,
+            0
+          )
+        : 0,
     },
     {
       name: "Resgates",
-      value: user.exchanges.reduce(
-        (total, exchange) => total + exchange.points,
-        0
-      ),
+      value: totalPontosResgatados,
     },
   ];
 
   return (
     <section className="section-my-points">
       <h2>Meus Pontos</h2>
-
       {/* Gráfico de Pizza */}
       <section className="pie-chart-container">
         <h3>Resumo dos Pontos</h3>
@@ -119,7 +140,11 @@ const Pontuacao = () => {
               <Cell
                 key={`cell-${index}`}
                 fill={
-                  entry.name === "Pontos Disponíveis" ? "#82ca9d" : "#8884d8"
+                  entry.name === "Pontos Disponíveis"
+                    ? "#82ca9d"
+                    : entry.name === "Pontos Usados"
+                    ? "#ff6f61"
+                    : "#8884d8"
                 }
               />
             ))}
@@ -128,25 +153,94 @@ const Pontuacao = () => {
           <Legend />
         </PieChart>
       </section>
-
       {/* Meus Pontos */}
       <section>
-        <p>Você tem atualmente: {user.points} pontos</p>
-      </section>
+        <h2>Meus Pontos</h2>
+        <section>
+          <p>
+            Você tem atualmente:{" "}
+            {user.points -
+              (typeof totalPontosResgatados === "number"
+                ? totalPontosResgatados
+                : 0)}{" "}
+            pontos
+          </p>
+        </section>
 
-      {/* Sessão de Trocas realizadas */}
+        {/* Outras seções permanecem inalteradas */}
+      </section>
       <section>
-        <h3>Resgates</h3>
-        <div className="exchanges">
-          <ul>
-            {user.exchanges.length > 0 ? (
-              user.exchanges.slice(0, 7).map((exchange, index) => (
-                <li key={index}>
-                  <strong>{exchange.points} pontos</strong> - {exchange.date}
-                </li>
-              ))
+        <p>Você já resgatou {totalPontosResgatados} pontos</p>
+      </section>
+      {/* Sessão de Resgates Aprovados */}
+      <section>
+        <h3>Resgates Aprovados</h3>
+        <div className="approved-rescues">
+          <ul style={{ display: "flex", flexWrap: "wrap", padding: 0 }}>
+            {resgates.length > 0 ? (
+              resgates
+                .filter((resgate) => resgate.status === "aprovado")
+                .map((resgate, index) => (
+                  <li key={index} style={{}}>
+                    <Card
+                      shadow="sm"
+                      padding="lg"
+                      radius="md"
+                      withBorder
+                      key={index}
+                      style={{ width: "300px", margin: "10px" }}
+                    >
+                      <Card.Section>
+                        {resgate.produto.image && (
+                          <Image
+                            src={resgate.produto.image}
+                            height={160}
+                            alt={resgate.produto.title}
+                          />
+                        )}
+                      </Card.Section>
+                      <Group justify="space-between" mt="md" mb="xs">
+                        <Badge color="green" style={{ marginRight: "auto" }}>
+                          {resgate.status}
+                        </Badge>
+                        <Text fw={500}>{resgate.produto.title}</Text>
+                        <div
+                          style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            justifyContent: "space-between",
+                            width: "100%",
+                            flexWrap: "nowrap",
+                          }}
+                        >
+                          <Badge color="blue">
+                            {resgate.produto.offer.days} dias
+                          </Badge>
+                          <Badge color="yellow">
+                            {resgate.produto.offer.points} pts
+                          </Badge>
+                        </div>
+                      </Group>
+
+                      <Text size="sm" style={{ textAlign: "left" }}>
+                        Serviços inclusos
+                      </Text>
+
+                      <Text size="sm" c="dimmed" style={{ textAlign: "left" }}>
+                        {resgate.produto.description
+                          .split("\n")
+                          .map((line, index) => (
+                            <span key={index}>
+                              {line}
+                              <br />
+                            </span>
+                          ))}
+                      </Text>
+                    </Card>
+                  </li>
+                ))
             ) : (
-              <p>Você não fez nenhum resgate ainda.</p>
+              <p>Não há resgates aprovados.</p>
             )}
           </ul>
         </div>
@@ -180,32 +274,79 @@ const Pontuacao = () => {
           </ul>
         </div>
       </section>
-
       {/* Resgates pendentes */}
       <section>
         <h3>Resgates Pendentes</h3>
         <div className="pending-rescues">
-          <ul>
+          <ul style={{ display: "flex", flexWrap: "wrap" }}>
             {resgates.length > 0 ? (
               resgates
                 .filter((resgate) => resgate.status === "pendente")
                 .map((resgate, index) => (
-                  <li key={index}>
-                    <strong>{resgate.points} pontos</strong> - Produto ID:{" "}
-                    {resgate.product_id} <br />
-                    Status: {resgate.status} <br />
-                    Criado em: {new Date(resgate.created_at).toLocaleString()}
-                    <div>
-                      <Button onClick={() => handleConfirmResgate(resgate.id)}>
-                        Confirmar Resgate
-                      </Button>
-                      <Button
-                        onClick={() => handleRemoveResgate(resgate.id)}
-                        color="red"
-                      >
-                        Remover Resgate
-                      </Button>
-                    </div>
+                  <li key={index} style={{ margin: "10px" }}>
+                    <Card
+                      shadow="sm"
+                      padding="lg"
+                      radius="md"
+                      withBorder
+                      style={{ width: "300px", marginBottom: "20px" }}
+                    >
+                      <Card.Section>
+                        <Image
+                          src={resgate.produto.image}
+                          height={160}
+                          alt={resgate.produto.title}
+                        />
+                      </Card.Section>
+
+                      <Group justify="space-between" mt="md" mb="xs">
+                        <Badge color="yellow" style={{ marginRight: "auto" }}>
+                          {resgate.status}
+                        </Badge>
+                        <Text fw={500}>{resgate.produto.title}</Text>
+                        <div
+                          style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            justifyContent: "space-between",
+                            width: "100%",
+                            flexWrap: "nowrap",
+                          }}
+                        >
+                          <Badge color="blue">
+                            {resgate.produto.offer.days} dias
+                          </Badge>
+                          <Badge color="yellow">
+                            {resgate.produto.offer.points} pts
+                          </Badge>
+                        </div>
+                      </Group>
+
+                      <Text size="sm" style={{ textAlign: "left" }}>
+                        Serviços inclusos
+                      </Text>
+
+                      <Text size="sm" c="dimmed" style={{ textAlign: "left" }}>
+                        {resgate.produto.description
+                          .split("\n")
+                          .map((line, index) => (
+                            <span key={index}>
+                              {line}
+                              <br />
+                            </span>
+                          ))}
+                      </Text>
+
+                      <div style={{ marginTop: "10px" }}>
+                        <Button
+                          onClick={() => handleRemoveResgate(resgate.id)}
+                          color="red"
+                          style={{ marginTop: "10px" }}
+                        >
+                          Remover Resgate
+                        </Button>
+                      </div>
+                    </Card>
                   </li>
                 ))
             ) : (

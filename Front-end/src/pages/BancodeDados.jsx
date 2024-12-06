@@ -8,7 +8,7 @@ const BancodeDados = () => {
     cpf: "",
     cau: "",
     email: "",
-    userType: "engenheiro", // valor padrão
+    userType: "engenheiro",
     password: "",
   });
   const [editingUser, setEditingUser] = useState(null);

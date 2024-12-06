@@ -38,7 +38,7 @@ export class AuthService {
     const payload = {
       userId: user.id,
       email: user.email,
-      sub: user.id, // Sub normalmente é o ID do usuário
+      sub: user.id,
     };
 
     // Retorna o token de acesso
