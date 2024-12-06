@@ -153,14 +153,16 @@ const AddPoints = () => {
     <>
       {/* Sempre exibe a seção se o usuário for encontrado */}
       {userDetails.adm && (
-        <div className="section-add-points">
-          {/* Formulário de busca por CPF */}
-          <h2>Gerenciamento de produtos e pontos</h2>
-          {userDetails.adm && (
-            <Link to="/products">
-              <button className="buttonYellow">Gerenciar Produtos</button>
-            </Link>
-          )}
+        <div className="section-approval">
+          <section>
+            {/* Formulário de busca por CPF */}
+            <h3>Gerenciamento de produtos e pontos</h3>
+            {userDetails.adm && (
+              <Link to="/products">
+                <button className="buttonYellow">Gerenciar Produtos</button>
+              </Link>
+            )}
+          </section>
           <section>
             <h3>Buscar Usuário</h3>
             <div>
@@ -185,7 +187,6 @@ const AddPoints = () => {
               </div>
             )}
           </section>
-
           {/* Sessão de adicionar ou retirar pontos */}
           <section>
             <h3>Adicionar ou Retirar Pontos</h3>
@@ -236,10 +237,12 @@ const AddPoints = () => {
               <p style={{ color: "green" }}>{successMessage}</p>
             )}
           </section>
-          <section>
-            <Exchanges />
-          </section>
         </div>
+      )}
+      {userDetails.adm && (
+        <section>
+          <Exchanges />
+        </section>
       )}
     </>
   );

@@ -363,18 +363,17 @@ const Hero = () => {
             </div>
           </form>
         </section>
-
-        <section>
-          <div>
-            <Pontuacao />
-          </div>
-        </section>
-        <section>
-          <div>
-            <AddPoints />
-          </div>
-        </section>
       </div>
+      <section>
+        <div>
+          <Pontuacao />
+        </div>
+      </section>
+      <section>
+        <div>
+          <AddPoints />
+        </div>
+      </section>
     </main>
   );
 };

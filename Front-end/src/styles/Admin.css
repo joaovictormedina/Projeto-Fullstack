@@ -1,7 +1,6 @@
 .container {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    flex-direction: row;    
     gap: 20px;
     width: 100%;
 }
@@ -21,16 +20,9 @@
     padding: 20px;
 }
 
-.section-add-points {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px;
-}
-
 .form-row {
     display: flex;
-    justify-content:space-around;
+    justify-content: space-around;
     gap: 20px;
     box-sizing: border-box;
 }
@@ -61,14 +53,40 @@
     cursor: not-allowed;
 }
 
-.form-row { 
+.form-row {
     gap: 15px;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 8px;
 }
 
-.section-add-points section,
+.section-approval{ 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 15px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.section-approval section {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    gap: 15px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    position: relative;
+}
+
+.section-approval h3 {
+    align-self: flex-start;
+    margin: 0;
+    top: 10px;
+}
+
 .section-my-points section {
     display: flex;
     flex-direction: column;
@@ -78,28 +96,15 @@
     border-radius: 8px;
 }
 
-.section-registration,
-.section-add-points div,
-.section-my-points div {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+.h3 {
+    padding-bottom: 20px;
 }
 
 .section-registration {
-    width: 40vw;
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
-
-.section-add-points div {
-    
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
 
 .section-my-points div {
     display: flex;
@@ -108,6 +113,7 @@
     align-content: center;
     justify-content: center;
 }
+
 
 input[type="text"],
 input[type="number"],
