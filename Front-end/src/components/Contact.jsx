@@ -1,4 +1,3 @@
-// Importação das imagens dos parceiros
 import parceiro1 from "../img-partners/parceiro1.png";
 import parceiro2 from "../img-partners/parceiro2.png";
 import parceiro3 from "../img-partners/parceiro3.png";

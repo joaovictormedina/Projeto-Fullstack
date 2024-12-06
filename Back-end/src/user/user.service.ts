@@ -130,7 +130,7 @@ export class UserService {
       cau,
       profession,
     ]);
-    return rows.length > 0 ? rows[0] : null; // Retorna o primeiro usuário ou null se não encontrado
+    return rows.length > 0 ? rows[0] : null;
   }
 
   // Atualizar um usuário

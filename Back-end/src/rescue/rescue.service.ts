@@ -6,7 +6,6 @@ export class RescueService {
   // Criar um novo resgate
   async create(rescueData: Partial<any>): Promise<string> {
     try {
-      console.log('Dados recebidos para criar resgate:', rescueData);
       const { userId, points, productId, status, createdAt } = rescueData;
 
       // Verifique se todos os campos necessários estão presentes
@@ -22,7 +21,6 @@ export class RescueService {
         RETURNING id;
       `;
 
-      console.log('Executando query de inserção:', insertRescueQuery);
       const { rows } = await pool.query(insertRescueQuery, [
         userId,
         points,
@@ -32,29 +30,22 @@ export class RescueService {
       ]);
 
       const rescueId = rows[0]?.id;
-      console.log('Resgate criado com sucesso! ID:', rescueId);
       return `Resgate criado com sucesso! ID: ${rescueId}`;
     } catch (error) {
-      console.error('Erro ao criar resgate:', error);
       throw error;
     }
   }
 
-  // Buscar todos os resgates
   async findAll(): Promise<any[]> {
     try {
-      console.log('Buscando todos os resgates...');
       const query = `
-        SELECT id, user_id, points, product_id, status, created_at
-        FROM rescues;
-      `;
+      SELECT id, user_id, points, points_used, date_used, product_id, status, created_at
+      FROM rescues;
+    `;
 
-      console.log('Executando query:', query);
       const { rows } = await pool.query(query);
-      console.log('Resgates encontrados:', rows);
       return rows;
     } catch (error) {
-      console.error('Erro ao buscar todos os resgates:', error);
       throw error;
     }
   }
@@ -62,82 +53,71 @@ export class RescueService {
   // Buscar um resgate pelo ID
   async findOneById(id: number): Promise<any> {
     try {
-      console.log(`Buscando resgate pelo ID: ${id}`);
       const query = `
-        SELECT id, user_id, points, product_id, status, created_at
-        FROM rescues
-        WHERE id = $1;
-      `;
+      SELECT id, user_id, points, points_used, date_used, product_id, status, created_at
+      FROM rescues
+      WHERE id = $1;
+    `;
 
-      console.log('Executando query:', query);
       const { rows } = await pool.query(query, [id]);
-      console.log('Resultado da busca por ID:', rows);
 
       if (rows.length === 0) {
-        console.log(`Nenhum resgate encontrado para o ID: ${id}`);
         throw new NotFoundException('Resgate não encontrado.');
       }
       return rows[0];
     } catch (error) {
-      console.error(`Erro ao buscar resgate com ID ${id}:`, error);
       throw error;
     }
   }
 
   // Atualizar um resgate
-  async update(id: number, rescueData: Partial<any>): Promise<any> {
+  async update(id: number): Promise<any> {
+    const client = await pool.connect();
     try {
-      console.log(`Atualizando resgate com ID: ${id}`, 'Dados:', rescueData);
-      const { userId, points, productId, status, createdAt } = rescueData;
+      // Iniciar transação
+      await client.query('BEGIN');
 
+      // Atualiza o resgate para 'aprovado' na tabela 'rescues' e adiciona pontos e data
       const updateRescueQuery = `
-        UPDATE rescues
-        SET user_id = $1, points = $2, product_id = $3, status = $4, created_at = $5
-        WHERE id = $6
-        RETURNING *;
-      `;
+    UPDATE rescues
+    SET status = 'aprovado',
+        points_used = (SELECT points FROM rescues WHERE id = $1),
+        date_used = NOW()
+    WHERE id = $1 AND status = 'pendente'
+    RETURNING *;
+    `;
+      const resgateResult = await client.query(updateRescueQuery, [id]);
 
-      console.log('Executando query de atualização:', updateRescueQuery);
-      const { rows } = await pool.query(updateRescueQuery, [
-        userId,
-        points,
-        productId,
-        status,
-        createdAt,
-        id,
-      ]);
-
-      console.log('Resultado da atualização:', rows);
-
-      if (rows.length === 0) {
-        console.log(`Nenhum resgate encontrado para atualizar com ID: ${id}`);
-        throw new NotFoundException('Resgate não encontrado.');
+      if (resgateResult.rows.length === 0) {
+        throw new NotFoundException(
+          'Resgate não encontrado ou já foi aprovado.',
+        );
       }
 
-      return rows[0];
+      // Confirma a transação
+      await client.query('COMMIT');
+
+      return resgateResult.rows[0];
     } catch (error) {
-      console.error(`Erro ao atualizar resgate com ID ${id}:`, error);
+      // Caso ocorra algum erro, realiza o rollback
+      await client.query('ROLLBACK');
       throw error;
+    } finally {
+      client.release();
     }
   }
 
   // Remover um resgate
   async remove(id: number): Promise<void> {
     try {
-      console.log(`Removendo resgate com ID: ${id}`);
       const deleteRescueQuery = `DELETE FROM rescues WHERE id = $1;`;
 
-      console.log('Executando query de remoção:', deleteRescueQuery);
       const { rowCount } = await pool.query(deleteRescueQuery, [id]);
 
-      console.log('Resultado da remoção:', rowCount);
-
       if (rowCount === 0) {
-        console.log(`Nenhum resgate encontrado para remoção com ID: ${id}`);
         throw new NotFoundException('Resgate não encontrado.');
       }
     } catch (error) {
-      console.error(`Erro ao remover resgate com ID ${id}:`, error);
       throw error;
     }
   }
@@ -145,19 +125,15 @@ export class RescueService {
   // Buscar resgates por user_id
   async findByUserId(userId: number): Promise<any[]> {
     try {
-      console.log(`Buscando resgates para o user_id: ${userId}`);
       const query = `
-        SELECT id, user_id, points, product_id, status, created_at
-        FROM rescues
-        WHERE user_id = $1;
-      `;
+      SELECT id, user_id, points, points_used, date_used, product_id, status, created_at
+      FROM rescues
+      WHERE user_id = $1;
+    `;
 
-      console.log('Executando query:', query);
       const { rows } = await pool.query(query, [userId]);
-      console.log('Resgates encontrados:', rows);
       return rows;
     } catch (error) {
-      console.error('Erro ao buscar resgates por user_id:', error);
       throw error;
     }
   }

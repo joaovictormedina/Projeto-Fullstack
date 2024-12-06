@@ -1,6 +1,6 @@
 // components/PrivateRoute.jsx
 import { Navigate } from "react-router-dom";
-import PropTypes from "prop-types"; // Importando PropTypes
+import PropTypes from "prop-types";
 
 const PrivateRoute = ({ element }) => {
   // Verifique se o token de autenticação existe no localStorage

@@ -4,13 +4,14 @@ import "../styles/Styles.css";
 
 const Nav = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userPoints, setUserPoints] = useState(null); // Para armazenar os pontos do usuário
+  const [userPoints, setUserPoints] = useState(null);
   const navigate = useNavigate();
+  const [totalPontosResgatados, setTotalPontosResgatados] = useState(0);
 
   // Verificar a presença do token ao carregar o componente
   useEffect(() => {
     const token = localStorage.getItem("authToken");
-    setIsLoggedIn(!!token); // Define como `true` se o token existir
+    setIsLoggedIn(!!token);
 
     if (token) {
       const userId = localStorage.getItem("userId");
@@ -28,6 +29,20 @@ const Nav = () => {
           .catch((error) => {
             console.error("Erro ao buscar pontos:", error);
           });
+
+        // Faz a requisição para buscar os resgates do usuário
+        fetch(`http://localhost:3000/rescues/user/${userId}`)
+          .then((response) => response.json())
+          .then(async (data) => {
+            const totalPointsUsed = data.reduce(
+              (total, resgate) => total + (resgate.points_used || 0),
+              0
+            );
+            setTotalPontosResgatados(totalPointsUsed);
+          })
+          .catch((error) => {
+            console.error("Erro ao buscar resgates:", error);
+          });
       } else {
         console.error("Usuário não encontrado no localStorage.");
       }
@@ -36,7 +51,7 @@ const Nav = () => {
 
   // Função para navegar para a conta
   const handleAccountClick = () => {
-    navigate("/admin", { replace: true }); // Navega para a página "admin"
+    navigate("/admin", { replace: true });
   };
 
   return (
@@ -64,7 +79,13 @@ const Nav = () => {
               Minha Conta
             </button>
             {userPoints !== null && (
-              <span className="user-points">Meus Pontos: {userPoints}</span>
+              <span className="user-points">
+                Meus Pontos:{" "}
+                {userPoints -
+                  (typeof totalPontosResgatados === "number"
+                    ? totalPontosResgatados
+                    : 0)}
+              </span>
             )}
           </div>
         ) : (

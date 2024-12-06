@@ -39,15 +39,13 @@ export class RescueController {
   }
 
   @Put(':id')
-  async update(
-    @Param('id') id: number,
-    @Body() rescueData: Partial<Rescue>,
-  ): Promise<any> {
+  async update(@Param('id') id: number): Promise<any> {
     try {
-      const updatedRescue = await this.rescueService.update(id, rescueData);
+      const updatedRescue = await this.rescueService.update(id);
+
       return {
         success: true,
-        message: 'Resgate atualizado com sucesso!',
+        message: 'Resgate aprovado com sucesso!',
         rescue: updatedRescue,
       };
     } catch {
