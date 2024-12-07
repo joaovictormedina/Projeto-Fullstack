@@ -26,7 +26,7 @@ export class UserController {
   @HttpCode(HttpStatus.CREATED)
   async create(@Body() userData: Partial<User>) {
     // Validar CPF
-    const cpfRegex = /^\d{11}$/; // Regra básica para CPF
+    const cpfRegex = /^\d{11}$/;
     if (userData.cpf && !cpfRegex.test(userData.cpf)) {
       throw new BadRequestException('CPF inválido.');
     }

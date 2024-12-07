@@ -1,10 +1,11 @@
 import Nav from "../components/Nav";
-import Hero from "../components/HeroNewPass";
+import Hero from "../components/HeroProducts";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
 import "../styles/Styles.css";
+import "../styles/Products.css";
 
-const NewPass = () => {
+const Products = () => {
   return (
     <div>
       <Nav />
@@ -15,4 +16,4 @@ const NewPass = () => {
   );
 };
 
-export default NewPass;
+export default Products;

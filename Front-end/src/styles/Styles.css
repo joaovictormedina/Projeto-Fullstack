@@ -7,7 +7,7 @@ font-family: 'inter', sans-serif, 'Times New Roman', Times, serif;
 
 body {
 margin: 0;
-padding: 0;
+padding-top: 80px;
 box-sizing: border-box;
 }
 
@@ -19,7 +19,7 @@ box-sizing: border-box;
 --background-helpDesk: #7B7B7B;
 /* TEXT COLOR */
 /* h1 */--color-text-pageTitles: #000000; 
-/* h2 */--color-text-carouselTitles: #FFFFFF;
+/* h2 */--color-text-carouselTitles: #000000;
 /* h3 */--color-text-pageSubTitles-Grey:#808080;
 /* h3 */--color-text-pageSubTitles-Yellow:#FFBB00;
 /* h4 */--color-text-carouselSubTitles:#FFFFFF;
@@ -28,12 +28,12 @@ box-sizing: border-box;
 /* p,a */--color-text-all: #000000;
 
 /* BUTTON COLOR */
---background-button-blue: #3700FF;
---background-button-white: #FFFFFF;
---background-button-yellow: #FFBB00;
+--background-button-blue: #0094D8;
+--background-button-white: #ffffff;
+--background-button-yellow: #0026ff;
 --color-button-text-white:#FFFFFF;
 --color-button-text-black:#000000;
---color-buttonBorder: #C1C1C1;
+--color-buttonBorder: #0094D8;
 --color-buttonHoverBackground: #000000;
 --color-buttonHoverText: #FFFFFF;
 /* INPUT COLOR */
@@ -112,13 +112,13 @@ transition: background-color 0.5s, color 0.5s;
 
 .buttonWhite {
 background-color: var(--background-button-white);
-border: 0.01rem solid var(--color-buttonBorder);
+border: 0.2rem solid var(--color-buttonBorder);
 }
 
 .buttonBlue {
 background-color: var(--background-button-blue);
 color: var(--color-button-text-white);
-border: 0px;
+border: 0.2rem solid var(--color-buttonBorder);
 }
 
 .buttonYellow {
@@ -148,7 +148,6 @@ opacity: 0.5;
 }
 
 /* Removendo margens e espaçamentos desnecessários */
-body,
 div,
 header,
 footer,
@@ -169,6 +168,17 @@ section {
 .section-container>* {
     margin: 0;
     padding: 0;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: #fff;
+    box-shadow: 0 4px 2px -2px gray;
+    padding: 10px 0;
 }
 
 .nav-container {
@@ -195,10 +205,10 @@ section {
 .nav-links {
     display: flex;
     flex: 2;
-    justify-content: space-around;
-    gap: 20px;
+    justify-content: center;
+    gap: 4rem;
     list-style: none;
-    margin : 0;
+    margin: 0;
     padding: 0;
 }
 
@@ -212,6 +222,12 @@ section {
 
 .nav-links a:hover {
     color: #007bff;
+    border-bottom: 2px solid #007bff;    
+}
+
+.nav-links a.active {
+    color: #007bff;
+    font-weight: 800;    
 }
 
 .nav-actions {    

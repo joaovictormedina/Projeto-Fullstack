@@ -1,13 +1,19 @@
 {
   "type": "postgres",
-  "host": "postgres", 
+  "host": "ep-morning-grass-a5r80ze5.us-east-2.aws.neon.tech", 
   "port": 5432,
-  "username": "plutowtech",
-  "password": "docker",
+  "username": "plutowtechdb_owner",
+  "password": "X5mdGkMWC4tc",
   "database": "plutowtechdb",
   "entities": [
     "src/**/*.entity.ts"
   ],
   "synchronize": true,
-  "logging": true
+  "logging": true,
+  "ssl": true,
+  "extra": {
+    "ssl": {
+      "rejectUnauthorized": false
+    }
+  }
 }

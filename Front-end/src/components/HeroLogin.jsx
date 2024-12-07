@@ -14,10 +14,13 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:3000/auth/login", {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        "https://back-end-nccq.onrender.com/auth/login",
+        {
+          email,
+          password,
+        }
+      );
 
       console.log("Response from backend:", response);
 
@@ -67,7 +70,7 @@ const Login = () => {
             <p>Explore tudo que a PartnerShip oferece para você.</p>
           </header>
           <div className="form-container">
-            <form onSubmit={handleSubmit}>
+            <form className="form-login" onSubmit={handleSubmit}>
               <label>Email</label>
               <input
                 type="email"

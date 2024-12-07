@@ -132,8 +132,8 @@ const Hero = () => {
             radius="md"
             withBorder
             style={{
-              width: "300px", // Define a largura
-              margin: "0 auto", // Centraliza horizontalmente
+              width: "300px",
+              margin: "0 auto",
             }}
           >
             <Card.Section>
@@ -159,8 +159,8 @@ const Hero = () => {
             radius="md"
             withBorder
             style={{
-              width: "300px", // Define a largura
-              margin: "0 auto", // Centraliza horizontalmente
+              width: "300px",
+              margin: "0 auto",
             }}
           >
             <Card.Section>
@@ -186,8 +186,8 @@ const Hero = () => {
             radius="md"
             withBorder
             style={{
-              width: "300px", // Define a largura
-              margin: "0 auto", // Centraliza horizontalmente
+              width: "300px",
+              margin: "0 auto",
             }}
           >
             <Card.Section>
@@ -213,8 +213,8 @@ const Hero = () => {
             radius="md"
             withBorder
             style={{
-              width: "300px", // Define a largura
-              margin: "0 auto", // Centraliza horizontalmente
+              width: "300px",
+              margin: "0 auto",
             }}
           >
             <Card.Section>
@@ -240,8 +240,8 @@ const Hero = () => {
             radius="md"
             withBorder
             style={{
-              width: "300px", // Define a largura
-              margin: "0 auto", // Centraliza horizontalmente
+              width: "300px",
+              margin: "0 auto",
             }}
           >
             <Card.Section>
@@ -267,8 +267,8 @@ const Hero = () => {
             radius="md"
             withBorder
             style={{
-              width: "300px", // Define a largura
-              margin: "0 auto", // Centraliza horizontalmente
+              width: "300px",
+              margin: "0 auto",
             }}
           >
             <Card.Section>
@@ -294,8 +294,8 @@ const Hero = () => {
             radius="md"
             withBorder
             style={{
-              width: "300px", // Define a largura
-              margin: "0 auto", // Centraliza horizontalmente
+              width: "300px",
+              margin: "0 auto",
             }}
           >
             <Card.Section>
@@ -321,8 +321,8 @@ const Hero = () => {
             radius="md"
             withBorder
             style={{
-              width: "300px", // Define a largura
-              margin: "0 auto", // Centraliza horizontalmente
+              width: "300px",
+              margin: "0 auto",
             }}
           >
             <Card.Section>

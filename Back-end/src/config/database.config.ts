@@ -1,12 +1,11 @@
-import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { Pool } from 'pg';
 
-export const databaseConfig: TypeOrmModuleOptions = {
-  type: 'postgres',
-  host: 'localhost',
-  port: 5432,
-  username: 'test',
-  password: 'test',
-  database: 'test',
-  entities: [],
-  synchronize: false,
-};
+const pool = new Pool({
+  connectionString:
+    'postgresql://plutowtechdb_owner:X5mdGkMWC4tc@ep-morning-grass-a5r80ze5.us-east-2.aws.neon.tech/plutowtechdb?sslmode=require',
+  ssl: {
+    rejectUnauthorized: false,
+  },
+});
+
+export default pool;

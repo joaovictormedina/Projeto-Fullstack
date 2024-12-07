@@ -8,7 +8,7 @@ const ForgotPassword = () => {
   const [cpf, setCpf] = useState("");
   const [email, setEmail] = useState("");
   const [cau, setCau] = useState("");
-  const [userType, setUserType] = useState("");
+  const [profession, setprofession] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const navigate = useNavigate();
@@ -18,13 +18,13 @@ const ForgotPassword = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/auth/forgot-password",
+        "https://back-end-nccq.onrender.com/auth/forgot-password",
         {
           name,
           cpf,
           email,
           cau,
-          userType,
+          profession,
         }
       );
 
@@ -114,9 +114,9 @@ const ForgotPassword = () => {
               <label>Tipo de Usuário</label>
               <input
                 type="text"
-                name="userType"
-                value={userType}
-                onChange={(e) => setUserType(e.target.value)}
+                name="profession"
+                value={profession}
+                onChange={(e) => setprofession(e.target.value)}
                 required
               />
               <button className="buttonYellow" type="submit">

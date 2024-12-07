@@ -2,7 +2,7 @@ import { Controller, Post, Body, BadRequestException } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { UserService } from '../user/user.service';
 import { UnauthorizedException } from '@nestjs/common';
-import * as jwt from 'jsonwebtoken'; // Importando o JWT
+import * as jwt from 'jsonwebtoken';
 
 @Controller('auth')
 export class AuthController {
@@ -31,7 +31,7 @@ export class AuthController {
       cpf: string;
       email: string;
       cau: string;
-      userType: string;
+      profession: string;
     },
   ) {
     try {
@@ -41,7 +41,7 @@ export class AuthController {
         body.cpf,
         body.email,
         body.cau,
-        body.userType,
+        body.profession,
       );
 
       // Verifica se o usuário foi encontrado

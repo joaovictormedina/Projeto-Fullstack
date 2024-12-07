@@ -30,12 +30,7 @@ function Toldos() {
   return (
     <Card shadow="sm" padding="lg" radius="lg" withBorder>
       <Card.Section>
-        <Image
-          src={toldos2}
-          alt="Toldos"
-          height={460}
-          maxWidth={500} // Ajuste o valor conforme necessário
-        />
+        <Image src={toldos2} alt="Toldos" height={460} maxWidth={500} />
       </Card.Section>
 
       <Group justify="space-between" mt="md" mb="xs">

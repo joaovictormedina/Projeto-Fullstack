@@ -4,7 +4,7 @@ export class CreateUserDto {
   cau: string;
   email: string;
   password: string;
-  userType: string;
+  profession: string;
   datanascimento?: Date;
   cep?: string;
   numero?: string;

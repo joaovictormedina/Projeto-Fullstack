@@ -1,6 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Pontuacao from "./componentsAdm/pontuacao";
+import AddPoints from "../components/componentsAdm/addPoints";
+import "../styles/Styles.css";
+import "../styles/Admin.css";
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -16,7 +19,7 @@ const Hero = () => {
     estado: "",
     numero: "",
     complemento: "",
-    userType: "",
+    profession: "",
     cau: "",
     email: "",
     senhaAtual: "",
@@ -37,7 +40,7 @@ const Hero = () => {
     }
 
     // Validação simples dos campos obrigatórios
-    if (!user.name || !user.email || !user.cpf) {
+    if (!user.name || !user.email || !user.cpf || !user.id) {
       setError("Por favor, preencha todos os campos obrigatórios.");
       return;
     }
@@ -53,36 +56,31 @@ const Hero = () => {
       estado: user.estado,
       numero: user.numero,
       complemento: user.complemento,
-      userType: user.userType,
+      profession: user.profession,
       cau: user.cau,
       email: user.email,
+      photopath: user.photopath,
     };
 
     if (user.password) {
       updatedUser.password = user.password;
     }
-
-    const userId = user.id;
-    const url = userId
-      ? `http://localhost:3000/users/${userId}`
-      : `http://localhost:3000/users`;
-
-    const method = userId ? "PUT" : "POST";
+    const url = `https://back-end-nccq.onrender.com/users/${user.id}`;
 
     setLoading(true);
 
     fetch(url, {
-      method: method,
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(updatedUser),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        return response.json();
+      })
       .then((data) => {
-        console.log(data);
-
         if (data && data.success) {
           alert(data.message || "Dados salvos com sucesso!");
           navigate(0);
@@ -90,17 +88,11 @@ const Hero = () => {
           setError(data.message || "Erro ao salvar os dados.");
         }
       })
-
       .catch((error) => {
         console.error("Erro ao salvar os dados:", error);
         setError("Erro ao salvar os dados.");
       })
       .finally(() => setLoading(false));
-  };
-
-  const handleLogout = () => {
-    localStorage.clear();
-    navigate("/login");
   };
 
   const buscarEnderecoPorCep = (cep) => {
@@ -132,7 +124,7 @@ const Hero = () => {
     const userId = localStorage.getItem("userId");
 
     if (token && userId) {
-      fetch(`http://localhost:3000/users/${userId}`, {
+      fetch(`https://back-end-nccq.onrender.com/users/${userId}`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -141,14 +133,13 @@ const Hero = () => {
         .then((response) => response.json())
         .then((data) => {
           if (data) {
-            // Alterado para verificar se data existe, sem usar o [0]
             const userData = data;
             setUser({
               id: userData.id,
               name: userData.name,
               cpf: userData.cpf,
               email: userData.email,
-              userType: userData.userType,
+              profession: userData.profession,
               cau: userData.cau,
               datanascimento: userData.datanascimento,
               cep: userData.cep,
@@ -158,6 +149,7 @@ const Hero = () => {
               estado: userData.estado,
               numero: userData.numero,
               complemento: userData.complemento,
+              photopath: userData.photopath,
               password: "",
               points: userData.points || 0,
             });
@@ -191,156 +183,198 @@ const Hero = () => {
 
       {/* Se houver erro, exibe a mensagem */}
       {error && <p className="error-message">{error}</p>}
+      <div className="container">
+        <div>
+          <section className="section-registration">
+            <div>
+              <h2>Informações do Usuário</h2>
+            </div>
+            <div>
+              <form>
+                <div className="form-row">
+                  <div className="form-column">
+                    <label className="input-group">
+                      Nome:
+                      <input
+                        type="text"
+                        value={user.name}
+                        disabled
+                        onChange={(e) =>
+                          setUser({ ...user, name: e.target.value })
+                        }
+                        className={user.name ? "" : "disabled-input"}
+                      />
+                    </label>
+                    <label className="input-group">
+                      CPF:
+                      <input
+                        type="text"
+                        value={user.cpf}
+                        disabled
+                        onChange={(e) =>
+                          setUser({ ...user, cpf: e.target.value })
+                        }
+                        className={user.cpf ? "" : "disabled-input"}
+                      />
+                    </label>
+                    <label className="input-group">
+                      Data de Nascimento:
+                      <input
+                        type="date"
+                        value={
+                          user.datanascimento
+                            ? user.datanascimento.split("T")[0]
+                            : ""
+                        }
+                        onChange={(e) =>
+                          setUser({ ...user, datanascimento: e.target.value })
+                        }
+                      />
+                    </label>
+                    <label className="input-group">
+                      Email:
+                      <input
+                        type="email"
+                        value={user.email}
+                        onChange={(e) =>
+                          setUser({ ...user, email: e.target.value })
+                        }
+                      />
+                    </label>
+                    <label className="input-group">
+                      Profissão:
+                      <input
+                        type="text"
+                        value={user.profession}
+                        onChange={(e) =>
+                          setUser({ ...user, profession: e.target.value })
+                        }
+                      />
+                    </label>
+                    <label className="input-group">
+                      CREA/CAU:
+                      <input
+                        type="text"
+                        value={user.cau}
+                        onChange={(e) =>
+                          setUser({ ...user, cau: e.target.value })
+                        }
+                      />
+                    </label>
+                    <label className="input-group">
+                      Nova Senha:
+                      <input
+                        type="password"
+                        value={user.password}
+                        onChange={(e) =>
+                          setUser({ ...user, password: e.target.value })
+                        }
+                      />
+                    </label>
+                    <button className="buttonYellow" onClick={handleSalvar}>
+                      Salvar
+                    </button>
+                  </div>
 
-      <section>
-        <h2>Informações do Usuário</h2>
-        <form>
-          <label>
-            <input
-              type="text"
-              id="userId"
-              value={user.id || ""}
-              disabled
-              style={{ display: "" }}
-            />
-          </label>
-          <label>
-            Nome:
-            <input
-              type="text"
-              value={user.name}
-              disabled
-              onChange={(e) => setUser({ ...user, name: e.target.value })}
-            />
-          </label>
-          <label>
-            CPF:
-            <input
-              type="text"
-              value={user.cpf}
-              disabled
-              onChange={(e) => setUser({ ...user, cpf: e.target.value })}
-            />
-          </label>
-          <label>
-            Data de Nascimento:
-            <input
-              type="date"
-              value={
-                user.datanascimento ? user.datanascimento.split("T")[0] : ""
-              }
-              onChange={(e) =>
-                setUser({ ...user, datanascimento: e.target.value })
-              }
-            />
-          </label>
-          <label>
-            Email:
-            <input
-              type="email"
-              value={user.email}
-              onChange={(e) => setUser({ ...user, email: e.target.value })}
-            />
-          </label>
-          <label>
-            Profissão:
-            <input
-              type="text"
-              value={user.userType}
-              onChange={(e) => setUser({ ...user, userType: e.target.value })}
-            />
-          </label>
-          <label>
-            CREA/CAU:
-            <input
-              type="text"
-              value={user.cau}
-              onChange={(e) => setUser({ ...user, cau: e.target.value })}
-            />
-          </label>
+                  <div className="form-column">
+                    <label className="input-group">
+                      CEP:
+                      <input
+                        type="text"
+                        value={user.cep || ""}
+                        onChange={(e) => {
+                          const cepWithoutDash = e.target.value.replace(
+                            "-",
+                            ""
+                          );
+                          setUser({ ...user, cep: cepWithoutDash });
+                        }}
+                      />
+                    </label>
+                    <label className="input-group">
+                      Endereço:
+                      <input
+                        type="text"
+                        value={user.endereco || ""}
+                        disabled
+                        onChange={(e) =>
+                          setUser({ ...user, endereco: e.target.value })
+                        }
+                        className="disabled-input"
+                      />
+                    </label>
+                    <label className="input-group">
+                      Número:
+                      <input
+                        type="text"
+                        value={user.numero || ""}
+                        onChange={(e) =>
+                          setUser({ ...user, numero: e.target.value })
+                        }
+                      />
+                    </label>
+                    <label className="input-group">
+                      Complemento:
+                      <input
+                        type="text"
+                        value={user.complemento || ""}
+                        onChange={(e) =>
+                          setUser({ ...user, complemento: e.target.value })
+                        }
+                      />
+                    </label>
+                    <label className="input-group">
+                      Bairro:
+                      <input
+                        type="text"
+                        value={user.bairro || ""}
+                        disabled
+                        onChange={(e) =>
+                          setUser({ ...user, bairro: e.target.value })
+                        }
+                        className="disabled-input"
+                      />
+                    </label>
+                    <label className="input-group">
+                      Município:
+                      <input
+                        type="text"
+                        value={user.municipio || ""}
+                        disabled
+                        onChange={(e) =>
+                          setUser({ ...user, municipio: e.target.value })
+                        }
+                        className="disabled-input"
+                      />
+                    </label>
+                    <label className="input-group">
+                      Estado:
+                      <input
+                        type="text"
+                        value={user.estado || ""}
+                        disabled
+                        onChange={(e) =>
+                          setUser({ ...user, estado: e.target.value })
+                        }
+                        className="disabled-input"
+                      />
+                    </label>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </section>
+        </div>
+        <section>
+          <div>
+            <Pontuacao />
+          </div>
+        </section>
+      </div>
 
-          <label>
-            CEP:
-            <input
-              type="text"
-              value={user.cep || ""}
-              onChange={(e) => {
-                // Remove qualquer "-" do valor digitado
-                const cepWithoutDash = e.target.value.replace("-", "");
-                setUser({ ...user, cep: cepWithoutDash });
-              }}
-            />
-          </label>
-          <label>
-            Endereço:
-            <input
-              type="text"
-              value={user.endereco || ""}
-              disabled
-              onChange={(e) => setUser({ ...user, endereco: e.target.value })}
-            />
-          </label>
-          <label>
-            Número:
-            <input
-              type="text"
-              value={user.numero || ""}
-              onChange={(e) => setUser({ ...user, numero: e.target.value })}
-            />
-          </label>
-          <label>
-            Complemento:
-            <input
-              type="text"
-              value={user.complemento || ""}
-              onChange={(e) =>
-                setUser({ ...user, complemento: e.target.value })
-              }
-            />
-          </label>
-          <label>
-            Bairro:
-            <input
-              type="text"
-              value={user.bairro || ""}
-              disabled
-              onChange={(e) => setUser({ ...user, bairro: e.target.value })}
-            />
-          </label>
-          <label>
-            Município:
-            <input
-              type="text"
-              value={user.municipio || ""}
-              disabled
-              onChange={(e) => setUser({ ...user, municipio: e.target.value })}
-            />
-          </label>
-          <label>
-            Estado:
-            <input
-              type="text"
-              value={user.estado || ""}
-              disabled
-              onChange={(e) => setUser({ ...user, estado: e.target.value })}
-            />
-          </label>
-
-          <label>
-            Nova Senha:
-            <input
-              type="password"
-              value={user.password}
-              onChange={(e) => setUser({ ...user, password: e.target.value })}
-            />
-          </label>
-          <button onClick={handleSalvar}>Salvar</button>
-          <button onClick={handleLogout}>Logout</button>
-        </form>
-      </section>
       <section>
         <div>
-          <Pontuacao />
+          <AddPoints />
         </div>
       </section>
     </main>
