@@ -245,7 +245,6 @@ const Pontuacao = () => {
           </section>
           {/* Meus Pontos */}
           <section>
-            <h2>Meus Pontos</h2>
             <section>
               <p>
                 Você tem atualmente:{" "}

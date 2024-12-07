@@ -54,6 +54,11 @@ const Nav = () => {
     navigate("/admin", { replace: true });
   };
 
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/login");
+  };
+
   return (
     <nav className="nav-container">
       <div className="nav-logo">
@@ -63,21 +68,47 @@ const Nav = () => {
       </div>
       <ul className="nav-links">
         <li>
-          <Link to="/services">Serviços</Link>
+          <Link
+            to="/services"
+            className={location.pathname === "/services" ? "active" : ""}
+          >
+            Serviços
+          </Link>
         </li>
+
         <li>
-          <Link to="/packages">Pacotes</Link>
+          <Link
+            to="/packages"
+            className={location.pathname === "/packages" ? "active" : ""}
+          >
+            Pacotes
+          </Link>
         </li>
+
         <li>
-          <Link to="/promotions">Promoções</Link>
+          <Link
+            to="/promotions"
+            className={location.pathname === "/promotions" ? "active" : ""}
+          >
+            Promoções
+          </Link>
         </li>
+        {isLoggedIn ? (
+          <li>
+            <Link
+              onClick={handleAccountClick}
+              to="/admin"
+              className={location.pathname === "/admin" ? "active" : ""}
+            >
+              Minha conta
+            </Link>
+          </li>
+        ) : null}
       </ul>
+
       <div className="nav-actions">
         {isLoggedIn ? (
           <div className="logged-in-container">
-            <button className="buttonWhite" onClick={handleAccountClick}>
-              Minha Conta
-            </button>
             {userPoints !== null && (
               <span className="user-points">
                 Meus Pontos:{" "}
@@ -97,6 +128,11 @@ const Nav = () => {
               <button className="buttonBlue">Criar Conta</button>
             </Link>
           </>
+        )}
+        {isLoggedIn && (
+          <button className="buttonBlue" type="button" onClick={handleLogout}>
+            Sair
+          </button>
         )}
       </div>
       <div className="nav-search">

@@ -1,8 +1,23 @@
+header {
+    padding-top: 70px;
+}
+
+header p {
+    margin: 30px;
+}
+
+
 .container {
     display: flex;
-    flex-direction: row;    
+    flex-direction: row;
+    justify-content: center;
     gap: 20px;
     width: 100%;
+}
+
+.container>* {
+    flex-basis: 50%;
+    flex-grow: 0;
 }
 
 .section-registration {
@@ -14,8 +29,6 @@
 }
 
 .section-my-points {
-    display: flex;
-    flex-direction: column;
     gap: 30px;
     padding: 20px;
 }
@@ -71,8 +84,6 @@
 }
 
 .section-approval section {
-    display: flex;
-    flex-direction: column;
     margin: 20px;
     gap: 15px;
     padding: 20px;
@@ -82,36 +93,32 @@
 }
 
 .section-approval h3 {
-    align-self: flex-start;
     margin: 0;
     top: 10px;
 }
 
 .section-my-points section {
-    display: flex;
-    flex-direction: column;
     gap: 15px;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 8px;
 }
 
+section p {
+    padding: 10px ;
+}
+
+.section-registration h2,
+.section-my-points h2 {
+    padding-bottom: 50px;
+}
+
 .h3 {
     padding-bottom: 20px;
 }
 
-.section-registration {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
 .section-my-points div {
-    display: flex;
-    flex-direction: column;
     gap: 10px;
-    align-content: center;
-    justify-content: center;
 }
 
 
@@ -127,14 +134,10 @@ select {
 }
 
 .section-my-points .pie-chart-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     padding: 10px;
-}
-
-.section-my-points {
-    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .section-my-points .exchanges,
@@ -163,8 +166,6 @@ strong {
 }
 
 .section-registration label {
-    display: flex;
-    flex-direction: column;
     font-size: 1rem;
     color: #333;
 }
@@ -180,8 +181,6 @@ strong {
 }
 
 .section-registration .input-group {
-    display: flex;
-    flex-direction: column;
     gap: 5px;
 }
 
