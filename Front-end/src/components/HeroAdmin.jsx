@@ -65,7 +65,7 @@ const Hero = () => {
     if (user.password) {
       updatedUser.password = user.password;
     }
-    const url = `http://localhost:3000/users/${user.id}`;
+    const url = `https://back-end-nccq.onrender.com/users/${user.id}`;
 
     setLoading(true);
 
@@ -129,7 +129,7 @@ const Hero = () => {
     const userId = localStorage.getItem("userId");
 
     if (token && userId) {
-      fetch(`http://localhost:3000/users/${userId}`, {
+      fetch(`https://back-end-nccq.onrender.com/users/${userId}`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,

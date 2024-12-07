@@ -14,7 +14,9 @@ const Products = () => {
   // Função para carregar os produtos do banco de dados
   const loadProducts = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/products");
+      const response = await axios.get(
+        "https://back-end-nccq.onrender.com/products"
+      );
       setProducts(response.data);
     } catch (error) {
       console.error("Erro ao buscar produtos:", error);
@@ -35,7 +37,7 @@ const Products = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/products",
+        "https://back-end-nccq.onrender.com/products",
         newProduct
       );
 
@@ -57,7 +59,7 @@ const Products = () => {
   const handleDelete = async (id) => {
     try {
       const response = await axios.delete(
-        `http://localhost:3000/products/${id}`
+        `https://back-end-nccq.onrender.com/products/${id}`
       );
       if (response.status === 200) {
         setProducts(products.filter((product) => product.id !== id));
@@ -91,7 +93,7 @@ const Products = () => {
 
     try {
       const response = await axios.put(
-        `http://localhost:3000/products/${editingProduct.id}`,
+        `https://back-end-nccq.onrender.com/products/${editingProduct.id}`,
         updatedProduct
       );
 

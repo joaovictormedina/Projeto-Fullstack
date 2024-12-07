@@ -17,7 +17,7 @@ const Nav = () => {
       const userId = localStorage.getItem("userId");
       if (userId) {
         // Faz a requisição para buscar os pontos do usuário
-        fetch(`http://localhost:3000/points/${userId}`)
+        fetch(`https://back-end-nccq.onrender.com/points/${userId}`)
           .then((response) => response.json())
           .then((data) => {
             if (data && data.points !== undefined) {
@@ -31,7 +31,7 @@ const Nav = () => {
           });
 
         // Faz a requisição para buscar os resgates do usuário
-        fetch(`http://localhost:3000/rescues/user/${userId}`)
+        fetch(`https://back-end-nccq.onrender.com/rescues/user/${userId}`)
           .then((response) => response.json())
           .then(async (data) => {
             const totalPointsUsed = data.reduce(

@@ -17,7 +17,9 @@ const Hero = () => {
   // Função para carregar os produtos do banco de dados
   const loadProducts = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/products");
+      const response = await axios.get(
+        "https://back-end-nccq.onrender.com/products"
+      );
       setProducts(response.data);
     } catch (error) {
       console.error("Erro ao buscar produtos:", error);
@@ -31,7 +33,7 @@ const Hero = () => {
 
       // Obtenha os pontos disponíveis do usuário
       const userResponse = await axios.get(
-        `http://localhost:3000/users/${userId}`
+        `https://back-end-nccq.onrender.com/users/${userId}`
       );
       const userPoints = userResponse.data.points;
 
@@ -45,7 +47,7 @@ const Hero = () => {
       const createdAt = new Date().toISOString();
 
       // Envia os dados para o backend
-      await axios.post("http://localhost:3000/rescues", {
+      await axios.post("https://back-end-nccq.onrender.com/rescues", {
         productId: product.id,
         userId,
         points: requiredPoints,
@@ -54,7 +56,7 @@ const Hero = () => {
       });
 
       // Atualiza os pontos do usuário
-      await axios.get(`http://localhost:3000/users/${userId}`, {
+      await axios.get(`https://back-end-nccq.onrender.com/users/${userId}`, {
         points: userPoints - requiredPoints,
       });
 

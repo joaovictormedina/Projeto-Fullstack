@@ -13,7 +13,7 @@ const Exchanges = () => {
     const userId = localStorage.getItem("userId");
     if (userId) {
       // Fetch resgates pendentes do usuário
-      fetch("http://localhost:3000/rescues?status=pendente")
+      fetch("https://back-end-nccq.onrender.com/rescues?status=pendente")
         .then((response) => response.json())
         .then(async (data) => {
           // Para cada resgate, adicionar os dados do produto e do usuário
@@ -22,13 +22,13 @@ const Exchanges = () => {
               try {
                 // Buscar os dados do produto
                 const produtoResponse = await axios.get(
-                  `http://localhost:3000/products/${resgate.product_id}`
+                  `https://back-end-nccq.onrender.com/products/${resgate.product_id}`
                 );
                 const produto = produtoResponse.data;
 
                 // Buscar os dados do usuário com base no user_id
                 const usuarioResponse = await axios.get(
-                  `http://localhost:3000/users/${resgate.user_id}`
+                  `https://back-end-nccq.onrender.com/users/${resgate.user_id}`
                 );
                 const usuario = usuarioResponse.data;
 
@@ -71,7 +71,7 @@ const Exchanges = () => {
 
       // Enviar PUT para atualizar o status no back-end
       const response = await axios.put(
-        `http://localhost:3000/rescues/${resgateId}`,
+        `https://back-end-nccq.onrender.com/rescues/${resgateId}`,
         updatedData
       );
 
@@ -97,7 +97,9 @@ const Exchanges = () => {
 
   const handleRemoveResgate = async (resgateId) => {
     try {
-      await axios.delete(`http://localhost:3000/rescues/${resgateId}`);
+      await axios.delete(
+        `https://back-end-nccq.onrender.com/rescues/${resgateId}`
+      );
       setResgates(resgates.filter((resgate) => resgate.id !== resgateId));
       toast.success("Resgate removido com sucesso!");
     } catch (error) {

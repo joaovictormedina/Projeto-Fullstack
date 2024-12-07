@@ -25,7 +25,7 @@ const AddPoints = () => {
   // Busca os dados do usuário e verifica se ele é admin
   useEffect(() => {
     if (userId) {
-      fetch(`http://localhost:3000/users/${userId}`, {
+      fetch(`https://back-end-nccq.onrender.com/users/${userId}`, {
         method: "GET",
       })
         .then((response) => response.json())
@@ -53,7 +53,7 @@ const AddPoints = () => {
       setLoading(true);
       setError(null);
 
-      fetch(`http://localhost:3000/users/cpf/${cpf}`, {
+      fetch(`https://back-end-nccq.onrender.com/users/cpf/${cpf}`, {
         method: "GET",
       })
         .then((response) => response.json())
@@ -85,7 +85,7 @@ const AddPoints = () => {
       setError(null);
       setSuccessMessage(null);
 
-      fetch(`http://localhost:3000/points/add/${recipientId}`, {
+      fetch(`https://back-end-nccq.onrender.com/points/add/${recipientId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -121,7 +121,7 @@ const AddPoints = () => {
       setError(null);
       setSuccessMessage(null);
 
-      fetch(`http://localhost:3000/points/remove/${recipientId}`, {
+      fetch(`https://back-end-nccq.onrender.com/points/remove/${recipientId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

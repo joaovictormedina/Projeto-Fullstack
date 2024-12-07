@@ -18,7 +18,7 @@ const ForgotPassword = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/auth/forgot-password",
+        "https://back-end-nccq.onrender.com/auth/forgot-password",
         {
           name,
           cpf,

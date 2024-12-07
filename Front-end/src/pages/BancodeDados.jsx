@@ -16,7 +16,7 @@ const BancodeDados = () => {
   // Carregar usuários
   useEffect(() => {
     axios
-      .get("http://localhost:3000/users")
+      .get("https://back-end-nccq.onrender.com/users")
       .then((response) => setUsers(response.data))
       .catch((error) => console.error("Erro ao carregar usuários:", error));
   }, []);
@@ -24,7 +24,7 @@ const BancodeDados = () => {
   // Adicionar usuário
   const handleAddUser = () => {
     axios
-      .post("http://localhost:3000/users", newUser)
+      .post("https://back-end-nccq.onrender.com/users", newUser)
       .then((response) => {
         setUsers([...users, response.data]);
         setNewUser({
@@ -46,7 +46,10 @@ const BancodeDados = () => {
 
   const handleSaveEdit = () => {
     axios
-      .put(`http://localhost:3000/users/${editingUser.id}`, editingUser)
+      .put(
+        `https://back-end-nccq.onrender.com/users/${editingUser.id}`,
+        editingUser
+      )
       .then((response) => {
         setUsers(
           users.map((user) =>
@@ -61,7 +64,7 @@ const BancodeDados = () => {
   // Excluir usuário
   const handleDeleteUser = (id) => {
     axios
-      .delete(`http://localhost:3000/users/${id}`)
+      .delete(`https://back-end-nccq.onrender.com/users/${id}`)
       .then(() => {
         setUsers(users.filter((user) => user.id !== id));
       })

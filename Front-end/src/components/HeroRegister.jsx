@@ -38,7 +38,7 @@ const Register = () => {
     try {
       // Envio dos dados para o backend, incluindo a senha
       const response = await axios.post(
-        "http://localhost:3000/users",
+        "https://back-end-nccq.onrender.com/users",
         formData
       );
 

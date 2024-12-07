@@ -18,7 +18,7 @@ const Pontuacao = () => {
     const userId = localStorage.getItem("userId");
     if (userId) {
       // Fetch pontos
-      fetch(`http://localhost:3000/points/${userId}`)
+      fetch(`https://back-end-nccq.onrender.com/points/${userId}`)
         .then(async (response) => {
           const contentType = response.headers.get("Content-Type");
 
@@ -50,7 +50,7 @@ const Pontuacao = () => {
         });
 
       // Fetch resgates específicos do usuário
-      fetch(`http://localhost:3000/rescues/user/${userId}`)
+      fetch(`https://back-end-nccq.onrender.com/rescues/user/${userId}`)
         .then((response) => response.json())
         .then(async (data) => {
           const totalPointsUsed = data.reduce(
@@ -64,7 +64,7 @@ const Pontuacao = () => {
             data.map(async (resgate) => {
               try {
                 const produtoResponse = await axios.get(
-                  `http://localhost:3000/products/${resgate.product_id}`
+                  `https://back-end-nccq.onrender.com/products/${resgate.product_id}`
                 );
                 const produto = produtoResponse.data;
                 return {
@@ -93,7 +93,9 @@ const Pontuacao = () => {
 
   const handleRemoveResgate = async (resgateId) => {
     try {
-      await axios.delete(`http://localhost:3000/rescues/${resgateId}`);
+      await axios.delete(
+        `https://back-end-nccq.onrender.com/rescues/${resgateId}`
+      );
       setResgates(resgates.filter((resgate) => resgate.id !== resgateId));
       alert("Resgate removido!");
     } catch (error) {

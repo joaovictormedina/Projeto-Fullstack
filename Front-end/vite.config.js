@@ -8,7 +8,10 @@ export default defineConfig({
     target: 'esnext',
   },
   optimizeDeps: {
-    include: ['prop-types']
+    exclude: [
+      '@mantine/core'
+      // Exclua outras dependências que possam estar gerando o erro
+    ],
   },
   server: {
     proxy: {
