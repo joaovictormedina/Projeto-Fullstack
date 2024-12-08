@@ -4,6 +4,7 @@ import "../../styles/Styles.css";
 import "../../styles/Admin.css";
 import axios from "axios";
 import { Card, Image, Text, Group, Badge, Button } from "@mantine/core";
+import { toast, ToastContainer } from "react-toastify";
 
 const Pontuacao = () => {
   const [user, setUser] = useState({
@@ -27,7 +28,7 @@ const Pontuacao = () => {
             console.error(
               `Erro na requisição: ${response.status} - ${errorText}`
             );
-            alert("Erro ao carregar pontos.");
+            toast.error("Erro ao carregar pontos.");
             return;
           }
 
@@ -41,12 +42,14 @@ const Pontuacao = () => {
           } else {
             const errorText = await response.text();
             console.error(`Resposta inesperada: ${errorText}`);
-            alert("Erro ao carregar pontos. Resposta inesperada do servidor.");
+            toast.error(
+              "Erro ao carregar pontos. Resposta inesperada do servidor."
+            );
           }
         })
         .catch((error) => {
           console.error("Erro ao buscar pontos:", error);
-          alert("Erro ao carregar pontos.");
+          toast.error("Erro ao carregar pontos.");
         });
 
       // Fetch resgates específicos do usuário
@@ -78,6 +81,7 @@ const Pontuacao = () => {
                 };
               } catch (error) {
                 console.error("Erro ao buscar produto:", error);
+                toast.error("Erro ao buscar produto:", error);
                 return resgate;
               }
             })
@@ -87,7 +91,7 @@ const Pontuacao = () => {
         })
         .catch((error) => console.error("Erro ao buscar resgates:", error));
     } else {
-      alert("Usuário não encontrado no localStorage.");
+      toast.error("Usuário não encontrado.");
     }
   }, []);
 
@@ -97,9 +101,10 @@ const Pontuacao = () => {
         `https://back-end-nccq.onrender.com/rescues/${resgateId}`
       );
       setResgates(resgates.filter((resgate) => resgate.id !== resgateId));
-      alert("Resgate removido!");
+      toast.error("Resgate removido!");
     } catch (error) {
       console.error("Erro ao remover resgate:", error);
+      toast.error("Erro ao remover resgate:", error);
     }
   };
 
@@ -453,6 +458,15 @@ const Pontuacao = () => {
             </ul>
           </div>
         </section>
+        <ToastContainer
+          position="top-right"
+          autoClose={2000}
+          hideProgressBar={false}
+          closeOnClick
+          pauseOnHover
+          draggable
+          theme="dark"
+        />
       </section>
     )
   );

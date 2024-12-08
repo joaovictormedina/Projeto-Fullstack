@@ -15,9 +15,18 @@ header p {
     width: 100%;
 }
 
-.container>* {
-    flex-basis: 50%;
+.container>div {
+    flex-basis: 25%;
+    /* Div ocupa 30% */
     flex-grow: 0;
+    /* Impede que a div cresça além do necessário */
+}
+
+.container>section {
+    flex-basis: 75%;
+    /* Section ocupa 70% */
+    flex-grow: 0;
+    /* Impede que a section cresça além do necessário */
 }
 
 .section-registration {

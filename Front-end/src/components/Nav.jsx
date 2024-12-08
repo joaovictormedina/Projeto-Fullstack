@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/Styles.css";
+import { toast, ToastContainer } from "react-toastify";
 
 const Nav = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -24,10 +25,12 @@ const Nav = () => {
               setUserPoints(data.points);
             } else {
               console.error("Não foi possível carregar os pontos.");
+              toast.error("Não foi possível carregar os pontos.");
             }
           })
           .catch((error) => {
             console.error("Erro ao buscar pontos:", error);
+            toast.error("Erro ao buscar pontos:", error);
           });
 
         // Faz a requisição para buscar os resgates do usuário
@@ -42,9 +45,10 @@ const Nav = () => {
           })
           .catch((error) => {
             console.error("Erro ao buscar resgates:", error);
+            toast.error("Erro ao buscar resgates:", error);
           });
       } else {
-        console.error("Usuário não encontrado no localStorage.");
+        toast.error("Usuário não encontrado.");
       }
     }
   }, []);
@@ -138,6 +142,15 @@ const Nav = () => {
       <div className="nav-search">
         <input type="text" placeholder="Procurar..." className="search-input" />
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        closeOnClick
+        pauseOnHover
+        draggable
+        theme="dark"
+      />
     </nav>
   );
 };

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
 
 const BancodeDados = () => {
   const [users, setUsers] = useState([]);
@@ -19,6 +20,7 @@ const BancodeDados = () => {
       .get("https://back-end-nccq.onrender.com/users")
       .then((response) => setUsers(response.data))
       .catch((error) => console.error("Erro ao carregar usuários:", error));
+    toast.error("Erro ao carregar usuários:", error);
   }, []);
 
   // Adicionar usuário
@@ -37,6 +39,7 @@ const BancodeDados = () => {
         });
       })
       .catch((error) => console.error("Erro ao adicionar usuário:", error));
+    toast.error("Erro ao adicionar usuário:", error);
   };
 
   // Editar usuário
@@ -59,6 +62,7 @@ const BancodeDados = () => {
         setEditingUser(null);
       })
       .catch((error) => console.error("Erro ao editar usuário:", error));
+    toast.error("Erro ao editar usuário:", error);
   };
 
   // Excluir usuário
@@ -69,6 +73,7 @@ const BancodeDados = () => {
         setUsers(users.filter((user) => user.id !== id));
       })
       .catch((error) => console.error("Erro ao excluir usuário:", error));
+    toast.error("Erro ao excluir usuário:", error);
   };
 
   return (
@@ -183,6 +188,15 @@ const BancodeDados = () => {
           <button onClick={handleSaveEdit}>Salvar Edição</button>
         </div>
       )}
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        closeOnClick
+        pauseOnHover
+        draggable
+        theme="dark"
+      />
     </div>
   );
 };

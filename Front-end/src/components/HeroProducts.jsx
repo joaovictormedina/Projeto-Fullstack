@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Card, Image, Group, Text, Badge, Button } from "@mantine/core";
 import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
 
 const Products = () => {
   const [image, setImage] = useState("");
@@ -20,6 +21,7 @@ const Products = () => {
       setProducts(response.data);
     } catch (error) {
       console.error("Erro ao buscar produtos:", error);
+      toast.error("Erro ao buscar produtos:", error);
     }
   };
 
@@ -52,6 +54,7 @@ const Products = () => {
       }
     } catch (error) {
       console.error("Erro ao criar produto:", error);
+      toast.error("Erro ao criar produto:", error);
     }
   };
 
@@ -66,6 +69,7 @@ const Products = () => {
       }
     } catch (error) {
       console.error("Erro ao deletar produto:", error);
+      toast.error("Erro ao deletar produto:", error);
     }
   };
 
@@ -112,6 +116,7 @@ const Products = () => {
       }
     } catch (error) {
       console.error("Erro ao atualizar produto:", error);
+      toast.error("Erro ao atualizar produto:", error);
     }
   };
 
@@ -235,6 +240,15 @@ const Products = () => {
       ) : (
         <p>Nenhum produto adicionado ainda.</p>
       )}
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        closeOnClick
+        pauseOnHover
+        draggable
+        theme="dark"
+      />
     </div>
   );
 };

@@ -4,6 +4,7 @@ import Pontuacao from "./componentsAdm/pontuacao";
 import AddPoints from "../components/componentsAdm/addPoints";
 import "../styles/Styles.css";
 import "../styles/Admin.css";
+import { toast, ToastContainer } from "react-toastify";
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -82,15 +83,17 @@ const Hero = () => {
       })
       .then((data) => {
         if (data && data.success) {
-          alert(data.message || "Dados salvos com sucesso!");
+          toast.sucess(data.message || "Dados salvos com sucesso!");
           navigate(0);
         } else {
           setError(data.message || "Erro ao salvar os dados.");
+          toast.error(data.message || "Erro ao salvar os dados.");
         }
       })
       .catch((error) => {
         console.error("Erro ao salvar os dados:", error);
         setError("Erro ao salvar os dados.");
+        toast.error("Erro ao salvar os dados.");
       })
       .finally(() => setLoading(false));
   };
@@ -110,11 +113,13 @@ const Hero = () => {
             }));
           } else {
             setError("CEP não encontrado");
+            toast.error("CEP não encontrado");
           }
         })
         .catch((error) => {
           console.error("Erro ao buscar endereço:", error);
           setError("Erro ao buscar endereço");
+          toast.error("Erro ao buscar endereço");
         });
     }
   };
@@ -161,6 +166,7 @@ const Hero = () => {
         .catch((error) => {
           console.error("Erro ao buscar dados do usuário", error);
           setError("Erro ao buscar dados");
+          toast.error("Erro ao buscar dados");
         })
         .finally(() => setLoading(false));
     } else {
@@ -176,13 +182,20 @@ const Hero = () => {
 
   return (
     <main>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        closeOnClick
+        pauseOnHover
+        draggable
+        theme="dark"
+      />
       <header>
         <h1>Bem-vindo, {loading ? "Carregando..." : error || userName}!</h1>
         <p>Gerencie seus pontos e trocas.</p>
       </header>
 
-      {/* Se houver erro, exibe a mensagem */}
-      {error && <p className="error-message">{error}</p>}
       <div className="container">
         <div>
           <section className="section-registration">
@@ -261,22 +274,6 @@ const Hero = () => {
                         }
                       />
                     </label>
-                    <label className="input-group">
-                      Nova Senha:
-                      <input
-                        type="password"
-                        value={user.password}
-                        onChange={(e) =>
-                          setUser({ ...user, password: e.target.value })
-                        }
-                      />
-                    </label>
-                    <button className="buttonYellow" onClick={handleSalvar}>
-                      Salvar
-                    </button>
-                  </div>
-
-                  <div className="form-column">
                     <label className="input-group">
                       CEP:
                       <input
@@ -359,6 +356,19 @@ const Hero = () => {
                         className="disabled-input"
                       />
                     </label>
+                    <label className="input-group">
+                      Nova Senha:
+                      <input
+                        type="password"
+                        value={user.password}
+                        onChange={(e) =>
+                          setUser({ ...user, password: e.target.value })
+                        }
+                      />
+                    </label>
+                    <button className="buttonYellow" onClick={handleSalvar}>
+                      Salvar
+                    </button>
                   </div>
                 </div>
               </form>

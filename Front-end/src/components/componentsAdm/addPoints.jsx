@@ -3,6 +3,7 @@ import "../../styles/Styles.css";
 import "../../styles/Admin.css";
 import Exchanges from "./exchanges";
 import { Link } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 
 const AddPoints = () => {
   const [cpfInput, setCpfInput] = useState("");
@@ -44,6 +45,7 @@ const AddPoints = () => {
         .catch((error) => {
           console.error("Erro ao buscar dados do usuário", error);
           setError("Erro ao buscar dados");
+          toast.error("Erro ao buscar dados");
         });
     }
   }, [userId]);
@@ -73,6 +75,7 @@ const AddPoints = () => {
         .catch((error) => {
           console.error("Erro ao buscar dados do usuário", error);
           setError("Erro ao buscar dados");
+          toast.error("Erro ao buscar dados");
         })
         .finally(() => setLoading(false));
     } else {
@@ -95,15 +98,17 @@ const AddPoints = () => {
         .then((response) => response.json())
         .then((data) => {
           if (data.message) {
-            setSuccessMessage(`${data.message}`);
+            toast.sucess(`${data.message}`);
             setError(null);
           } else {
             setError("Erro ao adicionar pontos");
+            toast.error("Erro ao adicionar pontos");
           }
         })
         .catch((error) => {
           console.error("Erro na requisição", error);
           setError("Erro ao adicionar pontos");
+          toast.error("Erro ao adicionar pontos");
         })
         .finally(() => setLoading(false));
     } else {
@@ -131,15 +136,17 @@ const AddPoints = () => {
         .then((response) => response.json())
         .then((data) => {
           if (data.message) {
-            setSuccessMessage(`${data.message}`);
+            toast.sucess(`${data.message}`);
             setError(null);
           } else {
             setError("Erro ao remover pontos");
+            toast.error("Erro ao remover pontos");
           }
         })
         .catch((error) => {
           console.error("Erro na requisição", error);
           setError("Erro ao remover pontos");
+          toast.error("Erro ao remover pontos");
         })
         .finally(() => setLoading(false));
     } else {
@@ -237,6 +244,15 @@ const AddPoints = () => {
               <p style={{ color: "green" }}>{successMessage}</p>
             )}
           </section>
+          <ToastContainer
+            position="top-right"
+            autoClose={2000}
+            hideProgressBar={false}
+            closeOnClick
+            pauseOnHover
+            draggable
+            theme="dark"
+          />
         </div>
       )}
       {userDetails.adm && (

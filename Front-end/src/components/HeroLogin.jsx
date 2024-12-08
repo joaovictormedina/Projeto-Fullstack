@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/Styles.css";
 import "../styles/Login.css";
+import { toast, ToastContainer } from "react-toastify";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -38,25 +38,21 @@ const Login = () => {
         // Redirecionar para o painel de admin
         navigate("/admin");
       } else {
-        setErrorMessage("Credenciais inválidas. Verifique seu email e senha.");
+        toast.error("Credenciais inválidas. Verifique seu email e senha.");
       }
     } catch (error) {
       if (error.response) {
         console.error("Error response:", error.response);
-        setErrorMessage(
+        toast.error(
           error.response.data.message ||
             "Credenciais inválidas. Tente novamente."
         );
       } else if (error.request) {
         console.error("No response received:", error.request);
-        setErrorMessage(
-          "Erro de rede. Verifique sua conexão e tente novamente."
-        );
+        toast.error("Erro de rede. Verifique sua conexão e tente novamente.");
       } else {
         console.error("Error during login:", error);
-        setErrorMessage(
-          "Erro ao tentar fazer login. Por favor, tente novamente."
-        );
+        toast.error("Erro ao tentar fazer login. Por favor, tente novamente.");
       }
     }
   };
@@ -91,7 +87,6 @@ const Login = () => {
                 Login
               </button>
             </form>
-            {errorMessage && <p className="error-message">{errorMessage}</p>}
           </div>
           <div className="links">
             <a href="/forgotpass">Esqueci minha senha</a>
@@ -100,6 +95,15 @@ const Login = () => {
           </div>
         </section>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        closeOnClick
+        pauseOnHover
+        draggable
+        theme="dark"
+      />
     </div>
   );
 };

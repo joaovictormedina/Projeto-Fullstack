@@ -23,6 +23,7 @@ const Hero = () => {
       setProducts(response.data);
     } catch (error) {
       console.error("Erro ao buscar produtos:", error);
+      toast.error("Erro ao buscar produtos:", error);
     }
   };
 

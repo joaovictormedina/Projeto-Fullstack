@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import { toast, ToastContainer } from "react-toastify";
 import "../styles/Styles.css";
 import "../styles/Register.css";
 
@@ -15,7 +15,6 @@ const Register = () => {
     password: "",
   });
   const [successMessage, setSuccessMessage] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {
@@ -28,7 +27,7 @@ const Register = () => {
     // Validação de senha (pelo menos 8 caracteres, uma letra maiúscula e um número)
     const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
     if (!passwordRegex.test(formData.password)) {
-      setErrorMessage(
+      toast.error(
         "A senha deve ter pelo menos 8 caracteres, uma letra maiúscula e um número."
       );
       setSuccessMessage("");
@@ -43,10 +42,9 @@ const Register = () => {
       );
 
       if (response.status === 201) {
-        setSuccessMessage(
+        toast.sucess(
           "Cadastrado com sucesso! Você será redirecionado para a tela de login."
         );
-        setErrorMessage("");
 
         setTimeout(() => {
           navigate("/login");
@@ -56,15 +54,15 @@ const Register = () => {
       console.error(error);
 
       if (error.response && error.response.status === 409) {
-        setErrorMessage(
+        toast.error(
           "Já existe um usuário com esse CPF ou Email. Verifique os dados e tente novamente."
         );
       } else if (error.response && error.response.status === 400) {
-        setErrorMessage("Dados inválidos. Tente novamente.");
+        toast.error("Dados inválidos. Tente novamente.");
       } else if (error.response && error.response.status === 401) {
-        setErrorMessage("Erro de autenticação. Verifique suas credenciais.");
+        toast.error("Erro de autenticação. Verifique suas credenciais.");
       } else {
-        setErrorMessage("Ocorreu um erro ao criar sua conta. Tente novamente.");
+        toast.error("Ocorreu um erro ao criar sua conta. Tente novamente.");
       }
       setSuccessMessage("");
     }
@@ -148,9 +146,17 @@ const Register = () => {
           </div>
 
           {successMessage && <p className="success">{successMessage}</p>}
-          {errorMessage && <p className="error">{errorMessage}</p>}
         </section>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        closeOnClick
+        pauseOnHover
+        draggable
+        theme="dark"
+      />
     </div>
   );
 };

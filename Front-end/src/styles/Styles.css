@@ -147,7 +147,6 @@ input::placeholder {
 opacity: 0.5;
 }
 
-/* Removendo margens e espaçamentos desnecessários */
 div,
 header,
 footer,
@@ -157,12 +156,10 @@ section {
     box-sizing: border-box;
 }
 
-/* Ajuste para garantir que os elementos estejam alinhados sem espaço entre eles */
 .section-container {
     display: flex;
     flex-direction: column;
     gap: 0;
-    /* Remove espaçamento entre os elementos */
 }
 
 .section-container>* {

@@ -47,6 +47,7 @@ const Exchanges = () => {
                 };
               } catch (error) {
                 console.error("Erro ao buscar produto ou usuário:", error);
+                toast.error("Erro ao buscar produto ou usuário:", error);
                 return resgate;
               }
             })
