@@ -1,9 +1,32 @@
+header {
+    padding-top: 70px;
+}
+
+header p {
+    margin: 30px;
+}
+
+
 .container {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    flex-direction: row;
+    justify-content: center;
     gap: 20px;
     width: 100%;
+}
+
+.container>div {
+    flex-basis: 25%;
+    /* Div ocupa 30% */
+    flex-grow: 0;
+    /* Impede que a div cresça além do necessário */
+}
+
+.container>section {
+    flex-basis: 75%;
+    /* Section ocupa 70% */
+    flex-grow: 0;
+    /* Impede que a section cresça além do necessário */
 }
 
 .section-registration {
@@ -15,22 +38,13 @@
 }
 
 .section-my-points {
-    display: flex;
-    flex-direction: column;
     gap: 30px;
-    padding: 20px;
-}
-
-.section-add-points {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
     padding: 20px;
 }
 
 .form-row {
     display: flex;
-    justify-content:space-around;
+    justify-content: space-around;
     gap: 20px;
     box-sizing: border-box;
 }
@@ -61,53 +75,61 @@
     cursor: not-allowed;
 }
 
-.form-row { 
+.form-row {
     gap: 15px;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 8px;
 }
 
-.section-add-points section,
+.section-approval{ 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 15px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.section-approval section {
+    margin: 20px;
+    gap: 15px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    position: relative;
+}
+
+.section-approval h3 {
+    margin: 0;
+    top: 10px;
+}
+
 .section-my-points section {
-    display: flex;
-    flex-direction: column;
     gap: 15px;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 8px;
 }
 
-.section-registration,
-.section-add-points div,
-.section-my-points div {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+section p {
+    padding: 10px ;
 }
 
-.section-registration {
-    width: 40vw;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+.section-registration h2,
+.section-my-points h2 {
+    padding-bottom: 50px;
 }
 
-.section-add-points div {
-    
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+.h3 {
+    padding-bottom: 20px;
 }
-
 
 .section-my-points div {
-    display: flex;
-    flex-direction: column;
     gap: 10px;
-    align-content: center;
-    justify-content: center;
 }
+
 
 input[type="text"],
 input[type="number"],
@@ -121,14 +143,10 @@ select {
 }
 
 .section-my-points .pie-chart-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     padding: 10px;
-}
-
-.section-my-points {
-    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .section-my-points .exchanges,
@@ -157,8 +175,6 @@ strong {
 }
 
 .section-registration label {
-    display: flex;
-    flex-direction: column;
     font-size: 1rem;
     color: #333;
 }
@@ -174,8 +190,6 @@ strong {
 }
 
 .section-registration .input-group {
-    display: flex;
-    flex-direction: column;
     gap: 5px;
 }
 

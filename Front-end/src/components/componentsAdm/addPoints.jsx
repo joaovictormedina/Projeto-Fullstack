@@ -3,6 +3,7 @@ import "../../styles/Styles.css";
 import "../../styles/Admin.css";
 import Exchanges from "./exchanges";
 import { Link } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 
 const AddPoints = () => {
   const [cpfInput, setCpfInput] = useState("");
@@ -25,7 +26,7 @@ const AddPoints = () => {
   // Busca os dados do usuário e verifica se ele é admin
   useEffect(() => {
     if (userId) {
-      fetch(`http://localhost:3000/users/${userId}`, {
+      fetch(`https://back-end-nccq.onrender.com/users/${userId}`, {
         method: "GET",
       })
         .then((response) => response.json())
@@ -44,6 +45,7 @@ const AddPoints = () => {
         .catch((error) => {
           console.error("Erro ao buscar dados do usuário", error);
           setError("Erro ao buscar dados");
+          toast.error("Erro ao buscar dados");
         });
     }
   }, [userId]);
@@ -53,7 +55,7 @@ const AddPoints = () => {
       setLoading(true);
       setError(null);
 
-      fetch(`http://localhost:3000/users/cpf/${cpf}`, {
+      fetch(`https://back-end-nccq.onrender.com/users/cpf/${cpf}`, {
         method: "GET",
       })
         .then((response) => response.json())
@@ -73,6 +75,7 @@ const AddPoints = () => {
         .catch((error) => {
           console.error("Erro ao buscar dados do usuário", error);
           setError("Erro ao buscar dados");
+          toast.error("Erro ao buscar dados");
         })
         .finally(() => setLoading(false));
     } else {
@@ -85,7 +88,7 @@ const AddPoints = () => {
       setError(null);
       setSuccessMessage(null);
 
-      fetch(`http://localhost:3000/points/add/${recipientId}`, {
+      fetch(`https://back-end-nccq.onrender.com/points/add/${recipientId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -95,15 +98,17 @@ const AddPoints = () => {
         .then((response) => response.json())
         .then((data) => {
           if (data.message) {
-            setSuccessMessage(`${data.message}`);
+            toast.sucess(`${data.message}`);
             setError(null);
           } else {
             setError("Erro ao adicionar pontos");
+            toast.error("Erro ao adicionar pontos");
           }
         })
         .catch((error) => {
           console.error("Erro na requisição", error);
           setError("Erro ao adicionar pontos");
+          toast.error("Erro ao adicionar pontos");
         })
         .finally(() => setLoading(false));
     } else {
@@ -121,7 +126,7 @@ const AddPoints = () => {
       setError(null);
       setSuccessMessage(null);
 
-      fetch(`http://localhost:3000/points/remove/${recipientId}`, {
+      fetch(`https://back-end-nccq.onrender.com/points/remove/${recipientId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -131,15 +136,17 @@ const AddPoints = () => {
         .then((response) => response.json())
         .then((data) => {
           if (data.message) {
-            setSuccessMessage(`${data.message}`);
+            toast.sucess(`${data.message}`);
             setError(null);
           } else {
             setError("Erro ao remover pontos");
+            toast.error("Erro ao remover pontos");
           }
         })
         .catch((error) => {
           console.error("Erro na requisição", error);
           setError("Erro ao remover pontos");
+          toast.error("Erro ao remover pontos");
         })
         .finally(() => setLoading(false));
     } else {
@@ -153,14 +160,16 @@ const AddPoints = () => {
     <>
       {/* Sempre exibe a seção se o usuário for encontrado */}
       {userDetails.adm && (
-        <div className="section-add-points">
-          {/* Formulário de busca por CPF */}
-          <h2>Gerenciamento de produtos e pontos</h2>
-          {userDetails.adm && (
-            <Link to="/products">
-              <button className="buttonYellow">Gerenciar Produtos</button>
-            </Link>
-          )}
+        <div className="section-approval">
+          <section>
+            {/* Formulário de busca por CPF */}
+            <h3>Gerenciamento de produtos e pontos</h3>
+            {userDetails.adm && (
+              <Link to="/products">
+                <button className="buttonYellow">Gerenciar Produtos</button>
+              </Link>
+            )}
+          </section>
           <section>
             <h3>Buscar Usuário</h3>
             <div>
@@ -185,7 +194,6 @@ const AddPoints = () => {
               </div>
             )}
           </section>
-
           {/* Sessão de adicionar ou retirar pontos */}
           <section>
             <h3>Adicionar ou Retirar Pontos</h3>
@@ -236,10 +244,21 @@ const AddPoints = () => {
               <p style={{ color: "green" }}>{successMessage}</p>
             )}
           </section>
-          <section>
-            <Exchanges />
-          </section>
+          <ToastContainer
+            position="top-right"
+            autoClose={2000}
+            hideProgressBar={false}
+            closeOnClick
+            pauseOnHover
+            draggable
+            theme="dark"
+          />
         </div>
+      )}
+      {userDetails.adm && (
+        <section>
+          <Exchanges />
+        </section>
       )}
     </>
   );

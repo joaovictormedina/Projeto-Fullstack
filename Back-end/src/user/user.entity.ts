@@ -75,7 +75,7 @@ export class User {
     }
   }
 
-  // Antes de inserir, criptografar a senha
+  // Antes de inserir, criptografar a senha.
   @BeforeInsert()
   async hashPassword() {
     this.validatePassword();

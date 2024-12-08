@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/Styles.css";
+import { toast, ToastContainer } from "react-toastify";
 
 const Nav = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -17,21 +18,23 @@ const Nav = () => {
       const userId = localStorage.getItem("userId");
       if (userId) {
         // Faz a requisição para buscar os pontos do usuário
-        fetch(`http://localhost:3000/points/${userId}`)
+        fetch(`https://back-end-nccq.onrender.com/points/${userId}`)
           .then((response) => response.json())
           .then((data) => {
             if (data && data.points !== undefined) {
               setUserPoints(data.points);
             } else {
               console.error("Não foi possível carregar os pontos.");
+              toast.error("Não foi possível carregar os pontos.");
             }
           })
           .catch((error) => {
             console.error("Erro ao buscar pontos:", error);
+            toast.error("Erro ao buscar pontos:", error);
           });
 
         // Faz a requisição para buscar os resgates do usuário
-        fetch(`http://localhost:3000/rescues/user/${userId}`)
+        fetch(`https://back-end-nccq.onrender.com/rescues/user/${userId}`)
           .then((response) => response.json())
           .then(async (data) => {
             const totalPointsUsed = data.reduce(
@@ -42,9 +45,10 @@ const Nav = () => {
           })
           .catch((error) => {
             console.error("Erro ao buscar resgates:", error);
+            toast.error("Erro ao buscar resgates:", error);
           });
       } else {
-        console.error("Usuário não encontrado no localStorage.");
+        toast.error("Usuário não encontrado.");
       }
     }
   }, []);
@@ -52,6 +56,11 @@ const Nav = () => {
   // Função para navegar para a conta
   const handleAccountClick = () => {
     navigate("/admin", { replace: true });
+  };
+
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/login");
   };
 
   return (
@@ -63,21 +72,47 @@ const Nav = () => {
       </div>
       <ul className="nav-links">
         <li>
-          <Link to="/services">Serviços</Link>
+          <Link
+            to="/services"
+            className={location.pathname === "/services" ? "active" : ""}
+          >
+            Serviços
+          </Link>
         </li>
+
         <li>
-          <Link to="/packages">Pacotes</Link>
+          <Link
+            to="/packages"
+            className={location.pathname === "/packages" ? "active" : ""}
+          >
+            Pacotes
+          </Link>
         </li>
+
         <li>
-          <Link to="/promotions">Promoções</Link>
+          <Link
+            to="/promotions"
+            className={location.pathname === "/promotions" ? "active" : ""}
+          >
+            Promoções
+          </Link>
         </li>
+        {isLoggedIn ? (
+          <li>
+            <Link
+              onClick={handleAccountClick}
+              to="/admin"
+              className={location.pathname === "/admin" ? "active" : ""}
+            >
+              Minha conta
+            </Link>
+          </li>
+        ) : null}
       </ul>
+
       <div className="nav-actions">
         {isLoggedIn ? (
           <div className="logged-in-container">
-            <button className="buttonWhite" onClick={handleAccountClick}>
-              Minha Conta
-            </button>
             {userPoints !== null && (
               <span className="user-points">
                 Meus Pontos:{" "}
@@ -98,10 +133,24 @@ const Nav = () => {
             </Link>
           </>
         )}
+        {isLoggedIn && (
+          <button className="buttonBlue" type="button" onClick={handleLogout}>
+            Sair
+          </button>
+        )}
       </div>
       <div className="nav-search">
         <input type="text" placeholder="Procurar..." className="search-input" />
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        closeOnClick
+        pauseOnHover
+        draggable
+        theme="dark"
+      />
     </nav>
   );
 };

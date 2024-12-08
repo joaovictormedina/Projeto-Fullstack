@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
 
 const BancodeDados = () => {
   const [users, setUsers] = useState([]);
@@ -16,15 +17,16 @@ const BancodeDados = () => {
   // Carregar usuários
   useEffect(() => {
     axios
-      .get("http://localhost:3000/users")
+      .get("https://back-end-nccq.onrender.com/users")
       .then((response) => setUsers(response.data))
       .catch((error) => console.error("Erro ao carregar usuários:", error));
+    toast.error("Erro ao carregar usuários:", error);
   }, []);
 
   // Adicionar usuário
   const handleAddUser = () => {
     axios
-      .post("http://localhost:3000/users", newUser)
+      .post("https://back-end-nccq.onrender.com/users", newUser)
       .then((response) => {
         setUsers([...users, response.data]);
         setNewUser({
@@ -37,6 +39,7 @@ const BancodeDados = () => {
         });
       })
       .catch((error) => console.error("Erro ao adicionar usuário:", error));
+    toast.error("Erro ao adicionar usuário:", error);
   };
 
   // Editar usuário
@@ -46,7 +49,10 @@ const BancodeDados = () => {
 
   const handleSaveEdit = () => {
     axios
-      .put(`http://localhost:3000/users/${editingUser.id}`, editingUser)
+      .put(
+        `https://back-end-nccq.onrender.com/users/${editingUser.id}`,
+        editingUser
+      )
       .then((response) => {
         setUsers(
           users.map((user) =>
@@ -56,16 +62,18 @@ const BancodeDados = () => {
         setEditingUser(null);
       })
       .catch((error) => console.error("Erro ao editar usuário:", error));
+    toast.error("Erro ao editar usuário:", error);
   };
 
   // Excluir usuário
   const handleDeleteUser = (id) => {
     axios
-      .delete(`http://localhost:3000/users/${id}`)
+      .delete(`https://back-end-nccq.onrender.com/users/${id}`)
       .then(() => {
         setUsers(users.filter((user) => user.id !== id));
       })
       .catch((error) => console.error("Erro ao excluir usuário:", error));
+    toast.error("Erro ao excluir usuário:", error);
   };
 
   return (
@@ -180,6 +188,15 @@ const BancodeDados = () => {
           <button onClick={handleSaveEdit}>Salvar Edição</button>
         </div>
       )}
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        closeOnClick
+        pauseOnHover
+        draggable
+        theme="dark"
+      />
     </div>
   );
 };

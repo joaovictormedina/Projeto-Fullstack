@@ -17,27 +17,48 @@ const Hero = () => {
   // Função para carregar os produtos do banco de dados
   const loadProducts = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/products");
+      const response = await axios.get(
+        "https://back-end-nccq.onrender.com/products"
+      );
       setProducts(response.data);
     } catch (error) {
       console.error("Erro ao buscar produtos:", error);
+      toast.error("Erro ao buscar produtos:", error);
     }
   };
 
   const handleResgatar = async (product) => {
     try {
       const userId = localStorage.getItem("userId");
-      const points = product.offers[0].points;
+      const requiredPoints = product.offers[0].points;
+
+      // Obtenha os pontos disponíveis do usuário
+      const userResponse = await axios.get(
+        `https://back-end-nccq.onrender.com/users/${userId}`
+      );
+      const userPoints = userResponse.data.points;
+
+      // Verifica se o usuário tem pontos suficientes
+      if (userPoints < requiredPoints) {
+        toast.error("Pontos insuficientes para resgatar este produto.");
+        return;
+      }
+
       const status = "pendente";
       const createdAt = new Date().toISOString();
 
       // Envia os dados para o backend
-      await axios.post("http://localhost:3000/rescues", {
+      await axios.post("https://back-end-nccq.onrender.com/rescues", {
         productId: product.id,
         userId,
-        points,
+        points: requiredPoints,
         status,
         createdAt,
+      });
+
+      // Atualiza os pontos do usuário
+      await axios.get(`https://back-end-nccq.onrender.com/users/${userId}`, {
+        points: userPoints - requiredPoints,
       });
 
       // Exibe o popup de sucesso
@@ -45,7 +66,7 @@ const Hero = () => {
     } catch (error) {
       console.error("Erro ao resgatar produto:", error);
       // Exibe o popup de erro
-      toast.error("Erro ao resgatar produto. Tente novamente!");
+      toast.error("Você não tem pontos suficiente.");
     }
   };
 

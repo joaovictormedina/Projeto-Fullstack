@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Card, Image, Text, Group, Badge, Button } from "@mantine/core";
 import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "../../styles/Styles.css";
 import "../../styles/Admin.css";
 
@@ -11,17 +13,25 @@ const Exchanges = () => {
     const userId = localStorage.getItem("userId");
     if (userId) {
       // Fetch resgates pendentes do usuário
-      fetch(`http://localhost:3000/rescues/user/${userId}`)
+      fetch("https://back-end-nccq.onrender.com/rescues?status=pendente")
         .then((response) => response.json())
         .then(async (data) => {
-          // Para cada resgate, adicionar os dados do produto
-          const resgatesComProdutos = await Promise.all(
+          // Para cada resgate, adicionar os dados do produto e do usuário
+          const resgatesComProdutosEUsuario = await Promise.all(
             data.map(async (resgate) => {
               try {
+                // Buscar os dados do produto
                 const produtoResponse = await axios.get(
-                  `http://localhost:3000/products/${resgate.product_id}`
+                  `https://back-end-nccq.onrender.com/products/${resgate.product_id}`
                 );
                 const produto = produtoResponse.data;
+
+                // Buscar os dados do usuário com base no user_id
+                const usuarioResponse = await axios.get(
+                  `https://back-end-nccq.onrender.com/users/${resgate.user_id}`
+                );
+                const usuario = usuarioResponse.data;
+
                 return {
                   ...resgate,
                   produto: {
@@ -30,19 +40,27 @@ const Exchanges = () => {
                     description: produto.description,
                     offer: produto.offers[0],
                   },
+                  usuario: {
+                    name: usuario.name,
+                    cpf: usuario.cpf,
+                  },
                 };
               } catch (error) {
-                console.error("Erro ao buscar produto:", error);
+                console.error("Erro ao buscar produto ou usuário:", error);
+                toast.error("Erro ao buscar produto ou usuário:", error);
                 return resgate;
               }
             })
           );
 
-          setResgates(resgatesComProdutos);
+          setResgates(resgatesComProdutosEUsuario);
         })
-        .catch((error) => console.error("Erro ao buscar resgates:", error));
+        .catch((error) => {
+          console.error("Erro ao buscar resgates:", error);
+          toast.error("Erro ao carregar resgates pendentes.");
+        });
     } else {
-      alert("Usuário não encontrado no localStorage.");
+      toast.warn("Usuário não encontrado no localStorage.");
     }
   }, []);
 
@@ -54,7 +72,7 @@ const Exchanges = () => {
 
       // Enviar PUT para atualizar o status no back-end
       const response = await axios.put(
-        `http://localhost:3000/rescues/${resgateId}`,
+        `https://back-end-nccq.onrender.com/rescues/${resgateId}`,
         updatedData
       );
 
@@ -65,30 +83,35 @@ const Exchanges = () => {
         );
 
         setResgates(updatedResgates);
+        toast.success("Resgate confirmado com sucesso!");
 
         // Atualiza a página após o sucesso da operação
         window.location.reload();
       } else {
-        alert("Erro ao confirmar resgate.");
+        toast.error("Erro ao confirmar resgate.");
       }
     } catch (error) {
       console.error("Erro ao confirmar resgate:", error);
-      alert("Erro ao atualizar o resgate.");
+      toast.error("Erro ao atualizar o resgate.");
     }
   };
 
   const handleRemoveResgate = async (resgateId) => {
     try {
-      await axios.delete(`http://localhost:3000/rescues/${resgateId}`);
+      await axios.delete(
+        `https://back-end-nccq.onrender.com/rescues/${resgateId}`
+      );
       setResgates(resgates.filter((resgate) => resgate.id !== resgateId));
-      alert("Resgate removido!");
+      toast.success("Resgate removido com sucesso!");
     } catch (error) {
       console.error("Erro ao remover resgate:", error);
+      toast.error("Erro ao remover resgate.");
     }
   };
 
   return (
-    <section className="section-my-points">
+    <section className="section-add-points">
+      <ToastContainer />
       <h2>Realizações pendentes de aprovação</h2>
       <section className="pending-rescues">
         <ul style={{ display: "flex", flexWrap: "wrap" }}>
@@ -148,6 +171,17 @@ const Exchanges = () => {
                             <br />
                           </span>
                         ))}
+                    </Text>
+
+                    {/* Adicionar informações do usuário */}
+                    <Text
+                      size="sm"
+                      style={{ textAlign: "left", marginTop: "10px" }}
+                    >
+                      <strong>Usuário:</strong> {resgate.usuario.name}
+                    </Text>
+                    <Text size="sm" style={{ textAlign: "left" }}>
+                      <strong>CPF:</strong> {resgate.usuario.cpf}
                     </Text>
 
                     <div style={{ marginTop: "10px" }}>

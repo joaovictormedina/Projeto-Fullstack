@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/Styles.css";
+import { toast, ToastContainer } from "react-toastify";
 
 const ForgotPassword = () => {
   const [name, setName] = useState("");
@@ -9,8 +10,6 @@ const ForgotPassword = () => {
   const [email, setEmail] = useState("");
   const [cau, setCau] = useState("");
   const [profession, setprofession] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -18,7 +17,7 @@ const ForgotPassword = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/auth/forgot-password",
+        "https://back-end-nccq.onrender.com/auth/forgot-password",
         {
           name,
           cpf,
@@ -41,28 +40,25 @@ const ForgotPassword = () => {
         if (id) {
           localStorage.setItem("userId", id);
         }
-
-        setSuccessMessage("Dados verificados com sucesso.");
+        toast.sucess("Dados verificados com sucesso.");
 
         // Redirecionar para a página de admin
         setTimeout(() => navigate("/admin"), 3000);
       } else {
-        setErrorMessage("Erro ao tentar recuperar a senha. Tente novamente.");
+        toast.error("Erro ao tentar recuperar a senha. Tente novamente.");
       }
     } catch (error) {
       if (error.response) {
         console.error("Error response:", error.response);
-        setErrorMessage(
+        toast.error(
           error.response.data.message || "Erro ao tentar recuperar a senha."
         );
       } else if (error.request) {
         console.error("No response received:", error.request);
-        setErrorMessage(
-          "Erro de rede. Verifique sua conexão e tente novamente."
-        );
+        toast.error("Erro de rede. Verifique sua conexão e tente novamente.");
       } else {
         console.error("Error during forgot password:", error);
-        setErrorMessage(
+        toast.error(
           "Erro ao tentar recuperar a senha. Por favor, tente novamente."
         );
       }
@@ -123,16 +119,21 @@ const ForgotPassword = () => {
                 Recuperar Senha
               </button>
             </form>
-            {errorMessage && <p className="error-message">{errorMessage}</p>}
-            {successMessage && (
-              <p className="success-message">{successMessage}</p>
-            )}
           </div>
           <div className="links">
             <a href="/login">Voltar para o Login</a>
           </div>
         </section>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        closeOnClick
+        pauseOnHover
+        draggable
+        theme="dark"
+      />
     </div>
   );
 };
