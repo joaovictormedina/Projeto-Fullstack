@@ -151,7 +151,7 @@ const Hero = () => {
               conectar com o mundo!
             </Text>
 
-            <button className="buttonYellow">Resgate agora</button>
+            <button className="buttonBlue">Resgate agora</button>
           </Card>
           <Card
             shadow="sm"
@@ -178,7 +178,7 @@ const Hero = () => {
               bordo de um navio incrível!
             </Text>
 
-            <button className="buttonYellow">Resgate agora</button>
+            <button className="buttonBlue">Resgate agora</button>
           </Card>
           <Card
             shadow="sm"
@@ -205,7 +205,7 @@ const Hero = () => {
               para sempre na memória.
             </Text>
 
-            <button className="buttonYellow">Resgate agora</button>
+            <button className="buttonBlue">Resgate agora</button>
           </Card>
           <Card
             shadow="sm"
@@ -232,7 +232,7 @@ const Hero = () => {
               portabilidade em um só dispositivo.
             </Text>
 
-            <button className="buttonYellow">Resgate agora</button>
+            <button className="buttonBlue">Resgate agora</button>
           </Card>
           <Card
             shadow="sm"
@@ -259,7 +259,7 @@ const Hero = () => {
               verdadeira celebração para os sentidos!
             </Text>
 
-            <button className="buttonYellow">Resgate agora</button>
+            <button className="buttonBlue">Resgate agora</button>
           </Card>
           <Card
             shadow="sm"
@@ -286,7 +286,7 @@ const Hero = () => {
               Aventura garantida para os amantes do mar!
             </Text>
 
-            <button className="buttonYellow">Resgate agora</button>
+            <button className="buttonBlue">Resgate agora</button>
           </Card>
           <Card
             shadow="sm"
@@ -313,7 +313,7 @@ const Hero = () => {
               renovar corpo e mente.
             </Text>
 
-            <button className="buttonYellow">Resgate agora</button>
+            <button className="buttonBlue">Resgate agora</button>
           </Card>
           <Card
             shadow="sm"
@@ -340,7 +340,7 @@ const Hero = () => {
               para cada usuário.
             </Text>
 
-            <button className="buttonYellow">Resgate agora</button>
+            <button className="buttonBlue">Resgate agora</button>
           </Card>
         </section>
       </header>

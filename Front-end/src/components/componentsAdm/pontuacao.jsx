@@ -114,10 +114,9 @@ const Pontuacao = () => {
       name: "Pontos Disponíveis",
       value: Array.isArray(user.expiringPoints)
         ? user.expiringPoints.reduce(
-            (total, expiring) =>
-              total + expiring.points - totalPontosResgatados,
+            (total, expiring) => total + expiring.points,
             0
-          )
+          ) - totalPontosResgatados
         : 0,
     },
     {

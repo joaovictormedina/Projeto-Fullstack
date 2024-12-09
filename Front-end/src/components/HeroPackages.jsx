@@ -126,7 +126,7 @@ const Hero = () => {
 
               <Button
                 onClick={() => handleResgatar(product)}
-                class="buttonYellow"
+                class="buttonBlue"
               >
                 Resgatar
               </Button>
