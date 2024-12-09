@@ -1,9 +1,7 @@
 #contact-section {
-  background-color: #007bffd4;
-  /* Azul suave */
-  color: #ffffff;
+  background-color: var(--background-button-blue);
   text-align: center;
-  padding: 40px 0;
+  padding: 40px 0px 0px;
   bottom: 0;
   width: 100%;
   margin: 0;
@@ -12,31 +10,63 @@
 
 .contact-container {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
 }
 
+.contatos {
+  display: flex;
+  justify-content: space-between; /* Espaço entre as duas colunas */
+  flex-wrap: wrap; /* Garante que o conteúdo se adapte ao tamanho da tela */
+  gap: 20px; /* Espaço entre as colunas */
+}
+
+.contatos > div {
+  flex: 1; /* Faz com que as divs dentro de "contatos" ocupem o mesmo espaço disponível */
+  min-width: 280px; /* Garante que as colunas não fiquem muito estreitas em telas menores */
+
+  
+}
+
+.contatos-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+}
+
+.contatos-logo .logo {
+  width: 150px; /* Define a largura da logo */
+  height: auto; /* A altura será ajustada automaticamente para manter a proporção */
+  /* Se preferir, pode usar max-width para tornar a logo responsiva */
+  max-width: 100%; /* A logo não ficará maior que o tamanho do contêiner */
+}
+
+
+section p {
+  padding: 0px;
+}
+
 .contact-info {
   flex: 1;
-  margin-right: 20px;
 }
 
 .contact-info .logo {
-  max-width: 330px;
+  max-width: 250px;           /* TAMANHO DA LOGO*/
   margin: 10px auto 100px;
   display: block;
 }
 
 .contact-info p {
-    font-weight: 350;
-    color: var(--color-text-all);
-  font-size: 1.2rem;
+  font-weight: 350;
+  color: var(--color-text-all);
+  font-size: 0.85rem;
   line-height: 1.5;
-  margin-bottom: 20px;
-  text-align: left;
-}
+  
+ }
 
 .contact-info a {
   font-size: 1rem;
@@ -44,42 +74,48 @@
   text-decoration: none;
   color: var(--color-text-all);
   margin: 0 5px;
+  
 }
 
 .qr-code {
-  margin-top: 80px;
+  margin-top: 0;
+  padding: 0;
+  text-align: right;
+
 }
 
 .qr-code img {
-  max-width: 180px;
+  max-width: 150px;
+  margin: 0;
+}
+
+.qr-code p {
   margin: 0;
 }
 
 .partners {
   flex: 1;
   margin-left: 20px;
+  margin: 5px;
+  color: var(--color-button-text-white);
 }
 
 .partners h3 {
-  font-size: 2.8rem;
+  font-size: 1.8rem;
   margin-bottom: 30px;
-  color: black;
+
 }
 
 .partners ul {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  align-items: center;
   list-style: none;
-  padding: 0;
-}
-
-.partners li {
-  margin-bottom: 5px;
 }
 
 .partner-img {
-  width: 100px;
+  width: 90px;
   height: auto;
 }
 
