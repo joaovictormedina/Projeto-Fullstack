@@ -70,7 +70,17 @@ const Nav = () => {
           <img src="/img/logo.png" alt="Logo" className="logo-icon" />
         </Link>
       </div>
+
       <ul className="nav-links">
+        <li>
+          <Link
+            to="/home"
+            className={location.pathname === "/home" ? "active" : ""}
+          >
+            Início
+          </Link>
+        </li>
+
         <li>
           <Link
             to="/services"
@@ -139,9 +149,11 @@ const Nav = () => {
           </button>
         )}
       </div>
+
       <div className="nav-search">
         <input type="text" placeholder="Procurar..." className="search-input" />
       </div>
+      
       <ToastContainer
         position="top-right"
         autoClose={2000}
