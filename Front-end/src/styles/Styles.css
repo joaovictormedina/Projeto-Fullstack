@@ -17,6 +17,7 @@ body {
 /* BACKGROUND COLOR */
     --background: #F4F4F4;
     --background-helpDesk: #ececec;
+    --background-footer: #0094D8;
 /* TEXT COLOR */
     /* h1 */--color-text-pageTitles: #000000; 
     /* h2 */--color-text-carouselTitles: #000000;
@@ -95,13 +96,13 @@ h6 {
 }
 
 p {
-    font-size: 1.2rem;
-    font-weight: 350;
+    font-size: 0.7rem;
+    font-weight: 400;
     color: var(--color-text-all);
 }
 
 a {
-    font-size: 1rem;
+    font-size: 0.7rem;
     font-weight: 400;
     text-decoration: none;
     color: var(--color-text-all);
