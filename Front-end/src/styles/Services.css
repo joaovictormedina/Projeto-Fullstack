@@ -1,16 +1,38 @@
-h1 {
-    text-align: center;
 
+
+.cardservicos {
+    border-radius: 10px;
+    overflow: hidden;
+    width: 900px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+    width: 700px;
 }
 
-subititulo {
-    text-align: center;
+.pservicos {
+    margin: 0px;
+    padding: 0px;
+    text-align: left;
 }
 
-.hero {
-background-color: black;
+.section-titulo {
+    margin-bottom: 0px;
 }
 
-.center {
-    background-color: blue;
+
+.h3grey {
+    text-align: left;
+    margin: 20px 30px;
+}
+
+.h3black{
+    margin: 10px 0px 0px 30px;
+}
+
+.cardservicos {
+ height: 520px;   
+}
+
+.imageservicos {
+    overflow: hidden;
+    width: 100%;
 }
