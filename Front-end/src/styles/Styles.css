@@ -111,7 +111,7 @@ a {
 /* BUTTON PATTERNS */
 button {
     font-size: 0.75rem;
-    padding: 0.35rem 0.8rem;
+    padding: 0.35rem 0.7rem;
     border-radius: 0.5rem;
     font-weight: 500;
     cursor: pointer;
@@ -121,7 +121,7 @@ button {
 
 .buttonWhite {
     background-color: var(--background-button-white);
-    border: 0.2rem solid var(--color-buttonBorder);
+    border: 0.1rem solid var(--color-buttonBorder);
 
 }
 
@@ -191,21 +191,20 @@ nav {
 .nav-container {
     display: flex;
     align-items: center; 
-    height: 80px;
+    height: 90px;
     background-color: #FFFFFF;
     padding: 0 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    gap: 20px;
 }
 
 .nav-logo {
     flex: 0;
-    padding: 3% 0 2% 2%;
+    padding: 3% 0 2% 3%;
 }
 
 .logo-icon {    
     cursor: pointer;
-    width: 180px;
+    width: 150px;
     height: auto;
 }
 
@@ -213,51 +212,56 @@ nav {
     display: flex;
     flex: 2;
     justify-content: center;
+    align-items: center;
+    text-align: center;
     gap: 4rem;
     list-style: none;
-    margin: 0;
+    margin: 10px 0 0 0;
     padding: 0;
+    
 }
 
 .nav-links a {
     text-decoration: none;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 500;
     color: #333;
     transition: color 0.3s ease;
 }
 
 .nav-links a:hover {
-    color: #007bff;
+    color: var(--background-button-blue);
     border-bottom: 2px solid #007bff;    
 }
 
 .nav-links a.active {
-    color: #007bff;
+    color: var(--background-button-blue);
     font-weight: 800;    
 }
 
 .nav-actions {    
-    flex: 1;
+    /* flex: 1; */
     display: flex;
     justify-content:space-evenly;
-    gap: 10px;
+    align-items: center;
+    gap: 30px;
+    margin-right: 110px;
 }
 
 .nav-button {
-    padding: 10px 20px;
     font-size: 14px;
     font-weight: bold;
     color: #fff;
-    background-color: #007bff;
+    background-color: var(--background-footer);
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    
 }
 
 .nav-button:hover {
-    background-color: #0056b3;
+    background-color: var(--background-footer);
 }
 
 .nav-search {
@@ -277,7 +281,7 @@ nav {
 }
 
 .search-input:focus {
-    border-color: #007bff;
+    border-color: #0094D8;
     outline: none;
 }
 
