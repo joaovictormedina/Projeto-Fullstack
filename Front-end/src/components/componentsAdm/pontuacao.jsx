@@ -165,7 +165,7 @@ const Pontuacao = () => {
           <section>
             <h2>Meus Pontos</h2>
             <section>
-              <p>
+              <p className="p-resgates">
                 Você tem atualmente:{" "}
                 {user.points -
                   (typeof totalPontosResgatados === "number"
@@ -179,7 +179,9 @@ const Pontuacao = () => {
           </section>
           {/* Pontos Resgatados */}
           <section>
-            <p>Você já resgatou {totalPontosResgatados} pontos</p>
+            <p className="p-resgates">
+              Você já resgatou {totalPontosResgatados} pontos
+            </p>
           </section>
           {/* Sessão de Pontos que irão Expirar */}
           <section>
@@ -250,7 +252,7 @@ const Pontuacao = () => {
           {/* Meus Pontos */}
           <section>
             <section>
-              <p>
+              <p className="p-resgates">
                 Você tem atualmente:{" "}
                 {user.points -
                   (typeof totalPontosResgatados === "number"
@@ -264,7 +266,9 @@ const Pontuacao = () => {
           </section>
           {/* Pontos Resgatados */}
           <section>
-            <p>Você já resgatou {totalPontosResgatados} pontos</p>
+            <p className="p-resgates">
+              Você já resgatou {totalPontosResgatados} pontos
+            </p>
           </section>
           {/* Sessão de Pontos que irão Expirar */}
           <section>
@@ -367,7 +371,7 @@ const Pontuacao = () => {
                     </li>
                   ))
               ) : (
-                <p>Não há resgates aprovados.</p>
+                <p className="p-resgates">Não há resgates aprovados.</p>
               )}
             </ul>
           </div>
@@ -452,7 +456,7 @@ const Pontuacao = () => {
                     </li>
                   ))
               ) : (
-                <p>Não há resgates pendentes.</p>
+                <p className="p-resgates">Não há resgates pendentes.</p>
               )}
             </ul>
           </div>
