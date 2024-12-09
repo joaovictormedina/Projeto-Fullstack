@@ -1,191 +1,151 @@
-
-.button {
-    margin-top: 15px;
-    padding: 10px 20px;
-    background-color: #007bff; /* Cor de fundo dourado */
-    border: 2px solid #007bff; /* Borda em cinza escuro */
-    border-radius: 20px;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-  }
-
 .herohome {
-    height: 55vh; /* Ajuste da altura conforme necessário*/
-    width: 55vw; /* Largura ajustada*/
-    overflow: hidden; /* Garantir que apenas uma imagem seja visível*/
-    position: relative;
-    margin-top: 60px; /* Espaçamento entre o carrossel e o conteúdo*/
-    padding: 0;
-    margin-left: auto; /* Centralizando horizontalmente*/
-    margin-right: auto; /* Centralizando horizontalmente*/
-    margin-bottom: 60px;/*Espaço entre o carrossel e os cards*/
+    height: 86vh; /* A altura será 50% da tela */
+    width: 100%;   /* Largura ajustada para 100% */
+    overflow: hidden; /* Garante que o conteúdo extra não apareça */
+    margin: 0;      /* Remove a margem */
+    padding: 0;     /* Remove o padding */
+    margin-bottom: 30px; /* Espaço entre o banner e os cards */
 }
 
-.carousel {
-    height: 100%; 
-    width: 100%;
+.herohome img {
+    width: 100%;        /* Largura da imagem será 100% do contêiner */
+    height: 100%;       /* Altura da imagem será 100% da tela */
+    object-fit: cover;  /* A imagem preenche o contêiner sem distorcer, mas pode cortar um pouco */
+    object-position: center; /* Posiciona a imagem de maneira centralizada */
 }
 
-.carousel .slide{
-    pointer-events: "none"; /* Desabilita a interação do mouse nos slides*/
-}
-
-.carousel .controls {
-    pointer-events: auto; /* Permite interação apenas com os controles*/ 
-}
-
-.carousel-image {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
-
-.fotos{
+.fotos {
     width: 100%;
     height: 100%;
     object-fit: cover;
     position: absolute;
-    user-select: none /* Desabilita seleção de texto nas imagens*/
+    user-select: none; /* Desabilita seleção de texto nas imagens */
 }
 
-.caixa-fixa{
-    position: absolute; /* Fixa a caixa de texto no carrossel*/
-    top: 50%; /* Centraliza verticalmente*/
-    left: 20%; /* Define que a caixa começa a 20% da borda esquerda*/
-    right: 20%; /* Define que a caixa termina a 20% da borda direita*/
-    transform: translateY(-50%); /* Ajuste para centralizar verticalmente*/
-    text-align: left; /* Alinha o texto à esquerda*/
+/* Ajuste para centralizar a caixa de texto */
+.caixa-fixa {
+    position: absolute; /* Fixa a caixa de texto no carrossel */
+    text-align: left; /* Alinha o texto à esquerda */
     color: white;
-    background-color: rgba(0, 0, 0, 0.5); /* Cor de fundo com transparência*/
-    padding: 40px 40px; /* Ajuste do padding para garantir mais espaço*/
+    background-color: rgba(0, 0, 0, 0.8); /* Cor de fundo com transparência */
+    padding: 40px 80px; /* Ajuste do padding para garantir mais espaço */
     border-radius: 10px;
-    z-index: 5;/* Garante que a caixa de texto fique acima das imagens, mas abaixo dos controles*/
-    width: auto; /* Largura automática para se ajustar às margens definidas*/
+    z-index: 5; /* Garante que a caixa de texto fique acima das imagens */
+    width: 80%; /* Largura responsiva */
+    height: auto; /* Ajuste para altura automática baseada no conteúdo */
+    max-width: 600px; /* Largura máxima para a caixa */
 }
 
-.caixa-fixa h2{
-    font-size: 30px;
-    font-weight: bold;
+.section-experiencias {
+    margin: 0px 50px;
 }
 
-.caixa-fixa p{
-    font-size: 16px;
-    font-weight: bold;
-    margin-top: 10px;
-    color: white;
-    text-align: left;
-}
-
-.section-experiencias{
-    padding: 20px;
-    background-color: #f8f8f8;
-}
-
-.experiencias{
+.experiencias {
     text-align: left;
     margin-left: 9.7%;
     margin-bottom: 30px;
+    margin-top: 35px;
 }
 
-.experiencias p{
+.experiencias p {
     font-size: 24px;
     color: #333;
     display: inline;
-    margin-right: 10px;
+    padding: 0px 10px 0px 0px;
 }
 
-.experiencias span{
+.experiencias span {
     font-size: 24px;
     font-weight: bold;
     color: #007bff;
 }
 
-.experiencias h1{
+.experiencias h1 {
     font-size: 32px;
     color: #333;
     margin-top: 10px;
+    text-align: left;
 }
 
-.cards{
+.cards {
     display: flex;
     justify-content: center;
     gap: 20px;
-    flex-wrap: wrap;
+    flex-wrap: wrap;    
+    margin: 0% 10%;
 }
 
-.card{
+.card {
     background-color: #fff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
     overflow: hidden;
-    width: 300px;
+    width: 270px;
     text-align: center;
-    margin: 10px;
+  
 }
 
-.card img{
+.card img {
     width: 100%;
-    height: 300px;
+    height: 50%;
     object-fit: cover;
 }
 
-.info{
+.info {
     padding: 15px;
 }
 
-.info h3{
+.info h3 {
     font-size: 20px;
     color: #333;
 }
 
-.info p{
-    font-size: 16px; 
+.info p {
+    font-size: 16px;
     color: #666;
 }
 
-.section-bibliografia{
+.section-bibliografia {
     display: flex;
-    justify-content: space-between; /* Para garantir que a bibliografia e a foto fiquem separadas*/
-    padding: 70px; /* Aumentei o padding para dar mais espaço*/
-    background-color: #f8f8f8;
-    margin-left: 115px; /* Margem considerável à esquerda*/
-    margin-right: 115px; /* Margem considerável à direita*/
-    border-radius: 30px; /* Opcional, para adicionar bordas arredondadas à seção*/
+    justify-content: space-between; /* Para garantir que a bibliografia e a foto fiquem separadas */
+    padding: 100px; /* Aumentei o padding para dar mais espaço */
+    background-color: var(--background-helpDesk);
+    margin: 60px 150px;
+    border-radius: 30px; /* Opcional, para adicionar bordas arredondadas à seção */
+
 }
 
-.bibliografia{
-    flex: 1; /* Deixa a bibliografia ocupar o espaço restante*/
-    margin-right: 78px; /* Dá um maior espaço entre a bibliografia e a foto*/
+.bibliografia {
+    flex: 1; /* Deixa a bibliografia ocupar o espaço restante */
+    margin-right: 78px; /* Dá um maior espaço entre a bibliografia e a foto */
+
 }
 
-.bibliografia h2{
+.bibliografia h2 {
     font-size: 38px;
     color: #333;
     margin-bottom: 15px;
-    margin-top: 52px; /* Aumentando o espaço acima do título*/
+    margin-top: 52px; /* Aumentando o espaço acima do título */
 }
 
-.bibliografia p{
+.bibliografia p {
     font-size: 22px;
     color: #666;
     margin-bottom: 15px;
-    margin-top: 20px; /* Aumentando o espaço acima do parágrafo*/
+    margin-top: 20px; /* Aumentando o espaço acima do parágrafo */
 }
 
-.foto-autor{
-    width: 300px; /* Aumentei a largura da foto*/
-    height: 450px; /* Aumentei a altura da imagem*/
+.foto-autor {
+    width: 300px; /* Aumentei a largura da foto */
+    height: 450px; /* Aumentei a altura da imagem */
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.foto-autor img{
+.foto-autor img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+
 }

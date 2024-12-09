@@ -1,150 +1,159 @@
 *{
-margin: 0;
-padding: 0;
-text-decoration: none;
-font-family: 'inter', sans-serif, 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font-family: 'inter', sans-serif, 'Times New Roman', Times, serif;
 }
 
 body {
-margin: 0;
-padding-top: 80px;
-box-sizing: border-box;
-}
+    margin: 0;
+    padding-top: 80px;
+    box-sizing: border-box;
+    } 
 
 /* teste */
 /* COLOR PATTERNS */
 :root {
 /* BACKGROUND COLOR */
---background: #F4F4F4;
---background-helpDesk: #7B7B7B;
+    --background: #F4F4F4;
+    --background-helpDesk: #ececec;
 /* TEXT COLOR */
-/* h1 */--color-text-pageTitles: #000000; 
-/* h2 */--color-text-carouselTitles: #000000;
-/* h3 */--color-text-pageSubTitles-Grey:#808080;
-/* h3 */--color-text-pageSubTitles-Yellow:#FFBB00;
-/* h4 */--color-text-carouselSubTitles:#FFFFFF;
-/* h5 */--color-text-nav:#808080;
-/* h6 */--color-text-pageCaptions:#808080;
-/* p,a */--color-text-all: #000000;
+    /* h1 */--color-text-pageTitles: #000000; 
+    /* h2 */--color-text-carouselTitles: #000000;
+    /* h3 */--color-text-pageSubTitles-Grey:#808080;
+    /* h3 */--color-text-pageSubTitles-Yellow:#FFBB00;
+    /* h4 */--color-text-carouselSubTitles:#FFFFFF;
+    /* h5 */--color-text-nav:#808080;
+    /* h6 */--color-text-pageCaptions:#808080;
+    /* p,a */--color-text-all: #000000;
 
 /* BUTTON COLOR */
---background-button-blue: #0094D8;
---background-button-white: #ffffff;
---background-button-yellow: #0026ff;
---color-button-text-white:#FFFFFF;
---color-button-text-black:#000000;
---color-buttonBorder: #0094D8;
---color-buttonHoverBackground: #000000;
---color-buttonHoverText: #FFFFFF;
+    --background-button-blue: #0094D8;
+    --background-button-white: #ffffff;
+    --background-button-yellow: #0026ff;
+    --color-button-text-white:#FFFFFF;
+    --color-button-text-black:#000000;
+    --color-buttonBorder: #0094D8;
+    --color-buttonHoverBackground: #000000;
+    --color-buttonHoverText: #FFFFFF;
 /* INPUT COLOR */
---background-input-:#f1f1f1;
---text-input:#464646;
+    --background-input:#f1f1f1;
+    --text-input:#464646;
 }
 
 /* TEXT PATTERNS */
 h1 {
-font-size: 2rem; 
-font-weight: 400;
-color: var(--color-text-pageTitles);
+    font-size: 2rem; 
+    font-weight: 400;
+    color: var(--color-text-pageTitles);
 }
 
 h2 {
-font-size: 1.5rem;  
-font-weight: 500;
-color: var(--color-text-carouselTitles);
-text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    font-size: 1.5rem;  
+    font-weight: 500;
+    color: var(--color-text-carouselTitles);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
 }
 
+h2.white {
+    font-size: 1.8rem;  
+    font-weight: 500;
+    color: var(--color-text-carouselSubTitles);
+    font-weight: 700;
+    }
+
 h3.grey {
-font-size: 1.1rem;
-font-weight: 400;
-color: var(--color-text-pageSubTitles-Grey);
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--color-text-pageSubTitles-Grey);
 }
 
 h3.yellow {
-font-size: 1.1rem;
-font-weight: 700;
-color: var(--color-text-pageSubTitles-Yellow);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-text-pageSubTitles-Yellow);
 }
 
 h4 {
-font-size: 1rem;
-font-weight: 200;
-color: var(--color-text-carouselSubTitles);
-text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    font-size: 1rem;
+    font-weight: 200;
+    color: var(--color-text-carouselSubTitles);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
 }
 
 h5 { 
-font-size: 0.85rem;
-font-weight: 500;
-color: var(--color-text-nav);
-text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.1);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-text-nav);
+    text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.1);
 }
 
 h6 {
-font-size: 0.5rem;
-font-weight: 350;
-color: var(--color-text-pageCaptions);
+    font-size: 0.5rem;
+    font-weight: 350;
+    color: var(--color-text-pageCaptions);
 }
 
 p {
-font-size: 1.2rem;
-font-weight: 350;
-color: var(--color-text-all);
+    font-size: 1.2rem;
+    font-weight: 350;
+    color: var(--color-text-all);
 }
 
 a {
-font-size: 1rem;
-font-weight: 400;
-text-decoration: none;
-color: var(--color-text-all);
+    font-size: 1rem;
+    font-weight: 400;
+    text-decoration: none;
+    color: var(--color-text-all);
 }
 
 /* BUTTON PATTERNS */
 button {
-font-size: 0.75rem;
-padding: 0.75rem 1rem;
-border-radius: 1rem;
-font-weight: 500;
-cursor: pointer;
-transition: background-color 0.5s, color 0.5s;
+    font-size: 0.75rem;
+    padding: 0.35rem 0.8rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.5s, color 0.5s;
+    border: none;
 }
 
 .buttonWhite {
-background-color: var(--background-button-white);
-border: 0.2rem solid var(--color-buttonBorder);
+    background-color: var(--background-button-white);
+    border: 0.2rem solid var(--color-buttonBorder);
+
 }
 
 .buttonBlue {
-background-color: var(--background-button-blue);
-color: var(--color-button-text-white);
-border: 0.2rem solid var(--color-buttonBorder);
+    background-color: var(--background-button-blue);
+    color: var(--color-button-text-white);
+
 }
 
 .buttonYellow {
-background-color: var(--background-button-yellow);
-border: 0px;
+    background-color: var(--background-button-yellow);
+    border: 0px;
 }
 
 
 button:hover {
-background-color: var(--color-buttonHoverBackground);
-color: var(--color-buttonHoverText);
+    background-color: var(--color-buttonHoverBackground);
+    color: var(--color-buttonHoverText);
 }
 
 input {
-font-size: 0.75rem;
-padding: 0.75rem 1rem;
-font-weight: 400;
-border: 0.5px solid var(--color-buttonBorder);
-border-radius: 1rem;
-background-color: var(--color-input-background);
-color: var(--text-input);
-outline: none;
+    font-size: 0.75rem;
+    padding: 0.75rem 1rem;
+    font-weight: 400;
+    border: 0.5px solid var(--color-buttonBorder);
+    border-radius: 1rem;
+    background-color: var(--color-input-background);
+    color: var(--text-input);
+    outline: none;
 }
 
 input::placeholder {
-opacity: 0.5;
+    opacity: 0.5;
 }
 
 div,
