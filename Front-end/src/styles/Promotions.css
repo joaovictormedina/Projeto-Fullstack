@@ -42,7 +42,7 @@
   margin: 0 10%;
 }
 /* Estilos para o card */
-.cardPromo {
+.cardPromo { 
   border-radius: 30px;
   width: 250px; /* Tamanho pequeno */
   height: 320px;
