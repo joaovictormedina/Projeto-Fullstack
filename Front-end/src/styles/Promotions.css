@@ -1,58 +1,96 @@
+.bannerImage {
+  object-fit: cover; /* Cobre sem distorcer */
+  width: 100%; 
+  height: 86vh; 
+  overflow: hidden;   /* Garante que o conteúdo extra não apareça */
+  display: block;     /* Remove qualquer espaço extra abaixo da imagem */
+  margin: 0;
+  margin-bottom: 30px;
+  object-fit: cover;  /* A imagem preenche o contêiner sem distorcer, mas pode cortar um pouco */
+  object-position: center; /* Posiciona a imagem de maneira centralizada */
+}
+
+.heroPromotion {
+  position: relative;  /* Necessário para posicionamento absoluto do conteúdo dentro */
+  height: 86vh;        /* Altura do banner */
+  width: 100%;         /* Largura completa da tela */
+  overflow: hidden;    /* Garante que o conteúdo extra não apareça */
+  margin: 0;
+  padding: 0;
+  margin-bottom: 30px;
+}
+
+.caixa-fixa-Promotion {
+  position: absolute;  /* Fixa a caixa sobre a imagem */
+  top: 57%;            /* Posiciona no meio da tela (verticalmente) */
+  left: 50%;           /* Posiciona no meio da tela (horizontalmente) */
+  transform: translate(-50%, -50%);  /* Ajuste para centralizar exatamente */
+  color: white;
+  background-color: rgba(0, 0, 0, 0.8); /* Cor de fundo com transparência */
+  padding: 40px 80px;  /* Ajuste do padding */
+  border-radius: 10px;
+  z-index: 5;          /* Garante que a caixa fique acima das imagens */
+  width: 80%;          /* Largura responsiva */
+  max-width: 600px;    /* Largura máxima para a caixa */
+}
+
 .section-container-promotion {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 16px;
-    padding: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  margin: 0 10%;
 }
 /* Estilos para o card */
 .cardPromo {
-    border-radius: 30px;
-    width: 230px; /* Tamanho pequeno */
-    height: 350px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-    overflow: hidden; /* Para as bordas arredondadas funcionarem corretamente */
-    background-color: white;
-  }
-  
-  .cardImage {
-    width: 100%;
-    height: 50%;
-  }
-  
-  .cardContent {
-    padding: 10px;
-  }
-  
-  .cardTitle {
-    font-size: 15px;
-    font-weight: bold;
-    display: flex;
-    align-items: left;
-    margin: 0;
-  }
-  
-  .titleRectangle {
-    background-color: var(--color-text-pageSubTitles-Yellow);
-    width: 80px;
-    height: 20px; /* A altura pode ser ajustada para dar mais espaço ao texto */
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 10px;
-    font-size: 10px;
-  }
-  
-  .rectangleText {
-    color: var(--color-text-pageTitles);
-    font-weight: bold;
-  }
-  
-  .cardText {
-    font-size: 14px;
-    margin-top: 10px;
-    color: #555;
-    text-align: left;
-  }
-  
+  border-radius: 30px;
+  width: 250px; /* Tamanho pequeno */
+  height: 320px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  overflow: hidden; /* Para as bordas arredondadas funcionarem corretamente */
+  background-color: white;
+  gap: 40px;
+
+}
+
+.cardImage {
+  width: 100%;
+  height: 50%;
+}
+
+.cardContent {
+  padding: 10px;
+}
+
+.cardTitle {
+  font-size: 15px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 10px;
+}
+
+.titleRectangle {
+  background-color: var(--color-text-pageSubTitles-Yellow);
+  width: 80px;
+  height: 20px; /* A altura pode ser ajustada para dar mais espaço ao texto */
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  font-size: 10px;
+}
+
+.rectangleText {
+  color: var(--color-text-pageTitles);
+  font-size: 9px;
+}
+
+.cardText {
+  font-size: 12px;
+  color: #555;
+  text-align: center;
+  margin: 10px;
+}
+
