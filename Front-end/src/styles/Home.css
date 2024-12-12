@@ -37,7 +37,7 @@
 }
 
 .section-experiencias {
-    margin: 0px 50px;
+    margin: 0px 60px;
 }
 
 .experiencias {
@@ -91,10 +91,6 @@
     object-fit: cover;
 }
 
-.info {
-    padding: 15px;
-}
-
 .info h3 {
     font-size: 20px;
     color: #333;
@@ -105,47 +101,87 @@
     color: #666;
 }
 
+
+
 .section-bibliografia {
-    display: flex;
-    justify-content: space-between; /* Para garantir que a bibliografia e a foto fiquem separadas */
-    padding: 100px; /* Aumentei o padding para dar mais espaço */
-    background-color: var(--background-helpDesk);
-    margin: 60px 150px;
-    border-radius: 30px; /* Opcional, para adicionar bordas arredondadas à seção */
-
-}
-
-.bibliografia {
-    flex: 1; /* Deixa a bibliografia ocupar o espaço restante */
-    margin-right: 78px; /* Dá um maior espaço entre a bibliografia e a foto */
-
-}
-
-.bibliografia h2 {
-    font-size: 38px;
-    color: #333;
-    margin-bottom: 15px;
-    margin-top: 52px; /* Aumentando o espaço acima do título */
-}
-
-.bibliografia p {
-    font-size: 22px;
-    color: #666;
-    margin-bottom: 15px;
-    margin-top: 20px; /* Aumentando o espaço acima do parágrafo */
-}
-
-.foto-autor {
-    width: 300px; /* Aumentei a largura da foto */
-    height: 450px; /* Aumentei a altura da imagem */
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.foto-autor img {
+    position: relative;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: 120vh;
+    background-image: url('../img-partners/backgroundbibliografia.jpg');
+    background-size: cover; /* A imagem cobre toda a área da seção */
+    background-position: center; /* Centraliza a imagem */
+    background-repeat: no-repeat; /* Evita repetição da imagem */
+    margin: 100px 0px;
+  }
+  
+  .bibliografia {
+    position: relative; /* Necessário para que o fundo semitransparente fique atrás do texto */
+    padding: 100px;
+    margin: 100px 200px;
+    background-color: rgba(0, 0, 0, 0.6); /* Fundo semitransparente para o texto */
+    color: white; /* Cor do texto */
+    z-index: 1; /* Garante que o texto fique sobre o fundo */
+    border-radius: 8px; /* Opcional: arredondar as bordas do bloco de texto */
+    text-align: justify;
 
-}
+  }
+  
+  .bibliografia h2 {
+    font-size: 38px;
+    margin-bottom: 15px;
+    color: #fff;
+  }
+  
+  .bibliografia p {
+    font-size: 16px;
+    color: #fff;
+  }
+  
+
+
+
+
+
+/* Estilos para o card */
+.cardPromo { 
+    border-radius: 30px;
+    width: 250px; /* Tamanho pequeno */
+    height: 320px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    overflow: hidden; /* Para as bordas arredondadas funcionarem corretamente */
+    background-color: white;
+    gap: 40px;
+  }
+
+  .cardPromo img {
+    height: 50%;
+    width: 100%;
+    overflow: hidden;
+    object-fit: cover;
+  }
+  
+  .cardText { 
+    font-size: 12px;
+    color: #555;
+    text-align: center;
+    margin: 10px;
+  }
+
+  .cardContent { 
+    padding: 10px 10px 50px 10px;
+  }
+  
+  .cardTitle { 
+    font-size: 15px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 10px;
+  }
+
+
+
+
+  
+
+  
