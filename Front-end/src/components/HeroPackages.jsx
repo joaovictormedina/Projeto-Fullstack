@@ -99,7 +99,8 @@ const Hero = () => {
             </div>
         </h3>
         <p className="cardTextPacotes">
-            Explore o design no coração da Itália com ingresso para o Salone del Mobile e muito mais!
+            Explore o design no coração da Itália com ingresso para o Salone del Mobile 
+            e muito mais!
         </p>
     </div>
 </div>
@@ -115,7 +116,8 @@ const Hero = () => {
             </div>
         </h3>
         <p className="cardTextPacotes">
-            Descubra a beleza da Croácia com uma experiência completa, incluindo voo e hospedagem!
+            Descubra a beleza da Croácia com uma experiência completa, incluindo voo e 
+            hospedagem!
         </p>
     </div>
 </div>
@@ -131,7 +133,8 @@ const Hero = () => {
             </div>
         </h3>
         <p className="cardTextPacotes">
-            Encante-se com Paris! Uma viagem incrível de 5 dias com hospedagem e café da manhã incluso.
+            Encante-se com Paris! Uma viagem incrível de 5 dias com hospedagem e café 
+            da manhã incluso.
         </p>
     </div>
 </div>
@@ -147,7 +150,8 @@ const Hero = () => {
             </div>
         </h3>
         <p className="cardTextPacotes">
-            Mergulhe na cultura argentina em Buenos Aires, com voo, hotel e café da manhã inclusos!
+            Mergulhe na cultura argentina em Buenos Aires, com voo, hotel e café da 
+            manhã inclusos!
         </p>
     </div>
 </div>
@@ -163,7 +167,8 @@ const Hero = () => {
             </div>
         </h3>
         <p className="cardTextPacotes">
-            Viaje para o Japão e vivencie 5 dias de cultura, conforto e gastronomia, com tudo incluso!
+            Viaje para o Japão e vivencie 5 dias de cultura, conforto e gastronomia, 
+            com tudo incluso!
         </p>
     </div>
 </div>
@@ -179,7 +184,8 @@ const Hero = () => {
             </div>
         </h3>
         <p className="cardTextPacotes">
-            Aventura no fim do mundo! 5 dias em Ushuaia, com voo, hotel e café da manhã inclusos.
+            Aventura no fim do mundo! 5 dias em Ushuaia, com voo, hotel e café da 
+            manhã inclusos.
         </p>
     </div>
 </div>
@@ -195,7 +201,8 @@ const Hero = () => {
             </div>
         </h3>
         <p className="cardTextPacotes">
-            Mágica em Orlando! Inclui ingresso para o parque, voo, hotel e café da manhã!
+            Mágica em Orlando! Inclui ingresso para o parque, voo, hotel e café da 
+            manhã!
         </p>
     </div>
 </div>
@@ -211,7 +218,8 @@ const Hero = () => {
             </div>
         </h3>
         <p className="cardTextPacotes">
-            Relaxe em Ilhabela! 3 dias de hospedagem e café da manhã para aproveitar as belezas naturais.
+            Relaxe em Ilhabela! 3 dias de hospedagem e café da manhã para aproveitar 
+            as belezas naturais.
         </p>
     </div>
 </div>

@@ -21,7 +21,7 @@
   }
   
   .caixa-fixa-packages {
-    position: absolute;  /* Fixa a caixa sobre a imagem */
+    position: absolute;  
     top: 50%;            /* Posiciona no meio da tela (verticalmente) */
     left: 50%;           /* Posiciona no meio da tela (horizontalmente) */
     transform: translate(-50%, -50%);  /* Ajuste para centralizar exatamente */

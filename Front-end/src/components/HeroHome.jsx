@@ -44,7 +44,8 @@ const Hero = () => {
             <div className="cardContent">
               <h3 className="cardTitle">Cataratas do Niágara</h3>
               <p className="cardText">
-                Viva uma experiência única em um dos maiores espetáculos naturais do mundo.
+                Viva uma experiência única em um dos maiores espetáculos naturais do 
+                mundo.
               </p>
               <button className="buttonBlue">Aproveite já</button>
             </div>
@@ -55,7 +56,8 @@ const Hero = () => {
             <div className="cardContent">
               <h3 className="cardTitle">Nova York</h3>
               <p className="cardText">
-                Explore uma cidade vibrante, cheia de cultura, gastronomia e diversão em cada esquina.
+                Explore uma cidade vibrante, cheia de cultura, gastronomia e diversão 
+                em cada esquina.
               </p>
               <button className="buttonBlue">Aproveite já</button>
             </div>
@@ -66,7 +68,8 @@ const Hero = () => {
             <div className="cardContent">
               <h3 className="cardTitle">Campos do Jordão</h3>
               <p className="cardText">
-                Aproveite a tranquilidade de Campos do Jordão, com suas montanhas e clima frio, perfeito para relaxar.
+                Aproveite a tranquilidade de Campos do Jordão, com suas montanhas e 
+                clima frio, perfeito para relaxar.
               </p>
               <button className="buttonBlue">Aproveite já</button>
             </div>
@@ -77,7 +80,8 @@ const Hero = () => {
             <div className="cardContent">
               <h3 className="cardTitle">Egito</h3>
               <p className="cardText">
-                Mergulhe na história do Egito e descubra as maravilhas das pirâmides e templos antigos.
+                Mergulhe na história do Egito e descubra as maravilhas das pirâmides e 
+                templos antigos.
               </p>
               <button className="buttonBlue">Aproveite já</button>
             </div>
@@ -88,7 +92,8 @@ const Hero = () => {
             <div className="cardContent">
               <h3 className="cardTitle">Las Vegas</h3>
               <p className="cardText">
-                Em Las Vegas, a diversão é garantida com seus cassinos, shows e atrações imperdíveis.
+                Em Las Vegas, a diversão é garantida com seus cassinos, shows e atrações 
+                imperdíveis.
               </p>
               <button className="buttonBlue">Aproveite já</button>
             </div>
@@ -99,7 +104,8 @@ const Hero = () => {
             <div className="cardContent">
               <h3 className="cardTitle">Paris</h3>
               <p className="cardText">
-                Descubra a magia de Paris com seus monumentos icônicos, museus e a atmosfera única da cidade.
+                Descubra a magia de Paris com seus monumentos icônicos, museus e a 
+                atmosfera única da cidade.
               </p>
               <button className="buttonBlue">Aproveite já</button>
             </div>
@@ -110,7 +116,8 @@ const Hero = () => {
             <div className="cardContent">
               <h3 className="cardTitle">Las Vegas</h3>
               <p className="cardText">
-                Viva o entretenimento sem fim de Las Vegas, uma cidade cheia de emoção e surpresas.
+                Viva o entretenimento sem fim de Las Vegas, uma cidade cheia de emoção e 
+                surpresas.
               </p>
               <button className="buttonBlue">Aproveite já</button>
             </div>
@@ -121,7 +128,8 @@ const Hero = () => {
             <div className="cardContent">
               <h3 className="cardTitle">Caribe</h3>
               <p className="cardText">
-                Relaxe nas belas praias do Caribe, um paraíso tropical para momentos inesquecíveis.
+                Relaxe nas belas praias do Caribe, um paraíso tropical para momentos 
+                inesquecíveis.
               </p>
               <button className="buttonBlue">Aproveite já</button>
             </div>
