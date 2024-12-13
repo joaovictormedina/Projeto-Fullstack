@@ -85,149 +85,143 @@ const Hero = () => {
         </div>
       </section>
 
-
       <section className="section-container-pacotes">
-
-{/* CARD1 */}
-<div className="cardPack">
-    <img src={card1} alt="Packages" className="bannerPacotes" />    
-    <div className="cardContentPacotes">
-        <h3 className="cardTitlePacotes">
-        MILÃO
-            <div className="titleRectanglePacotes">
-                <span className="rectangleTextPacotes">3 DIAS <br />1000 pts</span>
+        {/* CARD1 */}
+        <div className="cardPack">
+            <img src={card1} alt="Packages" className="bannerPacotes" />    
+            <div className="cardContentPacotes">
+                <h3 className="cardTitlePacotes">
+                MILÃO
+                    <div className="titleRectanglePacotes">
+                        <span className="rectangleTextPacotes">3 DIAS <br />1000 pts</span>
+                    </div>
+                </h3>
+                <p className="cardTextPacotes">
+                    Explore o design no coração da Itália com ingresso para o Salone del Mobile 
+                    e muito mais!
+                </p>
             </div>
-        </h3>
-        <p className="cardTextPacotes">
-            Explore o design no coração da Itália com ingresso para o Salone del Mobile 
-            e muito mais!
-        </p>
-    </div>
-</div>
+        </div>
 
-{/* CARD2 */}
-<div className="cardPack">
-    <img src={card2} alt="Packages" className="bannerPacotes" />    
-    <div className="cardContentPacotes">
-        <h3 className="cardTitlePacotes">
-        CROÁCIA
-            <div className="titleRectanglePacotes">
-                <span className="rectangleTextPacotes">3 DIAS <br />100 pts</span>
+        {/* CARD2 */}
+        <div className="cardPack">
+            <img src={card2} alt="Packages" className="bannerPacotes" />    
+            <div className="cardContentPacotes">
+                <h3 className="cardTitlePacotes">
+                CROÁCIA
+                    <div className="titleRectanglePacotes">
+                        <span className="rectangleTextPacotes">3 DIAS <br />100 pts</span>
+                    </div>
+                </h3>
+                <p className="cardTextPacotes">
+                    Descubra a beleza da Croácia com uma experiência completa, incluindo voo e 
+                    hospedagem!
+                </p>
             </div>
-        </h3>
-        <p className="cardTextPacotes">
-            Descubra a beleza da Croácia com uma experiência completa, incluindo voo e 
-            hospedagem!
-        </p>
-    </div>
-</div>
+        </div>
 
-{/* CARD3 */}
-<div className="cardPack">
-    <img src={card3} alt="Packages" className="bannerPacotes" />    
-    <div className="cardContentPacotes">
-        <h3 className="cardTitlePacotes">
-        PARIS
-            <div className="titleRectanglePacotes">
-                <span className="rectangleTextPacotes">5 DIAS <br />100 pts</span>
+        {/* CARD3 */}
+        <div className="cardPack">
+            <img src={card3} alt="Packages" className="bannerPacotes" />    
+            <div className="cardContentPacotes">
+                <h3 className="cardTitlePacotes">
+                PARIS
+                    <div className="titleRectanglePacotes">
+                        <span className="rectangleTextPacotes">5 DIAS <br />100 pts</span>
+                    </div>
+                </h3>
+                <p className="cardTextPacotes">
+                    Encante-se com Paris! Uma viagem incrível de 5 dias com hospedagem e café 
+                    da manhã incluso.
+                </p>
             </div>
-        </h3>
-        <p className="cardTextPacotes">
-            Encante-se com Paris! Uma viagem incrível de 5 dias com hospedagem e café 
-            da manhã incluso.
-        </p>
-    </div>
-</div>
+        </div>
 
-{/* CARD4 */}
-<div className="cardPack">
-    <img src={card4} alt="Packages" className="bannerPacotes" />    
-    <div className="cardContentPacotes">
-        <h3 className="cardTitlePacotes">
-        BUENOS AIRES
-            <div className="titleRectanglePacotes">
-                <span className="rectangleTextPacotes">5 DIAS <br />100 pts</span>
+        {/* CARD4 */}
+        <div className="cardPack">
+            <img src={card4} alt="Packages" className="bannerPacotes" />    
+            <div className="cardContentPacotes">
+                <h3 className="cardTitlePacotes">
+                BUENOS AIRES
+                    <div className="titleRectanglePacotes">
+                        <span className="rectangleTextPacotes">5 DIAS <br />100 pts</span>
+                    </div>
+                </h3>
+                <p className="cardTextPacotes">
+                    Mergulhe na cultura argentina em Buenos Aires, com voo, hotel e café da 
+                    manhã inclusos!
+                </p>
             </div>
-        </h3>
-        <p className="cardTextPacotes">
-            Mergulhe na cultura argentina em Buenos Aires, com voo, hotel e café da 
-            manhã inclusos!
-        </p>
-    </div>
-</div>
+        </div>
 
-{/* CARD5 */}
-<div className="cardPack">
-    <img src={card5} alt="Packages" className="bannerPacotes" />    
-    <div className="cardContentPacotes">
-        <h3 className="cardTitlePacotes">
-        JAPÃO
-            <div className="titleRectanglePacotes">
-                <span className="rectangleTextPacotes">5 DIAS <br />1000 pts</span>
+        {/* CARD5 */}
+        <div className="cardPack">
+            <img src={card5} alt="Packages" className="bannerPacotes" />    
+            <div className="cardContentPacotes">
+                <h3 className="cardTitlePacotes">
+                JAPÃO
+                    <div className="titleRectanglePacotes">
+                        <span className="rectangleTextPacotes">5 DIAS <br />1000 pts</span>
+                    </div>
+                </h3>
+                <p className="cardTextPacotes">
+                    Viaje para o Japão e vivencie 5 dias de cultura, conforto e gastronomia, 
+                    com tudo incluso!
+                </p>
             </div>
-        </h3>
-        <p className="cardTextPacotes">
-            Viaje para o Japão e vivencie 5 dias de cultura, conforto e gastronomia, 
-            com tudo incluso!
-        </p>
-    </div>
-</div>
+        </div>
 
-{/* CARD6 */}
-<div className="cardPack">
-    <img src={card6} alt="Packages" className="bannerPacotes" />    
-    <div className="cardContentPacotes">
-        <h3 className="cardTitlePacotes">
-        USHUAIA
-            <div className="titleRectanglePacotes">
-                <span className="rectangleTextPacotes">5 DIAS <br />100 pts</span>
+        {/* CARD6 */}
+        <div className="cardPack">
+            <img src={card6} alt="Packages" className="bannerPacotes" />    
+            <div className="cardContentPacotes">
+                <h3 className="cardTitlePacotes">
+                USHUAIA
+                    <div className="titleRectanglePacotes">
+                        <span className="rectangleTextPacotes">5 DIAS <br />100 pts</span>
+                    </div>
+                </h3>
+                <p className="cardTextPacotes">
+                    Aventura no fim do mundo! 5 dias em Ushuaia, com voo, hotel e café da 
+                    manhã inclusos.
+                </p>
             </div>
-        </h3>
-        <p className="cardTextPacotes">
-            Aventura no fim do mundo! 5 dias em Ushuaia, com voo, hotel e café da 
-            manhã inclusos.
-        </p>
-    </div>
-</div>
+        </div>
 
-{/* CARD7 */}
-<div className="cardPack">
-    <img src={card7} alt="Packages" className="bannerPacotes" />    
-    <div className="cardContentPacotes">
-        <h3 className="cardTitlePacotes">
-        DISNEY
-            <div className="titleRectanglePacotes">
-                <span className="rectangleTextPacotes">5 DIAS <br />100 pts</span>
+        {/* CARD7 */}
+        <div className="cardPack">
+            <img src={card7} alt="Packages" className="bannerPacotes" />    
+            <div className="cardContentPacotes">
+                <h3 className="cardTitlePacotes">
+                DISNEY
+                    <div className="titleRectanglePacotes">
+                        <span className="rectangleTextPacotes">5 DIAS <br />100 pts</span>
+                    </div>
+                </h3>
+                <p className="cardTextPacotes">
+                    Mágica em Orlando! Inclui ingresso para o parque, voo, hotel e café da 
+                    manhã!
+                </p>
             </div>
-        </h3>
-        <p className="cardTextPacotes">
-            Mágica em Orlando! Inclui ingresso para o parque, voo, hotel e café da 
-            manhã!
-        </p>
-    </div>
-</div>
+        </div>
 
-{/* CARD8 */}
-<div className="cardPack">
-    <img src={card8} alt="Packages" className="bannerPacotes" />    
-    <div className="cardContentPacotes">
-        <h3 className="cardTitlePacotes">
-        ILHABELA
-            <div className="titleRectanglePacotes">
-                <span className="rectangleTextPacotes">3 DIAS <br />100 pts</span>
+        {/* CARD8 */}
+        <div className="cardPack">
+            <img src={card8} alt="Packages" className="bannerPacotes" />    
+            <div className="cardContentPacotes">
+                <h3 className="cardTitlePacotes">
+                ILHABELA
+                    <div className="titleRectanglePacotes">
+                        <span className="rectangleTextPacotes">3 DIAS <br />100 pts</span>
+                    </div>
+                </h3>
+                <p className="cardTextPacotes">
+                    Relaxe em Ilhabela! 3 dias de hospedagem e café da manhã para aproveitar 
+                    as belezas naturais.
+                </p>
             </div>
-        </h3>
-        <p className="cardTextPacotes">
-            Relaxe em Ilhabela! 3 dias de hospedagem e café da manhã para aproveitar 
-            as belezas naturais.
-        </p>
-    </div>
-</div>
-
-</section>
-
-
-
+        </div>
+        </section>
     </header>
   );
 };
