@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import "../styles/Styles.css";
 import { toast, ToastContainer } from "react-toastify";
 
+import logo from "../img-hero/partnershipmm.png";
+
 const Nav = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userPoints, setUserPoints] = useState(null);
@@ -67,7 +69,8 @@ const Nav = () => {
     <nav className="nav-container">
       <div className="nav-logo">
         <Link to="/home">
-          <img src="/img/logo.png" alt="Logo" className="logo-icon" />
+          <img src= {logo} alt="Logo" className="logo-icon" />
+          
         </Link>
       </div>
 
@@ -77,7 +80,7 @@ const Nav = () => {
             to="/home"
             className={location.pathname === "/home" ? "active" : ""}
           >
-            Início
+            INÍCIO
           </Link>
         </li>
 
@@ -86,7 +89,7 @@ const Nav = () => {
             to="/services"
             className={location.pathname === "/services" ? "active" : ""}
           >
-            Serviços
+            SERVIÇOS
           </Link>
         </li>
 
@@ -95,7 +98,7 @@ const Nav = () => {
             to="/packages"
             className={location.pathname === "/packages" ? "active" : ""}
           >
-            Pacotes
+            PACOTES
           </Link>
         </li>
 
@@ -104,7 +107,7 @@ const Nav = () => {
             to="/promotions"
             className={location.pathname === "/promotions" ? "active" : ""}
           >
-            Promoções
+            PROMOÇÕES
           </Link>
         </li>
         {isLoggedIn ? (

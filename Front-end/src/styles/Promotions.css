@@ -34,6 +34,7 @@
   max-width: 600px;    /* Largura máxima para a caixa */
 }
 
+/* Estilos para o card */
 .section-container-promotion {
   display: flex;
   flex-wrap: wrap;
@@ -41,7 +42,7 @@
   gap: 40px;
   margin: 0 10%;
 }
-/* Estilos para o card */
+
 .cardPromo { 
   border-radius: 30px;
   width: 250px; /* Tamanho pequeno */

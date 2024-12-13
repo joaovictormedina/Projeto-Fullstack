@@ -229,6 +229,7 @@ nav {
     cursor: pointer;
     width: 150px;
     height: auto;
+
 }
 
 .nav-links {
@@ -246,7 +247,7 @@ nav {
 
 .nav-links a {
     text-decoration: none;
-    font-size: 15px;
+    font-size: 12px;
     font-weight: 500;
     color: #333;
     transition: color 0.3s ease;

@@ -48,8 +48,8 @@ const Hero = () => {
 
       {/* Caixa de texto fixa */}
       <div className="caixa-fixa-Promotion">
-        <h3 className="yellow">Promoções</h3>
-        <h2 className="white">Sempre pensando em melhor agradá-lo!</h2><br />
+        <h3 className="yellow">Aqui nós</h3>
+        <h2 className="white">Sempre pensando no melhor para você!</h2><br />
         <button className="buttonBlue" onClick={scrollToPromotions}>Aproveite já</button>
       </div>
 
