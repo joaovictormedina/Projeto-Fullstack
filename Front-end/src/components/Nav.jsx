@@ -8,6 +8,7 @@ import logo from "../img-hero/partnershipmm.png";
 const Nav = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userPoints, setUserPoints] = useState(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // Estado para o menu
   const navigate = useNavigate();
   const [totalPontosResgatados, setTotalPontosResgatados] = useState(0);
 
@@ -55,6 +56,10 @@ const Nav = () => {
     }
   }, []);
 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen); // Alternar o estado do menu
+  };
+
   // Função para navegar para a conta
   const handleAccountClick = () => {
     navigate("/admin", { replace: true });
@@ -74,7 +79,17 @@ const Nav = () => {
         </Link>
       </div>
 
-      <ul className="nav-links">
+       {/* Botão do menu hambúrguer */}
+       <button
+        className={`burger-menu ${isMenuOpen ? "open" : ""}`}
+        onClick={toggleMenu}
+      >
+        <span className="line"></span>
+        <span className="line"></span>
+        <span className="line"></span>
+      </button>
+
+      <ul className={`nav-links ${isMenuOpen ? "show" : ""}`}>
         <li>
           <Link
             to="/home"

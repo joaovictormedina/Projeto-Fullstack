@@ -1,7 +1,7 @@
 .footer {
     background-color: var(--background-button-blue);
     color: #ffffff;
-    padding: 10px 0;
+    padding: 20px 10px;
     text-align: center;
     position: relative;
     width: 100%;
@@ -19,6 +19,7 @@
     display: flex;
     justify-content: center;
     gap: 15px;
+    flex-wrap: wrap; /* Permite quebra de linha em telas pequenas */
   }
   
   .social-links li {
@@ -34,3 +35,26 @@
     text-decoration: underline;
     color:#007bff;
   }
+
+  /* Ajustes para telas menores */
+@media (max-width: 768px) {
+  .footer {
+    padding: 15px 10px; /* Ajuste o padding */
+  }
+
+  .social-links {
+    gap: 10px; /* Reduz o espaço entre links */
+    flex-direction: column;
+  }
+
+  .social-links a {
+    font-size: 14px; /* Reduz o tamanho da fonte */
+  }
+}
+
+@media (max-width: 480px) {
+  .social-links {
+    flex-direction: column; /* Alinha os links verticalmente */
+    gap: 8px;
+  }
+}
