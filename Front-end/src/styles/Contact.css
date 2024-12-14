@@ -14,7 +14,7 @@
   justify-content: space-between;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 20px 10px;
 }
 
 .contatos {
@@ -108,7 +108,7 @@ section p {
 
 .partners ul {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
   gap: 10px;
   align-items: center;
   list-style: none;
@@ -123,3 +123,8 @@ section p {
   margin-top: 20px;
 }
 
+@media (max-width: 768px) {
+  .qr-code {
+    text-align: center;
+  }
+}
