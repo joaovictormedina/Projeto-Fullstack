@@ -125,7 +125,7 @@ p {
 }
 
 a {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     font-weight: 400;
     text-decoration: none;
     color: var(--color-text-all);
@@ -133,7 +133,6 @@ a {
 
 /* BUTTON PATTERNS */
 button {
-    font-size: 0.75rem;
     padding: 0.35rem 0.7rem;
     border-radius: 0.5rem;
     font-weight: 500;
