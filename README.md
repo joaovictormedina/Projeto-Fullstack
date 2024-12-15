@@ -1,4 +1,4 @@
-# Documentação do Projeto: Landing Page de Resgate de Pontos
+# PaternerShip: Landing Page de Resgate de Pontos
 
 ## 1. Introdução
 
