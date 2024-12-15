@@ -1,17 +1,43 @@
 .herohome {
-    height: 86vh; /* A altura será 50% da tela */
+  position: relative;
+    height: 100vh; /* A altura será 50% da tela */
     width: 100%;   /* Largura ajustada para 100% */
-    overflow: hidden; /* Garante que o conteúdo extra não apareça */
-    margin: 0;      /* Remove a margem */
-    padding: 0;     /* Remove o padding */
+    display: flex;
+    align-items: center;
+    overflow: hidden; /* Evita que elementos extrapolem a área visível */
     margin-bottom: 30px; /* Espaço entre o banner e os cards */
 }
 
 .herohome img {
-    width: 100%;        /* Largura da imagem será 100% do contêiner */
-    height: 100%;       /* Altura da imagem será 100% da tela */
-    object-fit: cover;  /* A imagem preenche o contêiner sem distorcer, mas pode cortar um pouco */
-    object-position: center; /* Posiciona a imagem de maneira centralizada */
+  width: 100%;        /* A imagem ocupa toda a largura */
+  height: 100%;       /* A altura é ajustada para preencher */
+  object-fit: cover;  /* Preenche a área sem distorção */
+  object-position: center; /* Centraliza a imagem no contêiner */
+}
+
+/* Ajustes adicionais para dispositivos menores */
+@media (max-width: 768px) {
+  .herohome {
+      height: 70vh; /* Reduz a altura para tablets */
+      margin-bottom: 20px; /* Ajusta o espaçamento */
+  }
+
+  .herohome img {
+      object-fit: cover; /* Mantém a proporção correta */
+      object-position: top; /* Centraliza a parte superior da imagem */
+  }
+}
+
+@media (max-width: 480px) {
+  .herohome {
+      height: 50vh; /* Altura ainda menor para smartphones */
+      margin-bottom: 15px; /* Espaço reduzido */
+  }
+
+  .herohome img {
+      object-fit: cover; /* Preenche o espaço sem distorcer */
+      object-position: center top; /* Foca na parte superior da imagem */
+  }
 }
 
 .fotos {
@@ -116,8 +142,9 @@
   
   .bibliografia {
     position: relative; /* Necessário para que o fundo semitransparente fique atrás do texto */
-    padding: 100px;
-    margin: 100px 200px;
+    padding: 60px; /* Reduzido para melhor responsividade */
+    margin: 50px auto; /* Centraliza o bloco no centro horizontal */
+    max-width: 800px; /* Limita a largura máxima */
     background-color: rgba(0, 0, 0, 0.6); /* Fundo semitransparente para o texto */
     color: white; /* Cor do texto */
     z-index: 1; /* Garante que o texto fique sobre o fundo */
@@ -127,20 +154,54 @@
   }
   
   .bibliografia h2 {
-    font-size: 38px;
-    margin-bottom: 15px;
+    font-size: 2rem; /* Ajusta o tamanho do título */
+    margin-bottom: 20px;
     color: #fff;
+    text-align: center; /* Centraliza o título */
   }
   
   .bibliografia p {
-    font-size: 16px;
+    font-size: 1rem; /* Texto ajustado */
     color: #fff;
+    line-height: 1.6; /* Melhor legibilidade */
   }
-  
 
+  @media (max-width: 768px) {
+    .bibliografia {
+        padding: 40px;
+        margin: 20px auto; /* Reduz margens laterais */
+        max-width: 90%; /* O texto ocupa quase toda a largura disponível */
+    }
 
+    .bibliografia h2 {
+        font-size: 1.8rem; /* Reduz o tamanho do título */
+    }
 
+    .bibliografia p {
+        font-size: 0.9rem; /* Texto menor */
+        line-height: 1.4; /* Ajuste na altura das linhas */
+    }
+}
 
+@media (max-width: 480px) {
+    .section-bibliografia {
+        height: auto; /* Permite que a altura seja ajustada ao conteúdo */
+        margin: 50px 0; /* Reduz a margem superior/inferior */
+    }
+
+    .bibliografia {
+        padding: 20px; /* Espaçamento menor ao redor do texto */
+        margin: 10px auto; /* Ajuste no posicionamento */
+    }
+
+    .bibliografia h2 {
+        font-size: 1.5rem; /* Tamanho do título menor */
+    }
+
+    .bibliografia p {
+        font-size: 0.8rem; /* Texto menor */
+    }
+}
 
 /* Estilos para o card */
 .cardPromo { 
