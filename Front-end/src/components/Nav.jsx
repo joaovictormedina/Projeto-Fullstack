@@ -153,9 +153,9 @@ const Nav = () => {
         )}
       </div>
 
-      <div className="nav-search">
+      {/* <div className="nav-search">
         <input type="text" placeholder="Procurar..." className="search-input" />
-      </div>
+      </div> */}
       
       <ToastContainer
         position="top-right"

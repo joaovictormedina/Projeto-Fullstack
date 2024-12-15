@@ -1,90 +1,46 @@
-import { Card, Image, Text, Button, Group, SimpleGrid } from "@mantine/core";
 import "../styles/Services.css";
-import casa from "../img/Marcenaiaa.png";
-import toldos2 from "../img/Toldos2.png";
-
-function Home() {
-  return (
-    <Card class="cardservicos">
-      <Card.Section>
-        <Image src={casa} alt="Casa" class="imageservicos"/>
-      </Card.Section>
-
-      <div>
-      <Group>
-        <Text class="h3black">One Home</Text>
-      </Group>
-      </div>
-      
-      <div>
-      <Text class="h3grey">
-        Coleções transformadoras, ambientes singulares, admiráveis e acolhedores
-        com os produtos da Portinari!
-      </Text>
-      </div>      
-
-      <Button class="buttonBlue">
-        Fale com a empresa!
-      </Button>
-    </Card>
-  );
-}
-
-function Toldos() {
-  return (
-    <Card class="cardservicos">
-      <Card.Section>
-        <Image src={toldos2} alt="Toldos" class="imageservicos"/>
-      </Card.Section>
-
-      <div>
-      <Group>
-        <Text class="h3black">GrupoMaxi</Text>
-      </Group>
-      </div>
-
-      <div class="textservices">
-      <Text class="h3grey">
-        Soluções internas e externas, como toldos, pérgolas, cortinas, persianas
-        e fachadas têxteis
-      </Text>
-      </div>      
-
-      <Button class="buttonBlue">
-        Fale com a empresa!
-      </Button>
-    </Card>
-  );
-}
+import imgPack1 from "../img/bannerServicos.jpg";
+import imgPack2 from "../img/Marcenaria.jpg";
+import imgPack3 from "../img/toldos2.png";
 
 const Hero = () => {
   return (
-    <header>
-      {/* Primeira seção para o título e descrição */}
-      <section className="section-titulo">
-        <div className="tituloservicos">
-          <h1>Conheça nossos parceiros e seus serviços</h1>
-          <p class="pservicos">
-            Temos uma gama de parceiros escolhida a dedo para sua melhor
-            experiência e de seus clientes.
-          </p>
-        </div>
-      </section>
+    <header className="heroservicos">
+      <div className="hero-banner">
+        <img src={imgPack1} alt="Serviços" className="banner-image" />
+      </div>
 
-      {/* Segunda seção para os cards de serviços */}
-      <section className="section-servicos">
-        <SimpleGrid
-          cols={1}
-          spacing="lg"
-          breakpoints={[{ maxWidth: "sm", cols: 1 }]}
-        >
-          <Home />
-          <Toldos />
-        </SimpleGrid>
-      </section>
+      {/* Caixa de texto fixa */}
+      <div className="caixa-fixa">
+        <h3 className="yellow">Conheça nossos parceiros</h3>
+        <h2 className="white">Seleção para proporcionar a melhor experiência.</h2><br />
+        <button className="buttonBlue">Aproveite já</button>
+      </div>
+
+       {/* <section className="sectionServicos">
+        <div className="service-item">
+          <div>
+            <h2>One Home</h2>
+            <p>Coleções transformadoras, ambientes singulares, admiráveis e acolhedores com os produtos da Portinari.</p>
+          </div>
+          <div>
+            <img src={imgPack2} alt="Serviços" className="banner-image2" />
+          </div>
+        </div>
+
+        <div className="service-item">
+          <div>
+            <h2>GrupoMaxi</h2>
+            <p>Soluções internas e externas, como toldos, pérgolas, cortinas, persianas e fachadas têxteis.</p>
+          </div>
+
+          <div>
+            <img src={imgPack3} alt="Serviços" className="banner-image2" />
+          </div>
+        </div>
+      </section> */}
     </header>
   );
 };
-
 
 export default Hero;

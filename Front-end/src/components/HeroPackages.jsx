@@ -76,16 +76,16 @@ const Hero = () => {
 
   return (
     <header>
-      <section className="heroPackages">
+        <section className="heroPackages">
         <img src={bannerTop} alt="Packages" className="bannerPackages" />
         <div className="caixa-fixa-packages">
           <h3 className="yellow">Sabe aquela viagem dos sonhos?</h3>
           <h2 className="white">Com a Partnership ela se torna realidade!</h2><br />
           <button className="buttonBlue">Aproveite já</button>
         </div>
-      </section>
+        </section>
 
-      <section className="section-container-pacotes">
+        <section className="section-container-pacotes">
         {/* CARD1 */}
         <div className="cardPack">
             <img src={card1} alt="Packages" className="bannerPacotes" />    
