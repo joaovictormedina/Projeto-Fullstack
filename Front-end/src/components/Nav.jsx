@@ -126,21 +126,7 @@ const Nav = () => {
           </Link>
         </li>
         {isLoggedIn ? (
-          <li>
-            <Link
-              onClick={handleAccountClick}
-              to="/admin"
-              className={location.pathname === "/admin" ? "active" : ""}
-            >
-              Minha conta
-            </Link>
-          </li>
-        ) : null}
-      </ul>
-
-      <div className="nav-actions">
-        {isLoggedIn ? (
-          <div className="logged-in-container">
+          <><div className="logged-in-container">
             {userPoints !== null && (
               <span className="user-points">
                 Meus Pontos:{" "}
@@ -150,7 +136,15 @@ const Nav = () => {
                     : 0)}
               </span>
             )}
-          </div>
+          </div><li>
+              <Link
+                onClick={handleAccountClick}
+                to="/admin"
+                className={location.pathname === "/admin" ? "active" : ""}
+              >
+                Minha conta
+              </Link>
+            </li></>
         ) : (
           <>
             <Link to="/login">
@@ -166,7 +160,7 @@ const Nav = () => {
             Sair
           </button>
         )}
-      </div>
+      </ul>
 
       {/* <div className="nav-search">
         <input type="text" placeholder="Procurar..." className="search-input" />

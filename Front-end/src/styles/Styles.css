@@ -264,6 +264,13 @@ nav {
     font-weight: 800;    
 }
 
+.nav-links li button {
+    width: 100%;
+    font-size: 14px;
+    text-align: center;
+    margin: 5px 0;
+  }
+
 .nav-actions {    
     /* flex: 1; */
     display: flex;
@@ -296,6 +303,7 @@ nav {
 }
 
 .burger-menu {
+    margin-left: 45%;
     display: none;
     flex-direction: column;
     justify-content: space-between;
