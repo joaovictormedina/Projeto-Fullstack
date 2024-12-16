@@ -27,11 +27,36 @@ import parceiro26 from "../img-partners/parceiro26.png";
 import parceiro27 from "../img-partners/parceiro27.png";
 import parceiro28 from "../img-partners/parceiro28.png";
 
-const parceiros = Array.from({ length: 28 }, (_, i) => ({
-  img: require(`../img-partners/parceiro${i + 1}.png`),
-  alt: `Parceiro ${i + 1}`,
-  link: "#",
-}));
+const parceiros = [
+  { img: parceiro1, alt: "Parceiro 1", link: "#" },
+  { img: parceiro2, alt: "Parceiro 2", link: "#" },
+  { img: parceiro3, alt: "Parceiro 3", link: "#" },
+  { img: parceiro4, alt: "Parceiro 4", link: "#" },
+  { img: parceiro5, alt: "Parceiro 5", link: "#" },
+  { img: parceiro6, alt: "Parceiro 6", link: "#" },
+  { img: parceiro7, alt: "Parceiro 7", link: "#" },
+  { img: parceiro8, alt: "Parceiro 8", link: "#" },
+  { img: parceiro9, alt: "Parceiro 9", link: "#" },
+  { img: parceiro10, alt: "Parceiro 10", link: "#" },
+  { img: parceiro11, alt: "Parceiro 11", link: "#" },
+  { img: parceiro12, alt: "Parceiro 12", link: "#" },
+  { img: parceiro13, alt: "Parceiro 13", link: "#" },
+  { img: parceiro14, alt: "Parceiro 14", link: "#" },
+  { img: parceiro15, alt: "Parceiro 15", link: "#" },
+  { img: parceiro16, alt: "Parceiro 16", link: "#" },
+  { img: parceiro17, alt: "Parceiro 17", link: "#" },
+  { img: parceiro18, alt: "Parceiro 18", link: "#" },
+  { img: parceiro19, alt: "Parceiro 19", link: "#" },
+  { img: parceiro20, alt: "Parceiro 20", link: "#" },
+  { img: parceiro21, alt: "Parceiro 21", link: "#" },
+  { img: parceiro22, alt: "Parceiro 22", link: "#" },
+  { img: parceiro23, alt: "Parceiro 23", link: "#" },
+  { img: parceiro24, alt: "Parceiro 24", link: "#" },
+  { img: parceiro25, alt: "Parceiro 25", link: "#" },
+  { img: parceiro26, alt: "Parceiro 26", link: "#" },
+  { img: parceiro27, alt: "Parceiro 27", link: "#" },
+  { img: parceiro28, alt: "Parceiro 28", link: "#" },
+];
 
 const Contact = () => {
   return (
