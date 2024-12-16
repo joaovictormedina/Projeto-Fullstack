@@ -79,8 +79,8 @@ const Nav = () => {
         </Link>
       </div>
 
-       {/* Botão do menu hambúrguer */}
-       <button
+      {/* Botão do menu hambúrguer */}
+      <button
         className={`burger-menu ${isMenuOpen ? "open" : ""}`}
         onClick={toggleMenu}
       >
