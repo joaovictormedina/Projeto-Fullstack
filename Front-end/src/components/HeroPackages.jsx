@@ -1,16 +1,15 @@
-import bannerTop from "../img-packages/milao.png";
 import { useState, useEffect } from "react";
+import {
+  Card,
+  Image,
+  Text,
+  Badge,
+  Button,
+  Group,
+  SimpleGrid,
+} from "@mantine/core";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
-import card1 from "../img-packages/milaoMobile.png";
-import card2 from "../img-packages/croacia.png";
-import card3 from "../img-packages/paris.png";
-import card4 from "../img-packages/buenosaires.png";
-import card5 from "../img-packages/japao.png";
-import card6 from "../img-packages/ushuaia.png";
-import card7 from "../img-packages/orlando.png";
-import card8 from "../img-packages/cruzeirocostabrasileira.png";
-
 
 const Hero = () => {
   const [products, setProducts] = useState([]);
@@ -24,7 +23,7 @@ const Hero = () => {
       setProducts(response.data);
     } catch (error) {
       console.error("Erro ao buscar produtos:", error);
-      toast.error(`Erro ao buscar produtos: ${error.message}`);
+      toast.error("Erro ao buscar produtos:", error);
     }
   };
 
@@ -58,7 +57,7 @@ const Hero = () => {
       });
 
       // Atualiza os pontos do usuário
-      await axios.patch(`https://back-end-nccq.onrender.com/users/${userId}`, {
+      await axios.get(`https://back-end-nccq.onrender.com/users/${userId}`, {
         points: userPoints - requiredPoints,
       });
 
@@ -66,7 +65,8 @@ const Hero = () => {
       toast.success("Produto resgatado com sucesso!");
     } catch (error) {
       console.error("Erro ao resgatar produto:", error);
-      toast.error("Você não tem pontos suficientes.");
+      // Exibe o popup de erro
+      toast.error("Você não tem pontos suficiente.");
     }
   };
 
@@ -75,153 +75,76 @@ const Hero = () => {
   }, []);
 
   return (
-    <header>
-        <section className="heroPackages">
-        <img src={bannerTop} alt="Packages" className="bannerPackages" />
-        <div className="caixa-fixa-packages">
-          <h3 className="yellow">Sabe aquela viagem dos sonhos?</h3>
-          <h2 className="white">Com a Partnership ela se torna realidade!</h2><br />
-          <button className="buttonBlue">Aproveite já</button>
-        </div>
-        </section>
+    <header style={{ padding: "10px 7vw", textAlign: "left" }}>
+      <div>
+        <h1>VIAGENS</h1>
+        <p>
+          Conheça agora algumas das experiências que nossos parceiros poderão
+          viver no PARTNERSHIP
+        </p>
+      </div>
+      <br />
+      <SimpleGrid
+        cols={2}
+        spacing="lg"
+        breakpoints={[{ maxWidth: "sm", cols: 1 }]}
+      >
+        {products.length > 0 ? (
+          products.map((product, index) => (
+            <Card
+              shadow="sm"
+              padding="lg"
+              radius="md"
+              withBorder
+              key={index}
+              style={{ width: "300px", margin: "10px" }}
+            >
+              <Card.Section>
+                <Image src={product.image} height={160} alt={product.title} />
+              </Card.Section>
 
-        <section className="section-container-pacotes">
-        {/* CARD1 */}
-        <div className="cardPack">
-            <img src={card1} alt="Packages" className="bannerPacotes" />    
-            <div className="cardContentPacotes">
-                <h3 className="cardTitlePacotes">
-                MILÃO
-                    <div className="titleRectanglePacotes">
-                        <span className="rectangleTextPacotes">3 DIAS <br />1000 pts</span>
-                    </div>
-                </h3>
-                <p className="cardTextPacotes">
-                    Explore o design no coração da Itália com ingresso para o Salone del Mobile 
-                    e muito mais!
-                </p>
-            </div>
-        </div>
+              <Group justify="space-between" mt="md" mb="xs">
+                <Text fw={500}>{product.title}</Text>
+                <div style={{ display: "flex", gap: "100px" }}>
+                  <Badge color="blue">{product.offers[0].days} days</Badge>
+                  <Badge color="yellow">{product.offers[0].points} pts</Badge>
+                </div>
+              </Group>
 
-        {/* CARD2 */}
-        <div className="cardPack">
-            <img src={card2} alt="Packages" className="bannerPacotes" />    
-            <div className="cardContentPacotes">
-                <h3 className="cardTitlePacotes">
-                CROÁCIA
-                    <div className="titleRectanglePacotes">
-                        <span className="rectangleTextPacotes">3 DIAS <br />100 pts</span>
-                    </div>
-                </h3>
-                <p className="cardTextPacotes">
-                    Descubra a beleza da Croácia com uma experiência completa, incluindo voo e 
-                    hospedagem!
-                </p>
-            </div>
-        </div>
+              <Text size="sm" style={{ textAlign: "left" }}>
+                Serviços inclusos
+              </Text>
 
-        {/* CARD3 */}
-        <div className="cardPack">
-            <img src={card3} alt="Packages" className="bannerPacotes" />    
-            <div className="cardContentPacotes">
-                <h3 className="cardTitlePacotes">
-                PARIS
-                    <div className="titleRectanglePacotes">
-                        <span className="rectangleTextPacotes">5 DIAS <br />100 pts</span>
-                    </div>
-                </h3>
-                <p className="cardTextPacotes">
-                    Encante-se com Paris! Uma viagem incrível de 5 dias com hospedagem e café 
-                    da manhã incluso.
-                </p>
-            </div>
-        </div>
+              <Text size="sm" c="dimmed" style={{ textAlign: "left" }}>
+                {product.description.split("\n").map((line, index) => (
+                  <span key={index}>
+                    {line}
+                    <br />
+                  </span>
+                ))}
+              </Text>
 
-        {/* CARD4 */}
-        <div className="cardPack">
-            <img src={card4} alt="Packages" className="bannerPacotes" />    
-            <div className="cardContentPacotes">
-                <h3 className="cardTitlePacotes">
-                BUENOS AIRES
-                    <div className="titleRectanglePacotes">
-                        <span className="rectangleTextPacotes">5 DIAS <br />100 pts</span>
-                    </div>
-                </h3>
-                <p className="cardTextPacotes">
-                    Mergulhe na cultura argentina em Buenos Aires, com voo, hotel e café da 
-                    manhã inclusos!
-                </p>
-            </div>
-        </div>
-
-        {/* CARD5 */}
-        <div className="cardPack">
-            <img src={card5} alt="Packages" className="bannerPacotes" />    
-            <div className="cardContentPacotes">
-                <h3 className="cardTitlePacotes">
-                JAPÃO
-                    <div className="titleRectanglePacotes">
-                        <span className="rectangleTextPacotes">5 DIAS <br />1000 pts</span>
-                    </div>
-                </h3>
-                <p className="cardTextPacotes">
-                    Viaje para o Japão e vivencie 5 dias de cultura, conforto e gastronomia, 
-                    com tudo incluso!
-                </p>
-            </div>
-        </div>
-
-        {/* CARD6 */}
-        <div className="cardPack">
-            <img src={card6} alt="Packages" className="bannerPacotes" />    
-            <div className="cardContentPacotes">
-                <h3 className="cardTitlePacotes">
-                USHUAIA
-                    <div className="titleRectanglePacotes">
-                        <span className="rectangleTextPacotes">5 DIAS <br />100 pts</span>
-                    </div>
-                </h3>
-                <p className="cardTextPacotes">
-                    Aventura no fim do mundo! 5 dias em Ushuaia, com voo, hotel e café da 
-                    manhã inclusos.
-                </p>
-            </div>
-        </div>
-
-        {/* CARD7 */}
-        <div className="cardPack">
-            <img src={card7} alt="Packages" className="bannerPacotes" />    
-            <div className="cardContentPacotes">
-                <h3 className="cardTitlePacotes">
-                DISNEY
-                    <div className="titleRectanglePacotes">
-                        <span className="rectangleTextPacotes">5 DIAS <br />100 pts</span>
-                    </div>
-                </h3>
-                <p className="cardTextPacotes">
-                    Mágica em Orlando! Inclui ingresso para o parque, voo, hotel e café da 
-                    manhã!
-                </p>
-            </div>
-        </div>
-
-        {/* CARD8 */}
-        <div className="cardPack">
-            <img src={card8} alt="Packages" className="bannerPacotes" />    
-            <div className="cardContentPacotes">
-                <h3 className="cardTitlePacotes">
-                ILHABELA
-                    <div className="titleRectanglePacotes">
-                        <span className="rectangleTextPacotes">3 DIAS <br />100 pts</span>
-                    </div>
-                </h3>
-                <p className="cardTextPacotes">
-                    Relaxe em Ilhabela! 3 dias de hospedagem e café da manhã para aproveitar 
-                    as belezas naturais.
-                </p>
-            </div>
-        </div>
-        </section>
+              <Button
+                onClick={() => handleResgatar(product)}
+                class="buttonBlue"
+              >
+                Resgatar
+              </Button>
+            </Card>
+          ))
+        ) : (
+          <p>Nenhum produto adicionado ainda.</p>
+        )}
+      </SimpleGrid>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        closeOnClick
+        pauseOnHover
+        draggable
+        theme="dark"
+      />
     </header>
   );
 };
