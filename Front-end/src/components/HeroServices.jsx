@@ -1,44 +1,60 @@
 import "../styles/Services.css";
-import imgPack1 from "../img/bannerServicos.jpg";
-import imgPack2 from "../img/Marcenaria.jpg";
-import imgPack3 from "../img/toldos2.png";
+import casa from "../img/Marcenaiaa.png";
+import toldos2 from "/home/medina/Projetos/pantern-ship/Pantern-Ship/Front-end/src/img/toldos2.png";
+
+function Home() {
+  return (
+    <div className="cardservicos">
+      <div className="card-image">
+        <img src={casa} alt="Casa" className="imageservicos" />
+      </div>
+      <div className="textContainer">
+        <h3 className="h3black">ONE HOME</h3>
+        <p className="h3grey">
+          Transforme seu lar com coleções exclusivas e inovadoras, criando
+          ambientes singulares que refletem sua personalidade e estilo. Nossos
+          produtos são cuidadosamente selecionados para proporcionar um toque de
+          elegância e sofisticação, oferecendo espaços admiráveis e acolhedores,
+          perfeitos para viver com conforto e beleza. A Portinari traz o melhor
+          em qualidade e design, elevando o seu lar a um novo nível de
+          encantamento.
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function Toldos() {
+  return (
+    <div className="cardservicos">
+      <div className="textContainer">
+        <h3 className="h3black">GRUPOMAXI</h3>
+        <p className="h3grey">
+          Oferecemos soluções versáteis e de alta performance para ambientes
+          internos e externos. Com uma ampla gama de produtos, como toldos,
+          pérgolas, cortinas, persianas e fachadas têxteis, o GrupoMaxi
+          proporciona conforto e funcionalidade a qualquer espaço. Nossos
+          produtos são pensados para atender às suas necessidades práticas e
+          estéticas, garantindo um ambiente mais agradável, protegido e visu-
+          almente impactante, independentemente das condições climáticas.
+        </p>
+      </div>
+      <div className="card-image">
+        <img src={toldos2} alt="Toldos" className="imageservicos" />
+      </div>
+    </div>
+  );
+}
 
 const Hero = () => {
   return (
-    <header className="heroservicos">
-      <div className="hero-banner">
-        <img src={imgPack1} alt="Serviços" className="banner-image" />
-      </div>
-
-      {/* Caixa de texto fixa */}
-      <div className="caixa-fixa">
-        <h3 className="yellow">Conheça nossos parceiros</h3>
-        <h2 className="white">Seleção para proporcionar a melhor experiência.</h2><br />
-        <button className="buttonBlue">Aproveite já</button>
-      </div>
-
-       {/* <section className="sectionServicos">
-        <div className="service-item">
-          <div>
-            <h2>One Home</h2>
-            <p>Coleções transformadoras, ambientes singulares, admiráveis e acolhedores com os produtos da Portinari.</p>
-          </div>
-          <div>
-            <img src={imgPack2} alt="Serviços" className="banner-image2" />
-          </div>
+    <header>
+      <section className="section-servicos">
+        <div className="card-grid">
+          <Home />
+          <Toldos />
         </div>
-
-        <div className="service-item">
-          <div>
-            <h2>GrupoMaxi</h2>
-            <p>Soluções internas e externas, como toldos, pérgolas, cortinas, persianas e fachadas têxteis.</p>
-          </div>
-
-          <div>
-            <img src={imgPack3} alt="Serviços" className="banner-image2" />
-          </div>
-        </div>
-      </section> */}
+      </section>
     </header>
   );
 };
