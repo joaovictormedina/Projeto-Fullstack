@@ -42,7 +42,7 @@ const Register = () => {
       );
 
       if (response.status === 201) {
-        toast.sucess(
+        toast.success(
           "Cadastrado com sucesso! Você será redirecionado para a tela de login."
         );
 
