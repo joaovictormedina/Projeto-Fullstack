@@ -62,55 +62,58 @@ const Contact = () => {
   return (
     <section id="contact-section">
       <div className="contact-container">
-
-        <div class="contatos-logo">
+        <div className="contatos-logo">
           {/* Logo */}
-          <img src="/img/logo.png" alt="Logo da Empresa" className="logo" />
+          <img
+            src="../img-hero/partnershipmm.png"
+            alt="Logo da Empresa"
+            className="logo"
+          />
         </div>
 
         <div className="partners">
-            {/* Parceiros */}
-            <h3>Produtos e Fornecedores</h3>
-            <ul>
-              {parceiros.map((parceiro, index) => (
-                <li key={index}>
-                  <img
-                    src={parceiro.img}
-                    alt={parceiro.alt}
-                    className="partner-img"
-                  />
-                </li>
-              ))}
-            </ul>
+          {/* Parceiros */}
+          <h3>Produtos e Fornecedores</h3>
+          <ul>
+            {parceiros.map((parceiro, index) => (
+              <li key={index}>
+                <img
+                  src={parceiro.img}
+                  alt={parceiro.alt}
+                  className="partner-img"
+                />
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div className="contact-info">
-          <div class="contatos">
+          <div className="contatos">
             <div>
-                {/* QR Code */}
+              {/* QR Code */}
               <div className="qr-code">
-                    <img src="/img/qrcode.png" alt="QR Code" />
+                <img src="/img/qrcode.png" alt="QR Code" />
               </div>
             </div>
-            
-            <div class="contatos-info">
+
+            <div className="contatos-info">
               {/* Contatos */}
-              <p>Para maiores informações:</p><br />
+              <p>Para maiores informações:</p>
+              <br />
               <p>
                 Telefone:<a href="tel:+5511999999999">+55 11 98765-4321</a>
               </p>
               <p>
                 E-mail:
-                <a href="mailto:contato@partnership.com.br">contato@partnership.com.br</a>
+                <a href="mailto:contato@partnership.com.br">
+                  contato@partnership.com.br
+                </a>
               </p>
 
               <p>Endereço: Rua Exemplo, 123 - São Paulo, SP</p>
             </div>
-
           </div>
-
         </div>
-
       </div>
 
       {/* Links legais */}
