@@ -10,6 +10,8 @@ import {
 } from "@mantine/core";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
+import foto1 from "../img-packages/croacia.png";
+import "../styles/Services.css";
 
 const Hero = () => {
   const [products, setProducts] = useState([]);
@@ -75,76 +77,95 @@ const Hero = () => {
   }, []);
 
   return (
-    <header style={{ padding: "10px 7vw", textAlign: "left" }}>
-      <div>
-        <h1>VIAGENS</h1>
-        <p>
-          Conheça agora algumas das experiências que nossos parceiros poderão
-          viver no PARTNERSHIP
-        </p>
-      </div>
-      <br />
-      <SimpleGrid
-        cols={2}
-        spacing="lg"
-        breakpoints={[{ maxWidth: "sm", cols: 1 }]}
-      >
-        {products.length > 0 ? (
-          products.map((product, index) => (
-            <Card
-              shadow="sm"
-              padding="lg"
-              radius="md"
-              withBorder
-              key={index}
-              style={{ width: "300px", margin: "10px" }}
-            >
-              <Card.Section>
-                <Image src={product.image} height={160} alt={product.title} />
-              </Card.Section>
+    <header>
+      {/* Adicionando a nova parte */}
+      <header className="herohome">
+        <div className="hero-banner">
+          <img src={foto1} alt="Banner Hero" className="banner-image" />
+        </div>
 
-              <Group justify="space-between" mt="md" mb="xs">
-                <Text fw={500}>{product.title}</Text>
-                <div style={{ display: "flex", gap: "100px" }}>
-                  <Badge color="blue">{product.offers[0].days} days</Badge>
-                  <Badge color="yellow">{product.offers[0].points} pts</Badge>
-                </div>
-              </Group>
+        {/* Caixa de texto fixa */}
+        <div className="caixa-fixa">
+          <h3 className="yellow">Momentos inesquecíveis em família</h3>
+          <h2 className="white">Explore destinos incríveis com</h2>
+          <h2 className="white">conforto e segurança.</h2>
 
-              <Text size="sm" style={{ textAlign: "left" }}>
-                Serviços inclusos
-              </Text>
+          <br />
+          <button className="buttonBlue">Aproveite já</button>
+        </div>
+      </header>
 
-              <Text size="sm" c="dimmed" style={{ textAlign: "left" }}>
-                {product.description.split("\n").map((line, index) => (
-                  <span key={index}>
-                    {line}
-                    <br />
-                  </span>
-                ))}
-              </Text>
-
-              <Button
-                onClick={() => handleResgatar(product)}
-                class="buttonBlue"
+      <div style={{ padding: "10px 7vw", textAlign: "left" }}>
+        <div>
+          <h1>VIAGENS</h1>
+          <p>
+            Conheça agora algumas das experiências que nossos parceiros poderão
+            viver no PARTNERSHIP
+          </p>
+        </div>
+        <br />
+        <SimpleGrid
+          cols={2}
+          spacing="lg"
+          breakpoints={[{ maxWidth: "sm", cols: 1 }]}
+        >
+          {products.length > 0 ? (
+            products.map((product, index) => (
+              <Card
+                shadow="sm"
+                padding="lg"
+                radius="md"
+                withBorder
+                key={index}
+                style={{ width: "300px", margin: "10px" }}
               >
-                Resgatar
-              </Button>
-            </Card>
-          ))
-        ) : (
-          <p>Nenhum produto adicionado ainda.</p>
-        )}
-      </SimpleGrid>
-      <ToastContainer
-        position="top-right"
-        autoClose={2000}
-        hideProgressBar={false}
-        closeOnClick
-        pauseOnHover
-        draggable
-        theme="dark"
-      />
+                <Card.Section>
+                  <Image src={product.image} height={160} alt={product.title} />
+                </Card.Section>
+
+                <Group justify="space-between" mt="md" mb="xs">
+                  <Text fw={500}>{product.title}</Text>
+                  <div style={{ display: "flex", gap: "100px" }}>
+                    <Badge color="blue">{product.offers[0].days} days</Badge>
+                    <Badge color="yellow">{product.offers[0].points} pts</Badge>
+                  </div>
+                </Group>
+
+                <Text size="sm" style={{ textAlign: "left" }}>
+                  Serviços inclusos
+                </Text>
+
+                <Text size="sm" c="dimmed" style={{ textAlign: "left" }}>
+                  {product.description.split("\n").map((line, index) => (
+                    <span key={index}>
+                      {line}
+                      <br />
+                    </span>
+                  ))}
+                </Text>
+
+                <Button
+                  onClick={() => handleResgatar(product)}
+                  class="buttonBlue"
+                >
+                  Resgatar
+                </Button>
+              </Card>
+            ))
+          ) : (
+            <p>Nenhum produto adicionado ainda.</p>
+          )}
+        </SimpleGrid>
+        <ToastContainer
+          position="top-right"
+          autoClose={2000}
+          hideProgressBar={false}
+          closeOnClick
+          pauseOnHover
+          draggable
+          theme="dark"
+        />
+      </div>
     </header>
   );
 };

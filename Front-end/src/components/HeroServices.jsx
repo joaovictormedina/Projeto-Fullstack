@@ -1,6 +1,7 @@
 import "../styles/Services.css";
 import casa from "../img/Marcenaiaa.png";
 import toldos2 from "/home/medina/Projetos/pantern-ship/Pantern-Ship/Front-end/src/img/toldos2.png";
+import foto1 from "../img/bannerServicos.jpg";
 
 function Home() {
   return (
@@ -49,6 +50,22 @@ function Toldos() {
 const Hero = () => {
   return (
     <header>
+      {/* Adicionando a nova parte */}
+      <header className="herohome">
+        <div className="hero-banner">
+          <img src={foto1} alt="Banner Hero" className="banner-image" />
+        </div>
+
+        {/* Caixa de texto fixa */}
+        <div className="caixa-fixa">
+          <h3 className="yellow">Excelência em Engenharia e Arquitetura</h3>{" "}
+          <h2 className="white">Construindo seus sonhos com</h2>{" "}
+          <h2 className="white">qualidade e inovação.</h2>
+          <br />
+          <button className="buttonBlue">Aproveite já</button>
+        </div>
+      </header>
+
       <section className="section-servicos">
         <div className="card-grid">
           <Home />
